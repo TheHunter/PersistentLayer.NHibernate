@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping
+    assembly="PersistentLayer.Domain"
+    namespace="PersistentLayer.Domain"
+    default-access="property"
+    default-lazy="false"
+    xmlns="urn:nhibernate-mapping-2.2">
+
+    <class name="SalesmanNick" table="SalesmanNicks">
+        <id name="Code" type="String">
+            <generator class="native" />
+        </id>
+        <property name="Description" type="String" />
+        <set name="Consultants"
+             inverse="true"
+             lazy="false"
+             table="Salesman"
+             >
+            <key column="NickCode" foreign-key="Code" />
+            <one-to-many class="Salesman" not-found="ignore"/>
+        </set>
+    </class>
+    
+</hibernate-mapping>

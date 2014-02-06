@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>EntityModel</id>
+    <version>1.5.4.16</version>
+    <title>EntityModel</title>
+    <authors>The Hunter</authors>
+    <owners>The Hunter</owners>
+    <licenseUrl>https://raw.github.com/TheHunter/EntityModel/prod/lgpl.txt</licenseUrl>
+    <projectUrl>https://github.com/TheHunter/EntityModel.git</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A basic library implementation for persistent classes.</description>
+    <summary>A basic library implementation for persistent classes.</summary>
+    <releaseNotes />
+    <copyright />
+    <language />
+    <tags>ORM DAO POCO</tags>
+  </metadata>
+</package>
