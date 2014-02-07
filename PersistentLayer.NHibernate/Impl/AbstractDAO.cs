@@ -30,13 +30,5 @@ namespace PersistentLayer.NHibernate.Impl
             return this.SessionInfo.Provider;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public INhTransactionProvider GetNhTransactionProvider()
-        {
-            return this.SessionInfo.Provider;
-        }
     }
 }

@@ -98,11 +98,18 @@ namespace PersistentLayer.NHibernate
             return this.transactions.Count(info => info.Name == name) > 0;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void BeginTransaction()
         {
             this.BeginTransaction((IsolationLevel?)null);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
         public void BeginTransaction(string name)
         {
             // ReSharper disable RedundantCast

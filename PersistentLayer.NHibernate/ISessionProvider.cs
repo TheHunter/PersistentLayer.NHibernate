@@ -7,8 +7,7 @@ namespace PersistentLayer.NHibernate
     /// Provides sessions by a higher implementation.
     /// </summary>
     public interface ISessionProvider
-        //: ITransactionProvider
-        : INhTransactionProvider
+        : ITransactionProvider
     {
         /// <summary>
         /// Gets the current bounded session by a higher implementation level.

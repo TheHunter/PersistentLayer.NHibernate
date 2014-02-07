@@ -6,23 +6,21 @@ using System.Text;
 
 namespace PersistentLayer.NHibernate
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public interface INhTransactionProvider
-        : ITransactionProvider
-    {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="level"></param>
-        void BeginTransaction(IsolationLevel? level);
+    
+    //public interface INhTransactionProvider
+    //    : ITransactionProvider
+    //{
+    //    /// <summary>
+    //    /// 
+    //    /// </summary>
+    //    /// <param name="level"></param>
+    //    void BeginTransaction(IsolationLevel? level);
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="level"></param>
-        void BeginTransaction(string name, IsolationLevel? level);
-    }
+    //    /// <summary>
+    //    /// 
+    //    /// </summary>
+    //    /// <param name="name"></param>
+    //    /// <param name="level"></param>
+    //    void BeginTransaction(string name, IsolationLevel? level);
+    //}
 }

@@ -14,6 +14,98 @@ namespace PersistentLayer.NHibernate.Test.Sessions
     {
 
         [Test]
+        public void FuckOpenTransactionTest1()
+        {
+            Assert.IsFalse(this.SessionProvider.InProgress);
+            this.SessionProvider.BeginTransaction();
+
+            Assert.IsTrue(this.SessionProvider.InProgress);
+
+            this.SessionProvider.CommitTransaction();
+            Assert.IsFalse(this.SessionProvider.InProgress);
+        }
+
+        [Test]
+        public void FuckOpenTransactionTest2()
+        {
+            Assert.IsFalse(this.SessionProvider.InProgress);
+
+            this.SessionProvider.BeginTransaction();
+            Assert.IsTrue(this.SessionProvider.InProgress);
+
+            this.SessionProvider.BeginTransaction();
+            Assert.IsTrue(this.SessionProvider.InProgress);
+
+            this.SessionProvider.CommitTransaction();
+            Assert.IsTrue(this.SessionProvider.InProgress);
+
+            this.SessionProvider.CommitTransaction();
+            Assert.IsFalse(this.SessionProvider.InProgress);
+        }
+
+
+        [Test]
+        public void FuckOpenTransactionWithInnerRollback()
+        {
+            Assert.IsFalse(this.SessionProvider.InProgress);
+
+            try
+            {
+                this.SessionProvider.BeginTransaction();
+                Assert.IsTrue(this.SessionProvider.InProgress);
+
+                this.SessionProvider.BeginTransaction();
+                Assert.IsTrue(this.SessionProvider.InProgress);
+
+                // making a rollback ...
+                {
+                    // this instruction throws an exception
+                    // in order to advice the caller code...
+                    this.SessionProvider.RollbackTransaction();
+                }
+
+            }
+            catch (InnerRollBackException ex)
+            {
+                Assert.IsFalse(this.SessionProvider.InProgress);
+            }
+        }
+
+        [Test]
+        [ExpectedException(typeof(InnerRollBackException))]
+        public void FuckOpenTransactionWithInnerRollback2()
+        {
+            Assert.IsFalse(this.SessionProvider.InProgress);
+
+            this.SessionProvider.BeginTransaction();
+            Assert.IsTrue(this.SessionProvider.InProgress);
+
+            this.SessionProvider.BeginTransaction();
+            Assert.IsTrue(this.SessionProvider.InProgress);
+
+            // making a rollback ...
+            {
+                // this instruction throws an exception
+                // in order to advice the caller code...
+                this.SessionProvider.RollbackTransaction();
+            }
+        }
+
+        [Test]
+        public void FuckOpenTransactionTest3()
+        {
+            Assert.IsFalse(this.SessionProvider.InProgress);
+            this.SessionProvider.BeginTransaction();
+
+            Assert.IsTrue(this.SessionProvider.InProgress);
+            
+            // nothing occurs here because there's no inner transaction..
+            // so making rollback everything become like before...
+            this.SessionProvider.RollbackTransaction();
+            Assert.IsFalse(this.SessionProvider.InProgress);
+        }
+
+        [Test]
         public void TestRightExecution1()
         {
             this.SessionProvider.BeginTransaction(IsolationLevel.ReadCommitted);
@@ -156,7 +248,7 @@ namespace PersistentLayer.NHibernate.Test.Sessions
             try
             {
                 this.SessionProvider.BeginTransaction("Module1", IsolationLevel.ReadCommitted);
-                Salesman current = this.CurrentPagedDAO.FindBy<Salesman, long?>(id);
+                this.CurrentPagedDAO.FindBy<Salesman, long?>(id);
                 this.SessionProvider.CommitTransaction();
             }
             catch (Exception ex)
@@ -173,7 +265,7 @@ namespace PersistentLayer.NHibernate.Test.Sessions
             try
             {
                 this.SessionProvider.BeginTransaction("Module2", IsolationLevel.ReadCommitted);
-                TradeContract current = this.CurrentPagedDAO.FindBy<TradeContract, long?>(id);
+                this.CurrentPagedDAO.FindBy<TradeContract, long?>(id);
                 this.SessionProvider.CommitTransaction();
             }
             catch (Exception ex)
@@ -190,7 +282,7 @@ namespace PersistentLayer.NHibernate.Test.Sessions
             try
             {
                 this.SessionProvider.BeginTransaction("Module3", IsolationLevel.ReadCommitted);
-                Agency current = this.CurrentPagedDAO.FindBy<Agency, long?>(id);
+                this.CurrentPagedDAO.FindBy<Agency, long?>(id);
                 this.SessionProvider.CommitTransaction();
             }
             catch (Exception ex)
@@ -208,7 +300,7 @@ namespace PersistentLayer.NHibernate.Test.Sessions
         internal void ModuleX<TSource, TKey>(TKey id)
             where TSource : class
         {
-            var provider = this.CurrentPagedDAO.GetNhTransactionProvider();
+            var provider = this.CurrentPagedDAO.GetTransactionProvider();
             try
             {
                 provider.BeginTransaction("ModuleX", IsolationLevel.ReadCommitted);
@@ -230,10 +322,10 @@ namespace PersistentLayer.NHibernate.Test.Sessions
         internal void ModuleXX<TSource, TKey>(TKey id)
             where TSource : class
         {
-            var provider = this.CurrentPagedDAO.GetNhTransactionProvider();
+            var provider = this.CurrentPagedDAO.GetTransactionProvider();
             try
             {
-                provider.BeginTransaction("ModuleX", IsolationLevel.ReadCommitted);
+                provider.BeginTransaction("ModuleXX", IsolationLevel.ReadCommitted);
                 this.CurrentPagedDAO.FindBy<TSource, TKey>(id);
                 provider.CommitTransaction();
             }
@@ -242,5 +334,8 @@ namespace PersistentLayer.NHibernate.Test.Sessions
                 throw new Exception("An exception has occurred.", ex);
             }
         }
+
+
+
     }
 }

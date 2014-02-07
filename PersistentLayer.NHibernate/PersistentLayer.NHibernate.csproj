@@ -40,9 +40,9 @@
     <Reference Include="NHibernate">
       <HintPath>..\packages\NHibernate.3.3.3.4001\lib\Net35\NHibernate.dll</HintPath>
     </Reference>
-    <Reference Include="PersistentLayer, Version=4.2.1.10, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="PersistentLayer, Version=4.2.2.10, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\PersistentLayer.4.2.1.10\lib\net35\PersistentLayer.dll</HintPath>
+      <HintPath>..\packages\PersistentLayer.4.2.2.10\lib\net35\PersistentLayer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -66,7 +66,6 @@
     <Compile Include="Impl\NhQueryExtensions.cs" />
     <Compile Include="Impl\NhQueryImplementor.cs" />
     <Compile Include="INhPagedDAO.cs" />
-    <Compile Include="INhPersisterDAO.cs" />
     <Compile Include="INhQueryableDAO.cs" />
     <Compile Include="INhTransactionProvider.cs" />
     <Compile Include="InvalidSessionException.cs" />

@@ -25,13 +25,7 @@ The reason is the IQueryable<TEntity> parameter can be executed outer the Persis
 so the caller component could execute directly IQueryable methods.
 
 
-Interface ITransactionProvider has deprecated and removed some methods:
-	-	void BeginTransaction(IsolationLevel? level);
-	-	void BeginTransaction(string name, IsolationLevel? level);
-
-    The reason is those methods are specific by underlaying architecture, for example I don't think so It's needed on NoSql databases. (I think so..)
-
-    In the other hand, there are new methods as:
+Interface ITransactionProvider has new methods:
     -   void BeginTransaction();
 	-   void BeginTransaction(string name);
 	

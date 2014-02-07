@@ -845,11 +845,26 @@
             Begin a new transaction with a default name target.
             </summary>
         </member>
+        <member name="M:PersistentLayer.ITransactionProvider.BeginTransaction(System.Nullable{System.Data.IsolationLevel})">
+            <summary>
+            Begin a new transaction
+            </summary>
+            <param name="level"></param>
+            <exception cref="T:PersistentLayer.Exceptions.BusinessLayerException"></exception>
+        </member>
         <member name="M:PersistentLayer.ITransactionProvider.BeginTransaction(System.String)">
             <summary>
             Begin a new transaction with the given name target.
             </summary>
             <param name="name"></param>
+        </member>
+        <member name="M:PersistentLayer.ITransactionProvider.BeginTransaction(System.String,System.Nullable{System.Data.IsolationLevel})">
+            <summary>
+            Begin a new transaction with the given name.
+            </summary>
+            <param name="name"></param>
+            <param name="level"></param>
+            <exception cref="T:PersistentLayer.Exceptions.BusinessLayerException"></exception>
         </member>
         <member name="M:PersistentLayer.ITransactionProvider.CommitTransaction">
             <summary>
