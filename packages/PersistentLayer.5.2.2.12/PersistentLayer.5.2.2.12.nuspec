@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>PersistentLayer</id>
+    <version>5.2.2.12</version>
+    <authors>The hunter</authors>
+    <owners>The hunter</owners>
+    <licenseUrl>https://raw.github.com/TheHunter/PersistentLayer/prod/lgpl.txt</licenseUrl>
+    <projectUrl>https://github.com/TheHunter/PersistentLayer.git</projectUrl>
+    <iconUrl>https://raw.github.com/TheHunter/PersistentLayer/prod/database_process.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>PersistentLayer is an easy Component that exposes a set of contracts (interfaces) which defines rules for persisting / retrieving application data from data storages, and Its implementation depends exclusively by the underlaying  architecture like an ORM (NHibernate. Entity Framework, ORMLite ecc.) or maybe by another kind of systems like NoSQL storages.</description>
+    <summary>PersistentLayer is a layered architecture which contains a set of contracts(Interfaces) responsable for persisting application data to and retrieving it from one or many data stores.</summary>
+    <releaseNotes>New DAO hierarchies which defines entity generic type restrictions in order to apply DDD pattern.
+Please, read the Release_Notes for details.</releaseNotes>
+    <tags>DAO DAL ORM</tags>
+  </metadata>
+</package>

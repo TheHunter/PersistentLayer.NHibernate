@@ -74,18 +74,18 @@ namespace PersistentLayer.NHibernate
         /// <summary>
         /// 
         /// </summary>
-        /// <typeparam name="FutureValue"></typeparam>
+        /// <typeparam name="TFutureValue"></typeparam>
         /// <param name="criteria"></param>
         /// <returns></returns>
-        IFutureValue<FutureValue> GetFutureValue<FutureValue>(DetachedCriteria criteria);
+        IFutureValue<TFutureValue> GetFutureValue<TFutureValue>(DetachedCriteria criteria);
 
         /// <summary>
         /// 
         /// </summary>
-        /// <typeparam name="FutureValue"></typeparam>
+        /// <typeparam name="TFutureValue"></typeparam>
         /// <param name="query"></param>
         /// <returns></returns>
-        IFutureValue<FutureValue> GetFutureValue<FutureValue>(QueryOver<TEntity> query);
+        IFutureValue<TFutureValue> GetFutureValue<TFutureValue>(QueryOver<TEntity> query);
 
         #endregion
 

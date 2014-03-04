@@ -828,6 +828,225 @@
             <param name="predicate"></param>
             <returns></returns>
         </member>
+        <member name="T:PersistentLayer.IRootPagedDAO`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TRootEntity"></typeparam>
+        </member>
+        <member name="T:PersistentLayer.IRootPersisterDAO`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TRootEntity"></typeparam>
+        </member>
+        <member name="T:PersistentLayer.IRootQueryableDAO`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TRootEntity"></typeparam>
+        </member>
+        <member name="M:PersistentLayer.IRootQueryableDAO`1.Exists``1(System.Object)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="identifier"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.IRootQueryableDAO`1.Exists``1(System.Collections.ICollection)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="identifiers"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.IRootQueryableDAO`1.Exists``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.IRootQueryableDAO`1.FindBy``1(System.Object)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="identifier"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.IRootQueryableDAO`1.FindAll``1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.IRootQueryableDAO`1.FindAll``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.IRootPersisterDAO`1.MakePersistent``1(``0)">
+            <summary>
+            Saves or updates the given instance, It depends upon the indentifier value.
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="entity">the current instance which contains the state to persist.</param>
+            <returns>returns the current persistent instance.</returns>
+        </member>
+        <member name="M:PersistentLayer.IRootPersisterDAO`1.MakePersistent``1(``0,System.Object)">
+            <summary>
+            Updates the persistent state associated with the given identifier.
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="entity">the current instance which contains the state to persist.</param>
+            <param name="identifier">the persistent indentifier which be updated.</param>
+            <returns>returns the current persistent instance.</returns>
+        </member>
+        <member name="M:PersistentLayer.IRootPersisterDAO`1.MakePersistent``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Saves or updates the given instances, It depends upon the indentifier value.
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="entities"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.IRootPersisterDAO`1.MakeTransient``1(``0)">
+            <summary>
+            The given instance becomes transient.
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="entity"></param>
+        </member>
+        <member name="M:PersistentLayer.IRootPersisterDAO`1.MakeTransient``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            The given instances become transient.
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="entities"></param>
+        </member>
+        <member name="M:PersistentLayer.IRootPagedDAO`1.GetPagedResult``1(System.Int32,System.Int32,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="startIndex"></param>
+            <param name="pageSize"></param>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PersistentLayer.IRootPagedDAO`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="TRootEntity"></typeparam>
+            <typeparam name="TEntity"></typeparam>
+        </member>
+        <member name="T:PersistentLayer.IRootPersisterDAO`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="TRootEntity"></typeparam>
+            <typeparam name="TEntity"></typeparam>
+        </member>
+        <member name="T:PersistentLayer.IRootQueryableDAO`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="TRootEntity"></typeparam>
+            <typeparam name="TEntity"></typeparam>
+        </member>
+        <member name="M:PersistentLayer.IRootQueryableDAO`2.Exists(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="identifier"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.IRootQueryableDAO`2.Exists(System.Collections.ICollection)">
+            <summary>
+            
+            </summary>
+            <param name="identifiers"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.IRootQueryableDAO`2.Exists(System.Linq.Expressions.Expression{System.Func{`1,System.Boolean}})">
+            <summary>
+            
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.IRootQueryableDAO`2.FindBy(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="identifier"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.IRootQueryableDAO`2.FindAll">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.IRootQueryableDAO`2.FindAll(System.Linq.Expressions.Expression{System.Func{`1,System.Boolean}})">
+            <summary>
+            
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.IRootPersisterDAO`2.MakePersistent(`1)">
+            <summary>
+            Saves or updates the given instance, It depends upon the indentifier value.
+            </summary>
+            <param name="entity">the current instance which contains the state to persist.</param>
+            <returns>returns the current persistent instance.</returns>
+        </member>
+        <member name="M:PersistentLayer.IRootPersisterDAO`2.MakePersistent(`1,System.Object)">
+            <summary>
+            Updates the persistent state associated with the given identifier.
+            </summary>
+            <param name="entity">the current instance which contains the state to persist.</param>
+            <param name="identifier">the persistent indentifier which be updated.</param>
+            <returns>returns the current persistent instance.</returns>
+        </member>
+        <member name="M:PersistentLayer.IRootPersisterDAO`2.MakePersistent(System.Collections.Generic.IEnumerable{`1})">
+            <summary>
+            Saves or updates the given instances, It depends upon the indentifier value.
+            </summary>
+            <param name="entities"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.IRootPersisterDAO`2.MakeTransient(`1)">
+            <summary>
+            The given instance becomes transient.
+            </summary>
+            <param name="entity"></param>
+        </member>
+        <member name="M:PersistentLayer.IRootPersisterDAO`2.MakeTransient(System.Collections.Generic.IEnumerable{`1})">
+            <summary>
+            The given instances become transient.
+            </summary>
+            <param name="entities"></param>
+        </member>
+        <member name="M:PersistentLayer.IRootPagedDAO`2.GetPagedResult(System.Int32,System.Int32,System.Linq.Expressions.Expression{System.Func{`1,System.Boolean}})">
+            <summary>
+            
+            </summary>
+            <param name="startIndex"></param>
+            <param name="pageSize"></param>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
         <member name="T:PersistentLayer.ITransactionProvider">
             <summary>
             

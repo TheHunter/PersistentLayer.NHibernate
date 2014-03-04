@@ -1,4 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using NHibernate.Criterion;
 
 namespace PersistentLayer.NHibernate
@@ -6,11 +9,12 @@ namespace PersistentLayer.NHibernate
     /// <summary>
     /// 
     /// </summary>
+    /// <typeparam name="TRootEntity"></typeparam>
     /// <typeparam name="TEntity"></typeparam>
-    /// <typeparam name="TKey"></typeparam>
-    public interface INhPagedDAO<TEntity, TKey>
-        : ISessionDAO<TEntity, TKey>, IPagedDAO<TEntity, TKey>
-        where TEntity : class
+    public interface INhRootPagedDAO<in TRootEntity, TEntity>
+        : INhRootHybridDAO<TRootEntity, TEntity>, IRootPagedDAO<TRootEntity, TEntity>
+        where TEntity : class, TRootEntity
+        where TRootEntity : class
     {
         /// <summary>
         /// 
@@ -47,14 +51,15 @@ namespace PersistentLayer.NHibernate
         /// <param name="query"></param>
         /// <returns></returns>
         IPagedResult<TEntity> GetIndexPagedResult(int pageIndex, int pageSize, QueryOver<TEntity> query);
-
     }
 
     /// <summary>
     /// 
     /// </summary>
-    public interface INhPagedDAO
-        : ISessionDAO, IPagedDAO
+    /// <typeparam name="TRootEntity"></typeparam>
+    public interface INhRootPagedDAO<in TRootEntity>
+        : INhRootHybridDAO<TRootEntity>, IRootPagedDAO<TRootEntity>
+        where TRootEntity : class
     {
         /// <summary>
         /// 
@@ -65,7 +70,7 @@ namespace PersistentLayer.NHibernate
         /// <param name="criteria"></param>
         /// <returns></returns>
         IPagedResult<TEntity> GetPagedResult<TEntity>(int startIndex, int pageSize, DetachedCriteria criteria)
-             where TEntity : class;
+             where TEntity : class, TRootEntity;
 
         /// <summary>
         /// 
@@ -76,7 +81,7 @@ namespace PersistentLayer.NHibernate
         /// <param name="query"></param>
         /// <returns></returns>
         IPagedResult<TEntity> GetPagedResult<TEntity>(int startIndex, int pageSize, QueryOver<TEntity> query)
-             where TEntity : class;
+             where TEntity : class, TRootEntity;
 
         /// <summary>
         /// 
@@ -87,7 +92,7 @@ namespace PersistentLayer.NHibernate
         /// <param name="criteria"></param>
         /// <returns></returns>
         IPagedResult<TEntity> GetIndexPagedResult<TEntity>(int pageIndex, int pageSize, DetachedCriteria criteria)
-            where TEntity : class;
+            where TEntity : class, TRootEntity;
 
         /// <summary>
         /// 
@@ -98,7 +103,6 @@ namespace PersistentLayer.NHibernate
         /// <param name="query"></param>
         /// <returns></returns>
         IPagedResult<TEntity> GetIndexPagedResult<TEntity>(int pageIndex, int pageSize, QueryOver<TEntity> query)
-            where TEntity : class;
-
+            where TEntity : class, TRootEntity;
     }
 }

@@ -88,10 +88,10 @@ namespace PersistentLayer.NHibernate
         /// 
         /// </summary>
         /// <typeparam name="TEntity"></typeparam>
-        /// <typeparam name="FutureValue"></typeparam>
+        /// <typeparam name="TFutureValue"></typeparam>
         /// <param name="query"></param>
         /// <returns></returns>
-        IFutureValue<FutureValue> GetFutureValue<TEntity, FutureValue>(QueryOver<TEntity> query) where TEntity : class;
+        IFutureValue<TFutureValue> GetFutureValue<TEntity, TFutureValue>(QueryOver<TEntity> query) where TEntity : class;
 
         #endregion
 
