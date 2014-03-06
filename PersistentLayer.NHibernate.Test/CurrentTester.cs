@@ -101,6 +101,8 @@ namespace PersistentLayer.NHibernate.Test
         [SetUp]
         public void BindSession()
         {
+            //IStatelessSession ss = sessionFactory.OpenStatelessSession();
+            //CurrentSessionContext.Bind(ss);
             CurrentSessionContext.Bind(currentSession);
         }
 

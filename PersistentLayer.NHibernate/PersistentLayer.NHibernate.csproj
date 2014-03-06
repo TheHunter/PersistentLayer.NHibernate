@@ -54,6 +54,7 @@
     <Compile Include="FutureQueryResolver.cs" />
     <Compile Include="IDomainDAO.cs" />
     <Compile Include="IEntityDAO.cs" />
+    <Compile Include="Impl\EnterpriseRootDAO.cs" />
     <Compile Include="INhRootHybridDAO.cs" />
     <Compile Include="INhRootPagedDAO.cs" />
     <Compile Include="INhRootQueryableDAO.cs" />

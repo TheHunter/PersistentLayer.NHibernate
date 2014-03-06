@@ -18,6 +18,7 @@ namespace PersistentLayer.NHibernate.Impl
         public EnterprisePagedDAO(ISessionProvider sessionProvider)
             : base(sessionProvider)
         {
+
         }
 
         /// <summary>
