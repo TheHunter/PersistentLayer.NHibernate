@@ -15,19 +15,17 @@ namespace PersistentLayer.NHibernate.Impl
     /// <typeparam name="TRootEntity"></typeparam>
     /// <typeparam name="TEntity"></typeparam>
     public class EnterpriseRootDAO<TRootEntity, TEntity>
-        : INhRootPagedDAO<TRootEntity, TEntity>
-        where TEntity : class, TRootEntity
+        : TransactionalDAO, INhRootPagedDAO<TRootEntity, TEntity>
         where TRootEntity : class
+        where TEntity : class, TRootEntity
     {
-        private readonly SessionInfo sessionInfo;
-
         /// <summary>
         /// 
         /// </summary>
         /// <param name="sessionProvider"></param>
         public EnterpriseRootDAO(ISessionProvider sessionProvider)
+            :base (sessionProvider)
         {
-            sessionInfo = new SessionInfo(sessionProvider);
         }
 
         /// <summary>
@@ -277,15 +275,6 @@ namespace PersistentLayer.NHibernate.Impl
         /// <summary>
         /// 
         /// </summary>
-        /// <returns></returns>
-        public ITransactionProvider GetTransactionProvider()
-        {
-            return this.sessionInfo.Provider;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
         public TEntity MakePersistent(TEntity entity)
@@ -357,15 +346,7 @@ namespace PersistentLayer.NHibernate.Impl
         /// </summary>
         SessionInfo ISessionContext.SessionInfo
         {
-            get { return sessionInfo; }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        private ISession CurrentSession
-        {
-            get { return this.sessionInfo.CurrentSession; }
+            get { return SessionInfo; }
         }
 
         /// <summary>
@@ -415,103 +396,358 @@ namespace PersistentLayer.NHibernate.Impl
     /// </summary>
     /// <typeparam name="TRootEntity"></typeparam>
     public class EnterpriseRootDAO<TRootEntity>
-        : INhRootPagedDAO<TRootEntity>
+        : TransactionalDAO, INhRootPagedDAO<TRootEntity>
         where TRootEntity : class
     {
-        private readonly SessionInfo sessionInfo;
-
         /// <summary>
         /// 
         /// </summary>
         /// <param name="sessionProvider"></param>
         public EnterpriseRootDAO(ISessionProvider sessionProvider)
+            : base(sessionProvider)
         {
-            sessionInfo = new SessionInfo(sessionProvider);
         }
 
-        public bool Exists<TEntity>(object identifier) where TEntity : TRootEntity
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="identifier"></param>
+        /// <returns></returns>
+        public bool Exists<TEntity>(object identifier) where TEntity : class, TRootEntity
         {
-            throw new NotImplementedException();
+            return this.CurrentSession.Exists<TEntity, object>(identifier);
         }
 
-        public bool Exists<TEntity>(ICollection identifiers) where TEntity : TRootEntity
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="identifiers"></param>
+        /// <returns></returns>
+        public bool Exists<TEntity>(ICollection identifiers) where TEntity : class, TRootEntity
         {
-            throw new NotImplementedException();
+            return this.CurrentSession.Exists<TEntity, object>(identifiers);
         }
 
-        public bool Exists<TEntity>(Expression<Func<TEntity, bool>> predicate) where TEntity : TRootEntity
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        public bool Exists<TEntity>(Expression<Func<TEntity, bool>> predicate) where TEntity : class, TRootEntity
         {
-            throw new NotImplementedException();
+            return this.CurrentSession.Exists(predicate);
         }
 
-        public TEntity FindBy<TEntity>(object identifier) where TEntity : TRootEntity
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="criteria"></param>
+        /// <returns></returns>
+        public bool Exists(DetachedCriteria criteria)
         {
-            throw new NotImplementedException();
+            return this.CurrentSession.Exists(criteria);
         }
 
-        public IEnumerable<TEntity> FindAll<TEntity>() where TEntity : TRootEntity
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="query"></param>
+        /// <returns></returns>
+        public bool Exists<TEntity>(QueryOver<TEntity> query) where TEntity : class, TRootEntity
         {
-            throw new NotImplementedException();
+            return this.CurrentSession.Exists(query);
         }
 
-        public IEnumerable<TEntity> FindAll<TEntity>(Expression<Func<TEntity, bool>> predicate) where TEntity : TRootEntity
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="identifier"></param>
+        /// <returns></returns>
+        public TEntity FindBy<TEntity>(object identifier) where TEntity : class, TRootEntity
         {
-            throw new NotImplementedException();
+            return this.CurrentSession.FindBy<TEntity, object>(identifier);
         }
 
-        public IQueryable<TEntity> ToIQueryable<TEntity>() where TEntity : TRootEntity
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <typeparam name="TKey"></typeparam>
+        /// <param name="identifier"></param>
+        /// <param name="mode"></param>
+        /// <returns></returns>
+        public TEntity FindBy<TEntity, TKey>(TKey identifier, LockMode mode) where TEntity : class, TRootEntity
         {
-            throw new NotImplementedException();
+            return this.CurrentSession.FindBy<TEntity, object>(identifier, mode);
         }
 
-        public IQueryable<TEntity> ToIQueryable<TEntity>(CacheMode mode) where TEntity : TRootEntity
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <returns></returns>
+        public IEnumerable<TEntity> FindAll<TEntity>() where TEntity : class, TRootEntity
         {
-            throw new NotImplementedException();
+            return this.CurrentSession.FindAll<TEntity>();
         }
 
-        public IQueryable<TEntity> ToIQueryable<TEntity>(string region) where TEntity : TRootEntity
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        public IEnumerable<TEntity> FindAll<TEntity>(Expression<Func<TEntity, bool>> predicate) where TEntity : class, TRootEntity
         {
-            throw new NotImplementedException();
+            return this.CurrentSession.FindAll(predicate);
         }
 
-        public IQueryable<TEntity> ToIQueryable<TEntity>(CacheMode mode, string region) where TEntity : TRootEntity
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="cacheable"></param>
+        /// <returns></returns>
+        public IEnumerable<TEntity> FindAll<TEntity>(bool cacheable) where TEntity : class, TRootEntity
         {
-            throw new NotImplementedException();
+            return this.CurrentSession.FindAll<TEntity>(cacheable);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="cacheRegion"></param>
+        /// <returns></returns>
+        public IEnumerable<TEntity> FindAll<TEntity>(string cacheRegion) where TEntity : class, TRootEntity
+        {
+            return this.CurrentSession.FindAll<TEntity>(cacheRegion);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="fetchSize"></param>
+        /// <returns></returns>
+        public IEnumerable<TEntity> FindAll<TEntity>(int fetchSize) where TEntity : class, TRootEntity
+        {
+            return this.CurrentSession.FindAll<TEntity>(fetchSize);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="criteria"></param>
+        /// <returns></returns>
+        public IEnumerable<TEntity> FindAll<TEntity>(DetachedCriteria criteria) where TEntity : class, TRootEntity
+        {
+            return this.CurrentSession.FindAll<TEntity>(criteria);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="query"></param>
+        /// <returns></returns>
+        public IEnumerable<TEntity> FindAll<TEntity>(QueryOver<TEntity> query) where TEntity : class, TRootEntity
+        {
+            return this.CurrentSession.FindAll(query);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="criteria"></param>
+        /// <returns></returns>
+        public IEnumerable<TEntity> FindAllFuture<TEntity>(DetachedCriteria criteria) where TEntity : class, TRootEntity
+        {
+            return this.CurrentSession.FindAllFuture<TEntity>(criteria);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="query"></param>
+        /// <returns></returns>
+        public IEnumerable<TEntity> FindAllFuture<TEntity>(QueryOver<TEntity> query) where TEntity : class, TRootEntity
+        {
+            return this.CurrentSession.FindAllFuture(query);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TFutureValue"></typeparam>
+        /// <param name="criteria"></param>
+        /// <returns></returns>
+        public IFutureValue<TFutureValue> GetFutureValue<TFutureValue>(DetachedCriteria criteria)
+        {
+            return this.CurrentSession.GetFutureValue<TFutureValue>(criteria);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <typeparam name="TFutureValue"></typeparam>
+        /// <param name="query"></param>
+        /// <returns></returns>
+        public IFutureValue<TFutureValue> GetFutureValue<TEntity, TFutureValue>(QueryOver<TEntity> query) where TEntity : class, TRootEntity
+        {
+            return this.CurrentSession.GetFutureValue<TEntity, TFutureValue>(query);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="criteria"></param>
+        /// <returns></returns>
+        public IPagedResult<TEntity> GetIndexPagedResult<TEntity>(int pageIndex, int pageSize, DetachedCriteria criteria) where TEntity : class, TRootEntity
+        {
+            return this.CurrentSession.GetIndexPagedResult<TEntity>(pageIndex, pageSize, criteria);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="query"></param>
+        /// <returns></returns>
+        public IPagedResult<TEntity> GetIndexPagedResult<TEntity>(int pageIndex, int pageSize, QueryOver<TEntity> query) where TEntity : class, TRootEntity
+        {
+            return this.CurrentSession.GetIndexPagedResult(pageIndex, pageSize, query);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="startIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="criteria"></param>
+        /// <returns></returns>
+        public IPagedResult<TEntity> GetPagedResult<TEntity>(int startIndex, int pageSize, DetachedCriteria criteria) where TEntity : class, TRootEntity
+        {
+            return this.CurrentSession.GetPagedResult<TEntity>(startIndex, pageSize, criteria);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="startIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="query"></param>
+        /// <returns></returns>
+        public IPagedResult<TEntity> GetPagedResult<TEntity>(int startIndex, int pageSize, QueryOver<TEntity> query) where TEntity : class, TRootEntity
+        {
+            return this.CurrentSession.GetPagedResult(startIndex, pageSize, query);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="startIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
         public IPagedResult<TEntity> GetPagedResult<TEntity>(int startIndex, int pageSize, Expression<Func<TEntity, bool>> predicate) where TEntity : class, TRootEntity
         {
-            throw new NotImplementedException();
+            var IQuerable = this.ToIQueryable<TEntity>()
+                                .Where(predicate);
+            return this.CurrentSession.GetPagedResult(startIndex, pageSize, IQuerable);
         }
 
-        public ITransactionProvider GetTransactionProvider()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public TEntity MakePersistent<TEntity>(TEntity entity) where TEntity : class, TRootEntity
         {
-            throw new NotImplementedException();
+            return this.CurrentSession.MakePersistent(entity);
         }
 
-        public TEntity MakePersistent<TEntity>(TEntity entity) where TEntity : TRootEntity
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="entity"></param>
+        /// <param name="identifier"></param>
+        /// <returns></returns>
+        public TEntity MakePersistent<TEntity>(TEntity entity, object identifier) where TEntity : class, TRootEntity
         {
-            throw new NotImplementedException();
+            return this.CurrentSession.MakePersistent(entity, identifier);
         }
 
-        public TEntity MakePersistent<TEntity>(TEntity entity, object identifier) where TEntity : TRootEntity
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="entities"></param>
+        /// <returns></returns>
+        public IEnumerable<TEntity> MakePersistent<TEntity>(IEnumerable<TEntity> entities) where TEntity : class, TRootEntity
         {
-            throw new NotImplementedException();
+            return this.CurrentSession.MakePersistent(entities);
         }
 
-        public IEnumerable<TEntity> MakePersistent<TEntity>(IEnumerable<TEntity> entities) where TEntity : TRootEntity
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="entity"></param>
+        public void MakeTransient<TEntity>(TEntity entity) where TEntity : class, TRootEntity
         {
-            throw new NotImplementedException();
+            this.CurrentSession.MakeTransient(entity);
         }
 
-        public void MakeTransient<TEntity>(TEntity entity) where TEntity : TRootEntity
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="entities"></param>
+        public void MakeTransient<TEntity>(IEnumerable<TEntity> entities) where TEntity : class, TRootEntity
         {
-            throw new NotImplementedException();
+            this.CurrentSession.MakeTransient(entities);
         }
 
-        public void MakeTransient<TEntity>(IEnumerable<TEntity> entities) where TEntity : TRootEntity
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public TEntity RefreshState<TEntity>(TEntity entity) where TEntity : class, TRootEntity
         {
-            throw new NotImplementedException();
+            return this.CurrentSession.RefreshState(entity);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="entities"></param>
+        /// <returns></returns>
+        public IEnumerable<TEntity> RefreshState<TEntity>(IEnumerable<TEntity> entities) where TEntity : class, TRootEntity
+        {
+            return this.CurrentSession.RefreshState(entities);
         }
 
         /// <summary>
@@ -519,105 +755,51 @@ namespace PersistentLayer.NHibernate.Impl
         /// </summary>
         SessionInfo ISessionContext.SessionInfo
         {
-            get { return sessionInfo; }
+            get { return SessionInfo; }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        private ISession CurrentSession
+        /// <typeparam name="TEntity"></typeparam>
+        /// <returns></returns>
+        public IQueryable<TEntity> ToIQueryable<TEntity>() where TEntity : class, TRootEntity
         {
-            get { return this.sessionInfo.CurrentSession; }
+            return this.CurrentSession.ToIQueryable<TEntity>();
         }
 
-        public TEntity FindBy<TEntity, TKey>(TKey id, LockMode mode) where TEntity : TRootEntity
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="mode"></param>
+        /// <returns></returns>
+        public IQueryable<TEntity> ToIQueryable<TEntity>(CacheMode mode) where TEntity : class, TRootEntity
         {
-            throw new NotImplementedException();
+            return this.CurrentSession.ToIQueryable<TEntity>(mode);
         }
 
-        public IEnumerable<TEntity> FindAll<TEntity>(bool cacheable) where TEntity : TRootEntity
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="region"></param>
+        /// <returns></returns>
+        public IQueryable<TEntity> ToIQueryable<TEntity>(string region) where TEntity : class, TRootEntity
         {
-            throw new NotImplementedException();
+            return this.CurrentSession.ToIQueryable<TEntity>(region);
         }
 
-        public IEnumerable<TEntity> FindAll<TEntity>(string cacheRegion) where TEntity : TRootEntity
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="mode"></param>
+        /// <param name="region"></param>
+        /// <returns></returns>
+        public IQueryable<TEntity> ToIQueryable<TEntity>(CacheMode mode, string region) where TEntity : class, TRootEntity
         {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<TEntity> FindAll<TEntity>(int fetchSize) where TEntity : TRootEntity
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<TEntity> FindAll<TEntity>(DetachedCriteria criteria) where TEntity : TRootEntity
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<TEntity> FindAll<TEntity>(QueryOver<TEntity> query) where TEntity : TRootEntity
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<TEntity> FindAllFuture<TEntity>(DetachedCriteria criteria) where TEntity : TRootEntity
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<TEntity> FindAllFuture<TEntity>(QueryOver<TEntity> query) where TEntity : TRootEntity
-        {
-            throw new NotImplementedException();
-        }
-
-        public IFutureValue<TFutureValue> GetFutureValue<TFutureValue>(DetachedCriteria criteria)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IFutureValue<TFutureValue> GetFutureValue<TEntity, TFutureValue>(QueryOver<TEntity> query) where TEntity : TRootEntity
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool Exists(DetachedCriteria criteria)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool Exists<TEntity>(QueryOver<TEntity> query) where TEntity : TRootEntity
-        {
-            throw new NotImplementedException();
-        }
-
-        public TEntity RefreshState<TEntity>(TEntity entity) where TEntity : TRootEntity
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<TEntity> RefreshState<TEntity>(IEnumerable<TEntity> entities) where TEntity : TRootEntity
-        {
-            throw new NotImplementedException();
-        }
-
-        public IPagedResult<TEntity> GetPagedResult<TEntity>(int startIndex, int pageSize, DetachedCriteria criteria) where TEntity : class, TRootEntity
-        {
-            throw new NotImplementedException();
-        }
-
-        public IPagedResult<TEntity> GetPagedResult<TEntity>(int startIndex, int pageSize, QueryOver<TEntity> query) where TEntity : class, TRootEntity
-        {
-            throw new NotImplementedException();
-        }
-
-        public IPagedResult<TEntity> GetIndexPagedResult<TEntity>(int pageIndex, int pageSize, DetachedCriteria criteria) where TEntity : class, TRootEntity
-        {
-            throw new NotImplementedException();
-        }
-
-        public IPagedResult<TEntity> GetIndexPagedResult<TEntity>(int pageIndex, int pageSize, QueryOver<TEntity> query) where TEntity : class, TRootEntity
-        {
-            throw new NotImplementedException();
+            return this.CurrentSession.ToIQueryable<TEntity>(mode, region);
         }
     }
 }

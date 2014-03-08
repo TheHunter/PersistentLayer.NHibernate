@@ -12,8 +12,8 @@ namespace PersistentLayer.NHibernate
     /// </summary>
     public interface INhRootHybridDAO<in TRootEntity, TEntity>
         : INhRootQueryableDAO<TRootEntity, TEntity>, IRootPersisterDAO<TRootEntity, TEntity>, ISessionContext
-        where TEntity : class, TRootEntity
         where TRootEntity : class
+        where TEntity : class, TRootEntity
     {
         /// <summary>
         /// Finds the object which matches with the given key.
@@ -137,7 +137,7 @@ namespace PersistentLayer.NHibernate
         /// <param name="id"></param>
         /// <param name="mode"></param>
         /// <returns></returns>
-        TEntity FindBy<TEntity, TKey>(TKey id, LockMode mode) where TEntity : TRootEntity;
+        TEntity FindBy<TEntity, TKey>(TKey id, LockMode mode) where TEntity : class, TRootEntity;
 
         /// <summary>
         /// 
@@ -145,7 +145,7 @@ namespace PersistentLayer.NHibernate
         /// <typeparam name="TEntity"></typeparam>
         /// <param name="cacheable"></param>
         /// <returns></returns>
-        IEnumerable<TEntity> FindAll<TEntity>(bool cacheable) where TEntity : TRootEntity;
+        IEnumerable<TEntity> FindAll<TEntity>(bool cacheable) where TEntity : class, TRootEntity;
 
         /// <summary>
         /// 
@@ -153,7 +153,7 @@ namespace PersistentLayer.NHibernate
         /// <typeparam name="TEntity"></typeparam>
         /// <param name="cacheRegion"></param>
         /// <returns></returns>
-        IEnumerable<TEntity> FindAll<TEntity>(string cacheRegion) where TEntity : TRootEntity;
+        IEnumerable<TEntity> FindAll<TEntity>(string cacheRegion) where TEntity : class, TRootEntity;
 
         /// <summary>
         /// 
@@ -161,7 +161,7 @@ namespace PersistentLayer.NHibernate
         /// <typeparam name="TEntity"></typeparam>
         /// <param name="fetchSize"></param>
         /// <returns></returns>
-        IEnumerable<TEntity> FindAll<TEntity>(int fetchSize) where TEntity : TRootEntity;
+        IEnumerable<TEntity> FindAll<TEntity>(int fetchSize) where TEntity : class, TRootEntity;
 
         /// <summary>
         /// 
@@ -169,7 +169,7 @@ namespace PersistentLayer.NHibernate
         /// <typeparam name="TEntity"></typeparam>
         /// <param name="criteria"></param>
         /// <returns></returns>
-        IEnumerable<TEntity> FindAll<TEntity>(DetachedCriteria criteria) where TEntity : TRootEntity;
+        IEnumerable<TEntity> FindAll<TEntity>(DetachedCriteria criteria) where TEntity : class, TRootEntity;
 
         /// <summary>
         /// 
@@ -177,7 +177,7 @@ namespace PersistentLayer.NHibernate
         /// <typeparam name="TEntity"></typeparam>
         /// <param name="query"></param>
         /// <returns></returns>
-        IEnumerable<TEntity> FindAll<TEntity>(QueryOver<TEntity> query) where TEntity : TRootEntity;
+        IEnumerable<TEntity> FindAll<TEntity>(QueryOver<TEntity> query) where TEntity : class, TRootEntity;
 
         #region future section
         /// <summary>
@@ -186,14 +186,14 @@ namespace PersistentLayer.NHibernate
         /// <typeparam name="TEntity"></typeparam>
         /// <param name="criteria"></param>
         /// <returns></returns>
-        IEnumerable<TEntity> FindAllFuture<TEntity>(DetachedCriteria criteria) where TEntity : TRootEntity;
+        IEnumerable<TEntity> FindAllFuture<TEntity>(DetachedCriteria criteria) where TEntity : class, TRootEntity;
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
-        IEnumerable<TEntity> FindAllFuture<TEntity>(QueryOver<TEntity> query) where TEntity : TRootEntity;
+        IEnumerable<TEntity> FindAllFuture<TEntity>(QueryOver<TEntity> query) where TEntity : class, TRootEntity;
 
         /// <summary>
         /// 
@@ -210,7 +210,7 @@ namespace PersistentLayer.NHibernate
         /// <typeparam name="TFutureValue"></typeparam>
         /// <param name="query"></param>
         /// <returns></returns>
-        IFutureValue<TFutureValue> GetFutureValue<TEntity, TFutureValue>(QueryOver<TEntity> query) where TEntity : TRootEntity;
+        IFutureValue<TFutureValue> GetFutureValue<TEntity, TFutureValue>(QueryOver<TEntity> query) where TEntity : class, TRootEntity;
 
         #endregion
 
@@ -227,7 +227,7 @@ namespace PersistentLayer.NHibernate
         /// <typeparam name="TEntity"></typeparam>
         /// <param name="query"></param>
         /// <returns></returns>
-        bool Exists<TEntity>(QueryOver<TEntity> query) where TEntity : TRootEntity;
+        bool Exists<TEntity>(QueryOver<TEntity> query) where TEntity : class, TRootEntity;
 
         /// <summary>
         /// 
@@ -235,7 +235,7 @@ namespace PersistentLayer.NHibernate
         /// <typeparam name="TEntity"></typeparam>
         /// <param name="entity"></param>
         /// <returns></returns>
-        TEntity RefreshState<TEntity>(TEntity entity) where TEntity : TRootEntity;
+        TEntity RefreshState<TEntity>(TEntity entity) where TEntity : class, TRootEntity;
 
         /// <summary>
         /// 
@@ -243,6 +243,6 @@ namespace PersistentLayer.NHibernate
         /// <typeparam name="TEntity"></typeparam>
         /// <param name="entities"></param>
         /// <returns></returns>
-        IEnumerable<TEntity> RefreshState<TEntity>(IEnumerable<TEntity> entities) where TEntity : TRootEntity;
+        IEnumerable<TEntity> RefreshState<TEntity>(IEnumerable<TEntity> entities) where TEntity : class, TRootEntity;
     }
 }

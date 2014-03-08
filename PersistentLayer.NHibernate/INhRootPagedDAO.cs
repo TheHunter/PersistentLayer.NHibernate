@@ -13,8 +13,8 @@ namespace PersistentLayer.NHibernate
     /// <typeparam name="TEntity"></typeparam>
     public interface INhRootPagedDAO<in TRootEntity, TEntity>
         : INhRootHybridDAO<TRootEntity, TEntity>, IRootPagedDAO<TRootEntity, TEntity>
-        where TEntity : class, TRootEntity
         where TRootEntity : class
+        where TEntity : class, TRootEntity
     {
         /// <summary>
         /// 

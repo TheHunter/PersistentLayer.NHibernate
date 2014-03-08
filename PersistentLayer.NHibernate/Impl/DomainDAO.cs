@@ -18,11 +18,11 @@ namespace PersistentLayer.NHibernate.Impl
         /// </summary>
         /// <typeparam name="TEntity"></typeparam>
         /// <typeparam name="TKey"></typeparam>
-        /// <param name="id"></param>
+        /// <param name="identifier"></param>
         /// <returns></returns>
-        public TEntity FindBy<TEntity, TKey>(TKey id) where TEntity : class
+        public TEntity FindBy<TEntity, TKey>(TKey identifier) where TEntity : class
         {
-            return this.CurrentSession.FindBy<TEntity, TKey>(id);
+            return this.CurrentSession.FindBy<TEntity, TKey>(identifier);
         }
 
         /// <summary>
@@ -30,12 +30,12 @@ namespace PersistentLayer.NHibernate.Impl
         /// </summary>
         /// <typeparam name="TEntity"></typeparam>
         /// <typeparam name="TKey"></typeparam>
-        /// <param name="id"></param>
+        /// <param name="identifier"></param>
         /// <param name="mode"></param>
         /// <returns></returns>
-        public TEntity FindBy<TEntity, TKey>(TKey id, LockMode mode) where TEntity : class
+        public TEntity FindBy<TEntity, TKey>(TKey identifier, LockMode mode) where TEntity : class
         {
-            return this.CurrentSession.FindBy<TEntity, TKey>(id, mode);
+            return this.CurrentSession.FindBy<TEntity, TKey>(identifier, mode);
         }
 
         /// <summary>
@@ -139,24 +139,24 @@ namespace PersistentLayer.NHibernate.Impl
         /// <summary>
         /// 
         /// </summary>
-        /// <typeparam name="FutureValue"></typeparam>
+        /// <typeparam name="TFutureValue"></typeparam>
         /// <param name="criteria"></param>
         /// <returns></returns>
-        public IFutureValue<FutureValue> GetFutureValue<FutureValue>(DetachedCriteria criteria)
+        public IFutureValue<TFutureValue> GetFutureValue<TFutureValue>(DetachedCriteria criteria)
         {
-            return this.CurrentSession.GetFutureValue<FutureValue>(criteria);
+            return this.CurrentSession.GetFutureValue<TFutureValue>(criteria);
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <typeparam name="TEntity"></typeparam>
-        /// <typeparam name="FutureValue"></typeparam>
+        /// <typeparam name="TFutureValue"></typeparam>
         /// <param name="query"></param>
         /// <returns></returns>
-        public IFutureValue<FutureValue> GetFutureValue<TEntity, FutureValue>(QueryOver<TEntity> query) where TEntity : class
+        public IFutureValue<TFutureValue> GetFutureValue<TEntity, TFutureValue>(QueryOver<TEntity> query) where TEntity : class
         {
-            return this.CurrentSession.GetFutureValue<TEntity, FutureValue>(query);
+            return this.CurrentSession.GetFutureValue<TEntity, TFutureValue>(query);
         }
 
         /// <summary>

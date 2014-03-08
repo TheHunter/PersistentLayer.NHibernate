@@ -19,22 +19,22 @@ namespace PersistentLayer.NHibernate.Impl
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="identifier"></param>
         /// <returns></returns>
-        public TEntity FindBy(TKey id)
+        public TEntity FindBy(TKey identifier)
         {
-            return this.CurrentSession.FindBy<TEntity, TKey>(id);
+            return this.CurrentSession.FindBy<TEntity, TKey>(identifier);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="identifier"></param>
         /// <param name="mode"></param>
         /// <returns></returns>
-        public TEntity FindBy(TKey id, LockMode mode)
+        public TEntity FindBy(TKey identifier, LockMode mode)
         {
-            return this.CurrentSession.FindBy<TEntity, TKey>(id, mode);
+            return this.CurrentSession.FindBy<TEntity, TKey>(identifier, mode);
         }
 
         /// <summary>
@@ -129,23 +129,23 @@ namespace PersistentLayer.NHibernate.Impl
         /// <summary>
         /// 
         /// </summary>
-        /// <typeparam name="FutureValue"></typeparam>
+        /// <typeparam name="TFutureValue"></typeparam>
         /// <param name="criteria"></param>
         /// <returns></returns>
-        public IFutureValue<FutureValue> GetFutureValue<FutureValue>(DetachedCriteria criteria)
+        public IFutureValue<TFutureValue> GetFutureValue<TFutureValue>(DetachedCriteria criteria)
         {
-            return this.CurrentSession.GetFutureValue<FutureValue>(criteria);
+            return this.CurrentSession.GetFutureValue<TFutureValue>(criteria);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <typeparam name="FutureValue"></typeparam>
+        /// <typeparam name="TFutureValue"></typeparam>
         /// <param name="query"></param>
         /// <returns></returns>
-        public IFutureValue<FutureValue> GetFutureValue<FutureValue>(QueryOver<TEntity> query)
+        public IFutureValue<TFutureValue> GetFutureValue<TFutureValue>(QueryOver<TEntity> query)
         {
-            return this.CurrentSession.GetFutureValue<TEntity, FutureValue>(query);
+            return this.CurrentSession.GetFutureValue<TEntity, TFutureValue>(query);
         }
 
         /// <summary>

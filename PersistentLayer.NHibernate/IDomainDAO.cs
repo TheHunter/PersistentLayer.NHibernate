@@ -15,10 +15,10 @@ namespace PersistentLayer.NHibernate
         /// </summary>
         /// <typeparam name="TEntity"></typeparam>
         /// <typeparam name="TKey"></typeparam>
-        /// <param name="id"></param>
+        /// <param name="identifier"></param>
         /// <param name="mode"></param>
         /// <returns></returns>
-        TEntity FindBy<TEntity, TKey>(TKey id, LockMode mode) where TEntity : class;
+        TEntity FindBy<TEntity, TKey>(TKey identifier, LockMode mode) where TEntity : class;
 
         /// <summary>
         /// 
@@ -79,10 +79,10 @@ namespace PersistentLayer.NHibernate
         /// <summary>
         /// 
         /// </summary>
-        /// <typeparam name="FutureValue"></typeparam>
+        /// <typeparam name="TFutureValue"></typeparam>
         /// <param name="criteria"></param>
         /// <returns></returns>
-        IFutureValue<FutureValue> GetFutureValue<FutureValue>(DetachedCriteria criteria);
+        IFutureValue<TFutureValue> GetFutureValue<TFutureValue>(DetachedCriteria criteria);
 
         /// <summary>
         /// 

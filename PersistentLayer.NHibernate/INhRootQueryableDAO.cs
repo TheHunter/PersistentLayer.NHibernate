@@ -11,8 +11,8 @@ namespace PersistentLayer.NHibernate
     /// </summary>
     public interface INhRootQueryableDAO<in TRootEntity, TEntity>
         : IRootQueryableDAO<TRootEntity, TEntity>
-        where TEntity : class, TRootEntity
         where TRootEntity : class
+        where TEntity : class, TRootEntity
     {
         /// <summary>
         /// 
@@ -54,21 +54,21 @@ namespace PersistentLayer.NHibernate
         /// 
         /// </summary>
         /// <returns></returns>
-        IQueryable<TEntity> ToIQueryable<TEntity>() where TEntity : TRootEntity;
+        IQueryable<TEntity> ToIQueryable<TEntity>() where TEntity : class, TRootEntity;
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="mode"></param>
         /// <returns></returns>
-        IQueryable<TEntity> ToIQueryable<TEntity>(CacheMode mode) where TEntity : TRootEntity;
+        IQueryable<TEntity> ToIQueryable<TEntity>(CacheMode mode) where TEntity : class, TRootEntity;
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="region"></param>
         /// <returns></returns>
-        IQueryable<TEntity> ToIQueryable<TEntity>(string region) where TEntity : TRootEntity;
+        IQueryable<TEntity> ToIQueryable<TEntity>(string region) where TEntity : class, TRootEntity;
 
         /// <summary>
         /// 
@@ -76,7 +76,7 @@ namespace PersistentLayer.NHibernate
         /// <param name="mode"></param>
         /// <param name="region"></param>
         /// <returns></returns>
-        IQueryable<TEntity> ToIQueryable<TEntity>(CacheMode mode, string region) where TEntity : TRootEntity;
+        IQueryable<TEntity> ToIQueryable<TEntity>(CacheMode mode, string region) where TEntity : class, TRootEntity;
     }
 
 }

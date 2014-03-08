@@ -59,16 +59,17 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="PersistentLayer.NHibernate.Impl.AbstractDAO">
-    <Position X="26.5" Y="3.25" Width="1.5" />
+  <Class Name="PersistentLayer.NHibernate.Impl.TransactionalDAO">
+    <Position X="32.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAgAAAAAAAABAAAAAAAAAAAAIAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Impl\AbstractDAO.cs</FileName>
+      <HashCode>AAAAAAgAAAAAAAABAAAAAQAAAAAAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Impl\TransactionalDAO.cs</FileName>
+      <NewMemberFileName>Impl\AbstractDAO.cs</NewMemberFileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="PersistentLayer.NHibernate.Impl.BusinessDAO&lt;TEntity, VKey&gt;">
-    <Position X="28.25" Y="9.75" Width="1.5" />
+    <Position X="27.75" Y="9.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Impl\BusinessDAO.cs</FileName>
@@ -76,7 +77,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="PersistentLayer.NHibernate.Impl.BusinessPagedDAO&lt;TEntity, TKey&gt;">
-    <Position X="28.25" Y="12.75" Width="1.5" />
+    <Position X="27.75" Y="12.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAEAAAAA=</HashCode>
       <FileName>Impl\BusinessPagedDAO.cs</FileName>
@@ -108,7 +109,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="PersistentLayer.NHibernate.Impl.EntityDAO&lt;TEntity, TKey&gt;">
-    <Position X="28.25" Y="6" Width="1.5" />
+    <Position X="27.75" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAIAAAAgAAgAAAARQAAAQAAAAAAAAAAAAAEBAAA=</HashCode>
       <FileName>Impl\EntityDAO.cs</FileName>
@@ -132,18 +133,42 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="PersistentLayer.NHibernate.Impl.NhQueryExtensions">
-    <Position X="31.25" Y="6.25" Width="1.5" />
+    <Position X="37.25" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAIAEIAkgAAgAAEAQEEAABIAAAQAIAIEAIAAJAgI=</HashCode>
       <FileName>Impl\NhQueryExtensions.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PersistentLayer.NHibernate.Impl.NhQueryImplementor">
-    <Position X="33.5" Y="6.25" Width="1.5" />
+    <Position X="39.5" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAIAAAAgAAgAAAARQAAAQAAAAAAAAAEAAEEFAAA=</HashCode>
       <FileName>Impl\NhQueryImplementor.cs</FileName>
     </TypeIdentifier>
+  </Class>
+  <Class Name="PersistentLayer.NHibernate.Impl.EnterpriseRootDAO&lt;TRootEntity, TEntity&gt;">
+    <Position X="31" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAIAAAAgAAgAAAARQAAAQAAAAAAAAAEAAEEBAAA=</HashCode>
+      <FileName>Impl\EnterpriseRootDAO.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PersistentLayer.NHibernate.Impl.EnterpriseRootDAO&lt;TRootEntity&gt;">
+    <Position X="34" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAIAAAAgAAgAAAARQAAAQAAAAAAAAAEAAEEBAAA=</HashCode>
+      <FileName>Impl\EnterpriseRootDAO.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PersistentLayer.NHibernate.Impl.AbstractDAO">
+    <Position X="26.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAABAAAAAAAAAAAAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Impl\AbstractDAO.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Interface Name="PersistentLayer.NHibernate.IDomainDAO">
     <Position X="6" Y="5.75" Width="1.5" />
