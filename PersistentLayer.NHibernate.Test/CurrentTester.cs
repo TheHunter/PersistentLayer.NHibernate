@@ -14,11 +14,12 @@ namespace PersistentLayer.NHibernate.Test
     public class CurrentTester
     {
         static ISessionFactory sessionFactory;
-        NhConfigurationBuilder builder;
-        INhPagedDAO currentPagedDAO;
-        ISessionManager sessionProvider;
+        private NhConfigurationBuilder builder;
+        private INhPagedDAO currentPagedDAO;
+        private INhRootPagedDAO<object> currentRootPagedDAO;
+        private ISessionManager sessionProvider;
         string rootPathProject;
-        ISession currentSession;
+        private ISession currentSession;
 
         protected ISession CurrentSession
         {
@@ -31,6 +32,14 @@ namespace PersistentLayer.NHibernate.Test
         public INhPagedDAO CurrentPagedDAO
         {
             get { return currentPagedDAO; }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public INhRootPagedDAO<object> CurrentRootPagedDAO
+        {
+            get { return currentRootPagedDAO; }
         }
 
         /// <summary>
@@ -59,7 +68,8 @@ namespace PersistentLayer.NHibernate.Test
             
             sessionProvider = new SessionManager(sessionFactory);
             currentPagedDAO = new EnterprisePagedDAO(sessionProvider);
-            
+            currentRootPagedDAO = new EnterpriseRootDAO<object>(sessionProvider);
+
             currentSession = sessionFactory.OpenSession();
         }
 

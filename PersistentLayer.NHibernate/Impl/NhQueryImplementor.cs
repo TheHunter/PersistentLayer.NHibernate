@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using NHibernate;
@@ -365,6 +366,15 @@ namespace PersistentLayer.NHibernate.Impl
             {
                 throw new ExecutionQueryException(string.Format("Error on executing the \"Exists\" query when It tries to find a persistent instance (type of <{0}>) with the given identifier (type of <{1}>).", typeof(TEntity).Name, typeof(TKey).Name), "Exists", ex);
             }
+        }
+
+        internal static bool Exists<TEntity>(this ISession session, ICollection identifiers)
+            where TEntity : class
+        {
+            if (identifiers == null || identifiers.Count == 0)
+                throw new QueryArgumentException("collection of identifiers cannot be null or empty.", "Exists", "identifiers");
+
+            return session.Exists<TEntity, object>(identifiers.OfType<object>());
         }
 
         /// <summary>

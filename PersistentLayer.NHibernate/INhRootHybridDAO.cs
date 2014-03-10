@@ -133,11 +133,10 @@ namespace PersistentLayer.NHibernate
         /// 
         /// </summary>
         /// <typeparam name="TEntity"></typeparam>
-        /// <typeparam name="TKey"></typeparam>
-        /// <param name="id"></param>
+        /// <param name="identifier"></param>
         /// <param name="mode"></param>
         /// <returns></returns>
-        TEntity FindBy<TEntity, TKey>(TKey id, LockMode mode) where TEntity : class, TRootEntity;
+        TEntity FindBy<TEntity>(object identifier, LockMode mode) where TEntity : class, TRootEntity;
 
         /// <summary>
         /// 

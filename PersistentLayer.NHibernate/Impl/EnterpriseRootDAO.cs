@@ -45,7 +45,7 @@ namespace PersistentLayer.NHibernate.Impl
         /// <returns></returns>
         public bool Exists(ICollection identifiers)
         {
-            return this.CurrentSession.Exists<TEntity, object>(identifiers);
+            return this.CurrentSession.Exists<TEntity>(identifiers);
         }
 
         /// <summary>
@@ -427,7 +427,7 @@ namespace PersistentLayer.NHibernate.Impl
         /// <returns></returns>
         public bool Exists<TEntity>(ICollection identifiers) where TEntity : class, TRootEntity
         {
-            return this.CurrentSession.Exists<TEntity, object>(identifiers);
+            return this.CurrentSession.Exists<TEntity>(identifiers);
         }
 
         /// <summary>
@@ -477,11 +477,10 @@ namespace PersistentLayer.NHibernate.Impl
         /// 
         /// </summary>
         /// <typeparam name="TEntity"></typeparam>
-        /// <typeparam name="TKey"></typeparam>
         /// <param name="identifier"></param>
         /// <param name="mode"></param>
         /// <returns></returns>
-        public TEntity FindBy<TEntity, TKey>(TKey identifier, LockMode mode) where TEntity : class, TRootEntity
+        public TEntity FindBy<TEntity>(object identifier, LockMode mode) where TEntity : class, TRootEntity
         {
             return this.CurrentSession.FindBy<TEntity, object>(identifier, mode);
         }
