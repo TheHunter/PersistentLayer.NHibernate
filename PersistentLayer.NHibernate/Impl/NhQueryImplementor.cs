@@ -622,10 +622,11 @@ namespace PersistentLayer.NHibernate.Impl
             }
             catch (Exception ex)
             {
+                //default(TKey) == null || default(TKey).Equals(identifier)
                 throw new BusinessPersistentException(
                     string.Format(
                         "Error on saving/updating the given instance (type of <{0}>) associated at the given identifier (value={1}, type of <{2}>)",
-                            typeof(TEntity).Name, default(TKey).Equals(identifier) ? "default" : identifier.ToString(), typeof(TKey).Name),
+                            typeof(TEntity).Name, object.Equals(default(TKey), identifier) ? "default" : identifier.ToString(), typeof(TKey).Name),
                         "MakePersistent",
                         ex
                      );

@@ -377,7 +377,10 @@ namespace PersistentLayer.NHibernate.Test.DAL
                  * So, in order to use this method, the instance to update must be transient or detached, and naturally
                  * the given indentifier must exists in data store.
                  */
-                CurrentRootPagedDAO.MakePersistent(cons, 11L);
+                
+                CurrentRootPagedDAO.MakePersistent(cons, 11);         // thrown an error, right
+                //CurrentRootPagedDAO.MakePersistent(cons, null);       // thrown an error, right
+                //CurrentRootPagedDAO.MakePersistent(cons, 0);            // thrown an error, right
 
                 SessionProvider.CommitTransaction();
             }

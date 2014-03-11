@@ -693,7 +693,7 @@ namespace PersistentLayer.NHibernate.Impl
         /// <returns></returns>
         public TEntity MakePersistent<TEntity>(TEntity entity, object identifier) where TEntity : class, TRootEntity
         {
-            return this.CurrentSession.MakePersistent(entity, identifier);
+            return this.CurrentSession.MakePersistent<TEntity, object>(entity, identifier);
         }
 
         /// <summary>
