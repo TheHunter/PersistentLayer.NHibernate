@@ -63,8 +63,16 @@ namespace PersistentLayer.NHibernate.Test
 
             builder.SetProperty("connection.connection_string", GetConnectionString());
 
-            builder.BuildSessionFactory();
-            sessionFactory = builder.SessionFactory;
+            try
+            {
+                builder.BuildSessionFactory();
+                sessionFactory = builder.SessionFactory;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
             
             sessionProvider = new SessionManager(sessionFactory);
             currentPagedDAO = new EnterprisePagedDAO(sessionProvider);

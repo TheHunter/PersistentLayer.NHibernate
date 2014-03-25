@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using System.Text;
 using NHibernate;
-using NHibernate.Criterion;
-using NHibernate.SqlCommand;
 using NUnit.Framework;
 using PersistentLayer.Domain;
 using PersistentLayer.Exceptions;
 using PersistentLayer.NHibernate.Impl;
-using PersistentLayer.NHibernate.Test;
 
-namespace PersistentLayer.Test.DAL
+namespace PersistentLayer.NHibernate.Test.DAL
 {
     public class ExtensionsTest
         : CurrentTester
