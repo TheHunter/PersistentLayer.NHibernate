@@ -470,23 +470,6 @@ namespace PersistentLayer.NHibernate.Test.DAL
             CurrentPagedDAO.GetPagedResult(1, 5, (QueryOver<Salesman>)null);
         }
 
-        //[Test]
-        //[Category("QueryExecutions")]
-        //public void GetPagedResultTest3()
-        //{
-        //    IPagedResult<Salesman> result = CurrentPagedDAO.GetPagedResult(2, 5, CurrentPagedDAO.ToIQueryable<Salesman>().Where(n => n.ID > 1));
-        //    Assert.IsTrue(result.Counter > 0);
-        //}
-
-        //[Test]
-        //[Category("QueryExecutions")]
-        //[ExpectedException(typeof(QueryArgumentException))]
-        //public void FailedGetPagedResultTest3()
-        //{
-        //    IPagedResult<Salesman> result = CurrentPagedDAO.GetPagedResult(2, 5, (IQueryable<Salesman>)null);
-        //    Assert.IsTrue(result.Counter > 0);
-        //}
-
         [Test]
         [Category("QueryExecutions")]
         [Description("This method shows how It can be used a no generic IPagedResult object.")]
@@ -517,23 +500,6 @@ namespace PersistentLayer.NHibernate.Test.DAL
             IPagedResult result2 = CurrentPagedDAO.GetPagedResult<Salesman>(2, 5, salesman => salesman.ID > 1000);
             Assert.IsFalse(result2.Counter > 0);
         }
-
-        //[Test]
-        //[Category("QueryExecutions")]
-        //public void GetIndexPagedResultTest4()
-        //{
-        //    IPagedResult<Salesman> result = CurrentPagedDAO.GetIndexPagedResult(2, 5, CurrentPagedDAO.ToIQueryable<Salesman>().Where(n => n.ID > 1));
-        //    Assert.IsTrue(result.Counter > 0);
-        //}
-
-        //[Test]
-        //[Category("QueryExecutions")]
-        //[ExpectedException(typeof(QueryArgumentException))]
-        //public void FailedGetIndexPagedResultTest4()
-        //{
-        //    IPagedResult<Salesman> result = CurrentPagedDAO.GetIndexPagedResult(2, 5, (IQueryable<Salesman>)null);
-        //    Assert.IsTrue(result.Counter > 0);
-        //}
 
         [Test]
         [Category("QueryExecutions")]
