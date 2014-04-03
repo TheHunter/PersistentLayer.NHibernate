@@ -274,9 +274,22 @@ namespace PersistentLayer.NHibernate.Impl
         /// <param name="sourceDAO"></param>
         /// <param name="type"></param>
         /// <param name="id"></param>
-        /// <param name="mode"></param>
         /// <exception cref="ExecutionQueryException"></exception>
         /// <exception cref="QueryArgumentException"></exception>
+        /// <returns></returns>
+        public static object FindBy
+            (this ISessionContext sourceDAO, Type type, object id)
+        {
+            return sourceDAO.FindBy(type, id, LockMode.None);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sourceDAO"></param>
+        /// <param name="type"></param>
+        /// <param name="id"></param>
+        /// <param name="mode"></param>
         /// <returns></returns>
         public static object FindBy
             (this ISessionContext sourceDAO, Type type, object id, LockMode mode)
@@ -292,8 +305,80 @@ namespace PersistentLayer.NHibernate.Impl
             try
             {
                 if (mode == null) mode = LockMode.None;
+                
+                return session.Get(type, id, mode);
+            }
+            catch (Exception ex)
+            {
+                throw new ExecutionQueryException("Error on getting the persistent instance with the given indetifier.", "FindBy", ex);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sourceDAO"></param>
+        /// <param name="type"></param>
+        /// <param name="id"></param>
+        /// <param name="mode"></param>
+        /// <returns></returns>
+        public static object Load
+            (this ISessionContext sourceDAO, Type type, object id, LockMode mode)
+        {
+            ISession session = sourceDAO.SessionInfo.CurrentSession;
+
+            if (id == null)
+                throw new QueryArgumentException("The given identifier cannot be null", "FindBy", "id");
+
+            if (type == null)
+                throw new QueryArgumentException("The object type cannot be null.", "FindBy", "type");
+
+            try
+            {
+                if (mode == null) mode = LockMode.None;
 
                 return session.Load(type, id, mode);
+            }
+            catch (Exception ex)
+            {
+                throw new ExecutionQueryException("Error on loading the persistent instance with the given indetifier.", "FindBy", ex);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="sourceDAO"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static TEntity Load<TEntity>
+            (this ISessionContext sourceDAO, object id) where TEntity : class
+        {
+            return sourceDAO.Load<TEntity>(id, LockMode.Read);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="sourceDAO"></param>
+        /// <param name="id"></param>
+        /// <param name="mode"></param>
+        /// <returns></returns>
+        public static TEntity Load<TEntity>
+            (this ISessionContext sourceDAO, object id, LockMode mode) where TEntity : class
+        {
+            ISession session = sourceDAO.SessionInfo.CurrentSession;
+
+            if (id == null)
+                throw new QueryArgumentException("The given identifier cannot be null", "FindBy", "id");
+
+            try
+            {
+                if (mode == null) mode = LockMode.None;
+
+                return session.Load<TEntity>(id, mode);
             }
             catch (Exception ex)
             {

@@ -27,14 +27,7 @@ namespace PersistentLayer.NHibernate.Impl
         internal static TEntity FindBy<TEntity, TKey>(this ISession session, TKey id)
             where TEntity : class
         {
-            try
-            {
-                return session.Load<TEntity>(id, LockMode.Read);
-            }
-            catch (Exception ex)
-            {
-                throw new ExecutionQueryException(string.Format("Error on loading the persistent instance (type of <{0}>) with the given identifier (of <{1}>).", typeof(TEntity).Name, typeof(TKey).Name), "FindBy", ex);
-            }
+            return session.FindBy<TEntity, TKey>(id, LockMode.Read);
         }
 
         /// <summary>
@@ -54,7 +47,7 @@ namespace PersistentLayer.NHibernate.Impl
             {
                 if (mode == null) mode = LockMode.None;
                 
-                return session.Load<TEntity>(id, mode);
+                return session.Get<TEntity>(id, mode);
             }
             catch (Exception ex)
             {

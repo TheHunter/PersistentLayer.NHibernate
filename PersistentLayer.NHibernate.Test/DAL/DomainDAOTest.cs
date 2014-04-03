@@ -21,7 +21,7 @@ namespace PersistentLayer.NHibernate.Test.DAL
         [Category("QueryExecutions")]
         public void LoadTest0()
         {
-            Assert.IsNotNull(CurrentPagedDAO.FindBy<Salesman, long?>(1));
+            Assert.IsNotNull(CurrentPagedDAO.Load<Salesman>(1L));
         }
 
         [Test]
@@ -29,7 +29,7 @@ namespace PersistentLayer.NHibernate.Test.DAL
         [ExpectedException(typeof(ExecutionQueryException))]
         public void FailedLoadTest0()
         {
-            var cons = CurrentPagedDAO.FindBy<Salesman, long?>(-1);
+            var cons = CurrentPagedDAO.Load<Salesman>(-1L);
             Assert.IsNotNull(cons);
         }
 
@@ -38,8 +38,8 @@ namespace PersistentLayer.NHibernate.Test.DAL
         [Description("Verify the right loading of object")]
         public void LoadTest1()
         {
-            Assert.IsNotNull(CurrentPagedDAO.FindBy<Salesman, long?>(1, LockMode.Read));
-            Assert.IsNotNull(CurrentPagedDAO.FindBy<Salesman, long?>(2, null));
+            Assert.IsNotNull(CurrentPagedDAO.Load<Salesman>(1L, LockMode.Read));
+            Assert.IsNotNull(CurrentPagedDAO.Load<Salesman>(2L, null));
         }
 
         [Test]
@@ -47,7 +47,7 @@ namespace PersistentLayer.NHibernate.Test.DAL
         [ExpectedException(typeof(ExecutionQueryException))]
         public void FailedLoad2Test()
         {
-            Assert.IsNull(CurrentPagedDAO.FindBy<Salesman, long?>(-1, LockMode.Read));
+            Assert.IsNull(CurrentPagedDAO.Load<Salesman>(-1L, LockMode.Read));
         }
 
         [Test]
@@ -55,8 +55,8 @@ namespace PersistentLayer.NHibernate.Test.DAL
         [Description("Using a non generic method FindBy.")]
         public void LoadTest3()
         {
-            Assert.IsNotNull(CurrentPagedDAO.FindBy(typeof (Salesman), 1L, LockMode.Read));
-            Assert.IsNotNull(CurrentPagedDAO.FindBy(typeof(Agency), 1L, LockMode.Read));
+            Assert.IsNotNull(CurrentPagedDAO.Load(typeof(Salesman), 1L, LockMode.Read));
+            Assert.IsNotNull(CurrentPagedDAO.Load(typeof(Agency), 1L, LockMode.Read));
         }
 
         [Test]
@@ -64,7 +64,7 @@ namespace PersistentLayer.NHibernate.Test.DAL
         [ExpectedException(typeof(ExecutionQueryException))]
         public void FailedLoadTest3()
         {
-            object ret = CurrentPagedDAO.FindBy(typeof(Salesman), -1L, LockMode.Read);
+            object ret = CurrentPagedDAO.Load(typeof(Salesman), -1L, LockMode.Read);
             Assert.IsNotNull(ret);
         }
 
