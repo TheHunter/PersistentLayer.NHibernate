@@ -9,15 +9,14 @@ namespace PersistentLayer.NHibernate
     /// <summary>
     /// A session manager which gets binded and unbinded sessions.
     /// </summary>
-    /// <typeparam name="TBinder">type of binder which uses this session manager.</typeparam>
-    public class SessionBinderLayer<TBinder>
+    public class SessionBinderLayer
         : SessionManager, ISessionBinderProvider
-        where TBinder : CurrentSessionContext
+        //where TBinder : CurrentSessionContext
     {
 
-        private Action<ISession> bindAction;
-        private Func<ISessionFactory, ISession> unBindAction;
-        private Func<ISessionFactory, bool> hasBind;
+        //private Action<ISession> bindAction;
+        //private Func<ISessionFactory, ISession> unBindAction;
+        //private Func<ISessionFactory, bool> hasBind;
 
         /// <summary>
         /// 
@@ -26,20 +25,18 @@ namespace PersistentLayer.NHibernate
         public SessionBinderLayer(ISessionFactory sessionFactory)
             : base(sessionFactory)
         {
-            this.OnInit();
+            //this.OnInit();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        private void OnInit()
-        {
-            var flags = BindingFlags.Instance | BindingFlags.InvokeMethod | BindingFlags.Public | BindingFlags.Static;
-            var type = typeof(TBinder);
-            bindAction = (Action<ISession>)Delegate.CreateDelegate(typeof(Action<ISession>), null, type.GetMethod("Bind", flags));
-            unBindAction = (Func<ISessionFactory, ISession>)Delegate.CreateDelegate(typeof(Func<ISessionFactory, ISession>), null, type.GetMethod("Unbind", flags));
-            hasBind = (Func<ISessionFactory, bool>)Delegate.CreateDelegate(typeof(Func<ISessionFactory, bool>), null, type.GetMethod("HasBind", flags));
-        }
+        
+        //private void OnInit()
+        //{
+        //    var flags = BindingFlags.Instance | BindingFlags.InvokeMethod | BindingFlags.Public | BindingFlags.Static;
+        //    var type = typeof(TBinder);
+        //    bindAction = (Action<ISession>)Delegate.CreateDelegate(typeof(Action<ISession>), null, type.GetMethod("Bind", flags));
+        //    unBindAction = (Func<ISessionFactory, ISession>)Delegate.CreateDelegate(typeof(Func<ISessionFactory, ISession>), null, type.GetMethod("Unbind", flags));
+        //    hasBind = (Func<ISessionFactory, bool>)Delegate.CreateDelegate(typeof(Func<ISessionFactory, bool>), null, type.GetMethod("HasBind", flags));
+        //}
 
         /// <summary>
         /// 
@@ -79,7 +76,8 @@ namespace PersistentLayer.NHibernate
                 throw new SessionNotAvailableException("There's no available session to bind into current context, It's require to open a new session.", "BindSession");
             }
             session.FlushMode = mode;
-            this.bindAction(session);
+            //this.bindAction(session);
+            CurrentSessionContext.Bind(session);
         }
 
         /// <summary>
@@ -88,7 +86,8 @@ namespace PersistentLayer.NHibernate
         /// <returns></returns>
         public bool HasSessionBinded()
         {
-            return this.hasBind(this.SessionFactory);
+            //return this.hasBind(this.SessionFactory);
+            return CurrentSessionContext.HasBind(this.SessionFactory);
         }
 
         /// <summary>
@@ -97,7 +96,8 @@ namespace PersistentLayer.NHibernate
         /// <returns></returns>
         public ISession UnbindSession()
         {
-            return this.unBindAction(this.SessionFactory);
+            //return this.unBindAction(this.SessionFactory);
+            return CurrentSessionContext.Unbind(this.SessionFactory);
         }
 
     }

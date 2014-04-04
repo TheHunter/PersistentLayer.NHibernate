@@ -28,10 +28,10 @@
       <FileName>NhConfigurationBuilder.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PersistentLayer.NHibernate.SessionBinderLayer&lt;TBinder&gt;">
+  <Class Name="PersistentLayer.NHibernate.SessionBinderLayer">
     <Position X="21.25" Y="10.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACQAAAAAAAAAAAAAAAAAAAAAAAIAQAAAIQgAAAABA=</HashCode>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAgAAAABA=</HashCode>
       <FileName>SessionBinderLayer.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -135,7 +135,7 @@
   <Class Name="PersistentLayer.NHibernate.Impl.NhQueryExtensions">
     <Position X="37.25" Y="6" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAIAEIAkgAAgAAEAQEEAABIAAAQAIAIEAIAAJAgI=</HashCode>
+      <HashCode>AAAAgIAEIAkgAAgAAEAQEEAABIAAAQAIAIEAIAAJAgI=</HashCode>
       <FileName>Impl\NhQueryExtensions.cs</FileName>
     </TypeIdentifier>
   </Class>
