@@ -28,14 +28,6 @@
       <FileName>NhConfigurationBuilder.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PersistentLayer.NHibernate.SessionBinderLayer">
-    <Position X="21.25" Y="10.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAgAAAABA=</HashCode>
-      <FileName>SessionBinderLayer.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
   <Class Name="PersistentLayer.NHibernate.SessionInfo" Collapsed="true">
     <Position X="23" Y="1.5" Width="1.5" />
     <TypeIdentifier>
@@ -43,11 +35,11 @@
       <FileName>SessionInfo.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PersistentLayer.NHibernate.SessionManager">
-    <Position X="21.25" Y="6" Width="1.5" />
+  <Class Name="PersistentLayer.NHibernate.Impl.SessionManager">
+    <Position X="18.75" Y="10.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAABIgAAAAAAAAEAAAAAAAAAAAAQAAAAEBEAoAA=</HashCode>
-      <FileName>SessionManager.cs</FileName>
+      <HashCode>AAAAAAAAAgAAAAAAAAEAAAAAAAAAAAAQAAAAEAAAgAA=</HashCode>
+      <FileName>Impl\SessionManager.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
@@ -170,6 +162,30 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
+  <Class Name="PersistentLayer.NHibernate.Impl.SessionProvider">
+    <Position X="20.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABIgAABAAAAAEAAAAAAAAAAAAAAAAAABEAoAA=</HashCode>
+      <FileName>Impl\SessionProvider.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PersistentLayer.NHibernate.Impl.SessionBinderProvider">
+    <Position X="18.75" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAIAAAAAKAAAAAAIAAAAAABA=</HashCode>
+      <FileName>Impl\SessionBinderProvider.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PersistentLayer.NHibernate.Impl.SessionContextProvider">
+    <Position X="21.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAiAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Impl\SessionContextProvider.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
   <Interface Name="PersistentLayer.NHibernate.IDomainDAO">
     <Position X="6" Y="5.75" Width="1.5" />
     <TypeIdentifier>
@@ -201,7 +217,7 @@
   <Interface Name="PersistentLayer.NHibernate.ISessionBinderProvider">
     <Position X="0.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAgAAAABA=</HashCode>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAABA=</HashCode>
       <FileName>ISessionBinderProvider.cs</FileName>
     </TypeIdentifier>
   </Interface>

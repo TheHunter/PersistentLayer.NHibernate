@@ -78,8 +78,10 @@
     <Compile Include="CurrentTester.cs" />
     <Compile Include="DAL\DomainDAOTest.cs" />
     <Compile Include="DAL\ExtensionsTest.cs" />
+    <Compile Include="DAL\ParallelRunner.cs" />
     <Compile Include="DAL\QueryTest.cs" />
     <Compile Include="DAL\RootEntityDAOTest.cs" />
+    <Compile Include="DAL\ContextProviderTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

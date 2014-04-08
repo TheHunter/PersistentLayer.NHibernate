@@ -463,6 +463,54 @@ namespace PersistentLayer.NHibernate.Test.DAL
             Assert.AreEqual((salNoUpdated.Version + 1), salUpdated.Version);
         }
 
-        
+        [Test]
+        [Category("NoScope")]
+        public void TestSelect()
+        {
+            string hql = "from Salesman sal";
+            var query = this.CurrentPagedDAO.MakeHQLQuery(hql);
+            IList list = query.List();
+            Assert.IsNotNull(list);
+
+            hql = "select cast(count(sal.id) as int) as rr from Salesman sal";
+            query = this.CurrentPagedDAO.MakeHQLQuery(hql);
+            long rowCount = query.UniqueResult<int>();
+            Assert.IsTrue(rowCount > 0);
+
+        }
+
+
+        [Test]
+        [Category("NoScope")]
+        public void TestSelect2()
+        {
+            string hql = "from Salesman sal order by sal.Name desc";
+            var query = this.CurrentPagedDAO.MakeHQLQuery(hql);
+            IList list = query.List();
+            Assert.IsNotNull(list);
+
+            //hql = "select cast(count(sal.id) as int) as rr from Salesman sal";        //ok
+            //hql = "select cast(count(id) as int) as rr from Salesman";                //ok
+            //hql = ToHqlRowCount(query);
+            //hql = "select cast(count(res.*) as int) as cc from ( select sal.* from Salesman sal) res";           //ko
+            //hql = "select count( select sal.* from Salesman sal ) as total ";
+            hql = "select count(sal) from Salesman sal ";
+            query = this.CurrentPagedDAO.MakeHQLQuery(hql);
+            long rowCount = query.UniqueResult<long>();
+            Assert.IsTrue(rowCount > 0);
+
+        }
+
+
+        public static string ToHqlRowCount(IQuery hql)
+        {
+            string str = hql.QueryString;
+            int index1 = str.IndexOf("from", System.StringComparison.Ordinal);
+            int lastindex = str.IndexOf("order", System.StringComparison.Ordinal);
+            
+            return lastindex == -1 ?
+                str.Substring(index1) : str.Substring(index1, lastindex - index1);
+
+        }
     }
 }

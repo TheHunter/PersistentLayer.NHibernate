@@ -64,7 +64,7 @@ namespace PersistentLayer.NHibernate.Test.DAL
             Assert.IsFalse(CurrentPagedDAO.SessionWithChanges());
             info.SetValue(salNoUpdated, "my_email_test", null);
             Assert.IsTrue(CurrentPagedDAO.SessionWithChanges());
-
+            //CurrentPagedDAO.Flush();
         }
 
         //[Test]

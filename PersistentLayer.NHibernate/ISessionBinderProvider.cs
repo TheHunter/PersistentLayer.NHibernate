@@ -12,30 +12,46 @@ namespace PersistentLayer.NHibernate
     public interface ISessionBinderProvider
         : ISessionProvider
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        ISession OpenSession();
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <returns></returns>
+        //ISession OpenSession();
+
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="session"></param>
+        ///// <param name="mode"></param>
+        //void BindSession(ISession session, FlushMode mode);
+
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <returns></returns>
+        //bool HasSessionBinded();
+
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <returns></returns>
+        //ISession UnbindSession();
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="session"></param>
-        /// <param name="mode"></param>
-        void BindSession(ISession session, FlushMode mode);
+        void BindSession();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        void UnBindSession();
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
         bool HasSessionBinded();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        ISession UnbindSession();
 
     }
 }

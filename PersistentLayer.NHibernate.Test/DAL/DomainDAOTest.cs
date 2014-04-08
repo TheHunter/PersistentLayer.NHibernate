@@ -21,6 +21,7 @@ namespace PersistentLayer.NHibernate.Test.DAL
         [Category("QueryExecutions")]
         public void LoadTest0()
         {
+            //Action a = () => Convert.ToBase64CharArray(null);
             Assert.IsNotNull(CurrentPagedDAO.Load<Salesman>(1L));
         }
 

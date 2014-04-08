@@ -146,5 +146,11 @@ namespace PersistentLayer.NHibernate.Test
                 this.BindSession();
             }
         }
+
+
+        public ISessionFactory SessionFactory
+        {
+            get { return sessionFactory; }
+        }
     }
 }
