@@ -2,6 +2,8 @@
 using System.Data;
 using System.Linq;
 using NHibernate;
+using NHibernate.Engine.Query;
+using NHibernate.Impl;
 using NHibernate.Transform;
 using NUnit.Framework;
 using PersistentLayer.Domain;
@@ -480,37 +482,100 @@ namespace PersistentLayer.NHibernate.Test.DAL
         }
 
 
+        //[Test]
+        //[Category("NoScope")]
+        //public void TestSelect2()
+        //{
+        //    string hql = "from Salesman sal order by sal.Name desc";
+        //    var query = this.CurrentPagedDAO.MakeHQLQuery(hql);
+        //    IList list = query.List();
+        //    Assert.IsNotNull(list);
+
+        //    query.NamedParameters.Initialize();
+        //    ISQLQuery qq = null;
+        //    //qq.SetParameterList()
+
+        //    //hql = "select cast(count(sal.id) as int) as rr from Salesman sal";        //ok
+        //    //hql = "select cast(count(id) as int) as rr from Salesman";                //ok
+        //    //hql = ToHqlRowCount(query);
+        //    //hql = "select cast(count(res.*) as int) as cc from ( select sal.* from Salesman sal) res";           //ko
+        //    //hql = "select count( select sal.* from Salesman sal ) as total ";
+        //    hql = "select count(sal) from Salesman sal ";
+        //    query = this.CurrentPagedDAO.MakeHQLQuery(hql);
+        //    long rowCount = query.UniqueResult<long>();
+        //    Assert.IsTrue(rowCount > 0);
+
+        //}
+
         [Test]
         [Category("NoScope")]
-        public void TestSelect2()
+        public void TestSelectX()
         {
-            string hql = "from Salesman sal order by sal.Name desc";
-            var query = this.CurrentPagedDAO.MakeHQLQuery(hql);
-            IList list = query.List();
-            Assert.IsNotNull(list);
+            string hql;
+            IQuery query;
+            IList list;
 
-            //hql = "select cast(count(sal.id) as int) as rr from Salesman sal";        //ok
-            //hql = "select cast(count(id) as int) as rr from Salesman";                //ok
-            //hql = ToHqlRowCount(query);
-            //hql = "select cast(count(res.*) as int) as cc from ( select sal.* from Salesman sal) res";           //ko
-            //hql = "select count( select sal.* from Salesman sal ) as total ";
-            hql = "select count(sal) from Salesman sal ";
+            //hql = "select sal.Name, sal.Surname from Salesman sal order by sal.Name desc";
+            //query = this.CurrentPagedDAO.MakeHQLQuery(hql);
+            //list = query.List();
+
+            //hql = "select distinct sal.Name, sal.Surname from Salesman sal order by sal.Name desc";
+            //query = this.CurrentPagedDAO.MakeHQLQuery(hql);
+            //list = query.List();
+
+            //hql = "select concat(sal.Name, '-' ,sal.Surname) as col1 from Salesman sal order by sal.Name desc";
+            //query = this.CurrentPagedDAO.MakeHQLQuery(hql);
+            //list = query.List();
+
+            //hql = "select distinct concat(sal.Name, '-' ,sal.Surname) as col1 from Salesman sal";
+            //query = this.CurrentPagedDAO.MakeHQLQuery(hql);
+            //list = query.List();
+
+            //hql = "select count( sal.Surname ) from Salesman sal";
+            //query = this.CurrentPagedDAO.MakeHQLQuery(hql);
+            //var counter = query.UniqueResult<long>();
+            //Assert.IsTrue(counter > 0);
+
+            hql = "select distinct new SalesmanPrj2 ( sal.Name, sal.Surname ) from Salesman sal";
             query = this.CurrentPagedDAO.MakeHQLQuery(hql);
-            long rowCount = query.UniqueResult<long>();
-            Assert.IsTrue(rowCount > 0);
+            list = query.List();
+            Assert.IsTrue(list.Count > 0);
 
+            //hql = "select count( new SalesmanPrj2 ( sal.Name, sal.Surname ) ) from Salesman sal";
+            //query = this.CurrentPagedDAO.MakeHQLQuery(hql);
+            //var counter = query.UniqueResult<long>();
+            //Assert.IsTrue(counter > 0);
         }
 
+        //[Test]
+        //public void TestHql()
+        //{
+        //    string hql = "from Salesman sal where sal.Name=:nome";
 
-        public static string ToHqlRowCount(IQuery hql)
-        {
-            string str = hql.QueryString;
-            int index1 = str.IndexOf("from", System.StringComparison.Ordinal);
-            int lastindex = str.IndexOf("order", System.StringComparison.Ordinal);
+        //    SessionFactoryImpl sf = this.SessionFactory as SessionFactoryImpl;
+        //    if (sf != null)
+        //    {
+        //        var filtri = new Dictionary<string, IFilter>();
+        //        var sql = new HQLStringQueryPlan(hql, true, filtri, sf);
+        //        var aa = sql.ParameterMetadata.GetNamedParameterDescriptor("");
+        //        var ee = aa.Name;
+
+        //        var res = sql.SqlStrings[0];
+        //        //HqlSqlGenerator a;
+        //        Assert.IsNotNull(res);
+
+        //    }
+        //}
+
+        //public static string ToHqlRowCount(IQuery hql)
+        //{
+        //    string str = hql.QueryString;
+        //    int index1 = str.IndexOf("from", System.StringComparison.Ordinal);
+        //    int lastindex = str.IndexOf("order", System.StringComparison.Ordinal);
             
-            return lastindex == -1 ?
-                str.Substring(index1) : str.Substring(index1, lastindex - index1);
+        //    return lastindex == -1 ?
+        //        str.Substring(index1) : str.Substring(index1, lastindex - index1);
 
-        }
+        //}
     }
 }

@@ -11,25 +11,60 @@ namespace PersistentLayer.NHibernate.Impl
     /// 
     /// </summary>
     public class SessionContextProvider
-        : SessionProvider, IDisposable
+        : SessionProvider, ISessionContextProvider
     {
         private readonly ISession session;
-
-        #region Session factory section
+        private readonly object keyContext;
+        protected const string DefaultContext = "_defaultContext_";
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="session"></param>
         public SessionContextProvider(ISession session)
+            : this(session, DefaultContext)
         {
-            if (session == null)
-                throw new SessionNotAvailableException("The session to associate into SessionContextProvider instance cannot be null.");
-
-            this.session = session;
         }
 
-        #endregion
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="session"></param>
+        /// <param name="keyContext"></param>
+        public SessionContextProvider(ISession session, object keyContext)
+        {
+            if (session == null)
+                throw new SessionNotAvailableException("The session to associate into SessionContextProvider instance cannot be null.", "ctor SessionContextProvider");
+
+            if (!session.IsOpen)
+                throw new InvalidSessionException("There's no suitable session for making CRUD operations because the session parameter is closed.", "ctor SessionContextProvider");
+
+            this.session = session;
+
+            if (keyContext == null)
+                throw new BusinessLayerException("The keyContext argument cannot be null", "ctor SessionContextProvider", new ArgumentNullException("keyContext", "The keyContext argument cannot be null"));
+
+            string str = keyContext as string;
+            if (str != null)
+            {
+                if (str.Trim().Equals(string.Empty))
+                    throw new BusinessLayerException("The keyContext argument cannot be empty", "ctor SessionContextProvider", new ArgumentNullException("keyContext", "The keyContext argument cannot be empty"));
+
+                this.keyContext = str.Trim();
+            }
+            else
+            {
+                this.keyContext = keyContext;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public object KeyContext
+        {
+            get { return keyContext; }
+        }
 
         /// <summary>
         /// 
@@ -37,27 +72,21 @@ namespace PersistentLayer.NHibernate.Impl
         /// <returns></returns>
         public override ISession GetCurrentSession()
         {
-            if (this.session == null || !this.session.IsOpen )
-            {
-                this.Reset();
+            if (!this.session.IsOpen )
                 throw new InvalidSessionException("There's no suitable session for making CRUD operations because the calling instance was disposed.", "GetCurrentSession");
-            }
+            
             return this.session;
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public void Dispose()
+        public override void Dispose()
         {
-            this.Reset();
-            if (this.session != null)
-            {
-                if (this.session.IsOpen)
-                {
-                    this.session.Close();
-                }
-            }
+            base.Dispose();
+
+            if (this.session.IsOpen)
+                this.session.Close();
         }
     }
 }

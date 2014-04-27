@@ -54,4 +54,23 @@ namespace PersistentLayer.NHibernate.Test.PocoPrj
         }
 
     }
+
+
+    public class SalesmanPrj2
+    {
+        private string name;
+        private string surname;
+
+        public SalesmanPrj2(string name, string surname)
+        {
+            this.name = name;
+            this.surname = surname;
+            
+        }
+
+        public string Fullname
+        {
+            get { return name + " - " + surname; }
+        }
+    }
 }

@@ -14,23 +14,9 @@ namespace PersistentLayer.NHibernate.Impl
     public class SessionManager
         : SessionProvider, ISessionManager
     {
-        private readonly Stack<ITransactionInfo> transactions;
-        /// <summary>
-        /// This is the factory which creates sessions, and It's able to reference the current binded session
-        /// made by CurrentSessionContext
-        /// </summary>
         private readonly ISessionFactory sessionFactory;
-        private const string DefaultNaming = "anonymous";
 
         #region Session factory section
-
-        /// <summary>
-        /// 
-        /// </summary>
-        protected SessionManager()
-        {
-            transactions = new Stack<ITransactionInfo>();
-        }
 
         /// <summary>
         /// 
@@ -39,8 +25,6 @@ namespace PersistentLayer.NHibernate.Impl
         /// <exception cref="BusinessLayerException"></exception>
         public SessionManager(ISessionFactory sessionFactory)
         {
-            transactions = new Stack<ITransactionInfo>();
-
             if (sessionFactory == null)
                 throw new BusinessLayerException("The SessionFactory for SessionManager cannot be null.", "ctor SessionManager");
 
@@ -72,11 +56,10 @@ namespace PersistentLayer.NHibernate.Impl
             }
             catch (Exception ex)
             {
-                this.transactions.Clear();
+                this.Reset();
                 throw new SessionNotBindedException("There's no binded session, so first It would require to open a new session.", "GetCurrentSession", ex);
             }
         }
 
-        
     }
 }

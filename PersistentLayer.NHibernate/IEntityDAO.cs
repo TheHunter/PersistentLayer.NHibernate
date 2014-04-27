@@ -10,7 +10,7 @@ namespace PersistentLayer.NHibernate
     /// <typeparam name="TEntity"></typeparam>
     /// <typeparam name="TKey"></typeparam>
     public interface IEntityDAO<TEntity, TKey>
-        : INhQueryableDAO<TEntity, TKey>, IPersisterDAO<TEntity, TKey>
+        : INhQueryableDAO<TEntity, TKey>, IPersisterDAO<TEntity, TKey>, ISessionContext
         where TEntity : class
     {
         /// <summary>

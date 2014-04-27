@@ -1,9 +1,12 @@
-﻿namespace PersistentLayer.NHibernate
+﻿using System;
+
+namespace PersistentLayer.NHibernate
 {
     /// <summary>
     /// 
     /// </summary>
     public interface ISessionContext
+        : IDisposable
     {
         /// <summary>
         /// 

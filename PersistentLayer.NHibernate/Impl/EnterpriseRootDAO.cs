@@ -15,7 +15,7 @@ namespace PersistentLayer.NHibernate.Impl
     /// <typeparam name="TRootEntity"></typeparam>
     /// <typeparam name="TEntity"></typeparam>
     public class EnterpriseRootDAO<TRootEntity, TEntity>
-        : TransactionalDAO, INhRootPagedDAO<TRootEntity, TEntity>
+        : AbstractDAO, INhRootPagedDAO<TRootEntity, TEntity>
         where TRootEntity : class
         where TEntity : class, TRootEntity
     {
@@ -341,13 +341,13 @@ namespace PersistentLayer.NHibernate.Impl
             return this.CurrentSession.RefreshState(entities);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        SessionInfo ISessionContext.SessionInfo
-        {
-            get { return SessionInfo; }
-        }
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //SessionInfo ISessionContext.SessionInfo
+        //{
+        //    get { return SessionInfo; }
+        //}
 
         /// <summary>
         /// 
@@ -396,7 +396,7 @@ namespace PersistentLayer.NHibernate.Impl
     /// </summary>
     /// <typeparam name="TRootEntity"></typeparam>
     public class EnterpriseRootDAO<TRootEntity>
-        : TransactionalDAO, INhRootPagedDAO<TRootEntity>
+        : AbstractDAO, INhRootPagedDAO<TRootEntity>
         where TRootEntity : class
     {
         /// <summary>
@@ -749,13 +749,13 @@ namespace PersistentLayer.NHibernate.Impl
             return this.CurrentSession.RefreshState(entities);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        SessionInfo ISessionContext.SessionInfo
-        {
-            get { return SessionInfo; }
-        }
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //SessionInfo ISessionContext.SessionInfo
+        //{
+        //    get { return SessionInfo; }
+        //}
 
         /// <summary>
         /// 

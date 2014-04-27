@@ -77,7 +77,6 @@ namespace PersistentLayer.NHibernate.Test
             sessionProvider = new SessionManager(sessionFactory);
             currentPagedDAO = new EnterprisePagedDAO(sessionProvider);
             currentRootPagedDAO = new EnterpriseRootDAO<object>(sessionProvider);
-
             currentSession = sessionFactory.OpenSession();
         }
 
@@ -88,7 +87,6 @@ namespace PersistentLayer.NHibernate.Test
             {
                 currentSession.Close();
                 currentSession.Dispose();
-                //CurrentSessionContext.Unbind(sessionFactory);
             }
         }
 

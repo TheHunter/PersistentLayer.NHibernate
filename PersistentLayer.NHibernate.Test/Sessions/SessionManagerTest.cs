@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Data;
+using NHibernate;
 using NUnit.Framework;
 using PersistentLayer.Domain;
 using PersistentLayer.Exceptions;
+using PersistentLayer.NHibernate.Impl;
 
 namespace PersistentLayer.NHibernate.Test.Sessions
 {
@@ -335,7 +337,81 @@ namespace PersistentLayer.NHibernate.Test.Sessions
             }
         }
 
+        [Test]
+        public void TestOnRollbackSessionProvider()
+        {
+            var provider = this.CurrentPagedDAO.GetTransactionProvider();
+            try
+            {
+                provider.BeginTransaction();
+                provider.BeginTransaction();
+                provider.BeginTransaction();
+
+                provider.RollbackTransaction();
+            }
+            catch (Exception ex)
+            {
+                Assert.IsTrue(ex.GetType() == typeof (InnerRollBackException));
+            }
+            Assert.IsFalse(provider.InProgress);
+            
+        }
+
+        [Test]
+        public void TestOnRollbackTransaction()
+        {
+            ISessionProvider manager = new SessionContextProvider(this.SessionFactory.OpenSession());
+            try
+            {
+                manager.BeginTransaction();
+                manager.BeginTransaction();
+
+                manager.RollbackTransaction();
+            }
+            catch (Exception ex)
+            {
+                Assert.IsTrue(ex.GetType() == typeof(InnerRollBackException));
+            }
+            Assert.IsFalse(manager.InProgress);
+        }
 
 
+        [Test]
+        public void TestOnRollbackTransaction2()
+        {
+            ISession session = this.SessionFactory.OpenSession();
+
+            ISessionProvider manager = new SessionContextProvider(session);
+            manager.BeginTransaction();
+            manager.BeginTransaction();
+            manager.BeginTransaction();
+
+            session.Dispose();
+
+            /*
+             * this rollback operation doesn't throw an exception 'cause there's no avaible session 
+             * on which needs to make rollback.
+             */
+            manager.RollbackTransaction();      
+
+            Assert.IsFalse(manager.InProgress);
+        }
+
+        [Test]
+        public void TestOnRollbackTransaction3()
+        {
+            LifetimeScopeSessionProvider();
+            Assert.IsTrue(true);
+        }
+
+        private void LifetimeScopeSessionProvider()
+        {
+            ISession session = this.SessionFactory.OpenSession();
+            ISessionProvider manager = new SessionContextProvider(session);
+
+            manager.BeginTransaction();
+            manager.BeginTransaction("context1");
+
+        }
     }
 }

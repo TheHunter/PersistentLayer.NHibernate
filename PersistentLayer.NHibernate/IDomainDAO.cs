@@ -8,7 +8,7 @@ namespace PersistentLayer.NHibernate
     /// 
     /// </summary>
     public interface IDomainDAO
-        : INhQueryableDAO, IPersisterDAO
+        : INhQueryableDAO, IPersisterDAO, ISessionContext
     {
         /// <summary>
         /// 

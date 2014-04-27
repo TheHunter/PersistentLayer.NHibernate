@@ -40,7 +40,8 @@
     <Reference Include="NHibernate">
       <HintPath>..\packages\NHibernate.3.3.3.4001\lib\Net35\NHibernate.dll</HintPath>
     </Reference>
-    <Reference Include="PersistentLayer">
+    <Reference Include="PersistentLayer, Version=5.2.2.12, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\PersistentLayer.5.2.2.12\lib\net35\PersistentLayer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -54,20 +55,21 @@
     <Compile Include="FutureQueryResolver.cs" />
     <Compile Include="IDomainDAO.cs" />
     <Compile Include="IEntityDAO.cs" />
+    <Compile Include="IHqlBuilder.cs" />
+    <Compile Include="Impl\HqlBuilder.cs" />
+    <Compile Include="Impl\SessionCacheProvider.cs" />
+    <Compile Include="Impl\SessionDelegateProvider.cs" />
     <Compile Include="Impl\SessionContextProvider.cs" />
     <Compile Include="Impl\EnterpriseRootDAO.cs" />
     <Compile Include="Impl\SessionProvider.cs" />
-    <Compile Include="Impl\TransactionalDAO.cs" />
     <Compile Include="INhRootHybridDAO.cs" />
     <Compile Include="INhRootPagedDAO.cs" />
     <Compile Include="INhRootQueryableDAO.cs" />
     <Compile Include="Impl\AbstractDAO.cs" />
-    <Compile Include="Impl\BusinessDAO.cs" />
     <Compile Include="Impl\BusinessPagedDAO.cs" />
-    <Compile Include="Impl\DomainDAO.cs" />
     <Compile Include="Impl\EnterpriseDAO.cs" />
     <Compile Include="Impl\EnterprisePagedDAO.cs" />
-    <Compile Include="Impl\EntityDAO.cs" />
+    <Compile Include="Impl\BusinessDAO.cs" />
     <Compile Include="Impl\NhPagedResult.cs" />
     <Compile Include="Impl\NhQueryExtensions.cs" />
     <Compile Include="Impl\NhQueryImplementor.cs" />
@@ -77,7 +79,7 @@
     <Compile Include="InvalidSessionException.cs" />
     <Compile Include="ISessionBinderProvider.cs" />
     <Compile Include="ISessionContext.cs" />
-    <Compile Include="ISessionDAO.cs" />
+    <Compile Include="ISessionContextProvider.cs" />
     <Compile Include="ISessionManager.cs" />
     <Compile Include="ISessionProvider.cs" />
     <Compile Include="ITransactionInfo.cs" />

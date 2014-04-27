@@ -66,7 +66,7 @@ namespace PersistentLayer.NHibernate.Impl
         /// <summary>
         /// 
         /// </summary>
-        public void BeginTransaction()
+        public virtual void BeginTransaction()
         {
             this.BeginTransaction((IsolationLevel?)null);
         }
@@ -75,7 +75,7 @@ namespace PersistentLayer.NHibernate.Impl
         /// 
         /// </summary>
         /// <param name="name"></param>
-        public void BeginTransaction(string name)
+        public virtual void BeginTransaction(string name)
         {
             // ReSharper disable RedundantCast
             this.BeginTransaction(name, (IsolationLevel?)null);
@@ -90,7 +90,7 @@ namespace PersistentLayer.NHibernate.Impl
         /// <exception cref="SessionNotBindedException">
         /// Throws an exception when there's no session binded into any CurrentSessionContext.
         /// </exception>
-        public void BeginTransaction(IsolationLevel? level)
+        public virtual void BeginTransaction(IsolationLevel? level)
         {
             int index = transactions.Count;
             this.BeginTransaction(string.Format("{0}_{1}", DefaultNaming, index), level);
@@ -102,10 +102,10 @@ namespace PersistentLayer.NHibernate.Impl
         /// <param name="name"></param>
         /// <param name="level"></param>
         /// <exception cref="BusinessLayerException"></exception>
-        public void BeginTransaction(string name, IsolationLevel? level)
+        public virtual void BeginTransaction(string name, IsolationLevel? level)
         {
             if (name == null || name.Trim().Equals(string.Empty))
-                throw new BusinessLayerException("The transaction name cannot be null or empty", "Exists");
+                throw new BusinessLayerException("The transaction name cannot be null or empty", "BeginTransaction");
 
             if (this.Exists(name))
                 throw new BusinessLayerException(string.Format("The transaction name ({0}) to add is used by another point.", name), "BeginTransaction");
@@ -123,7 +123,7 @@ namespace PersistentLayer.NHibernate.Impl
                     else
                         session.BeginTransaction(level.Value);
                 }
-                catch (SessionNotBindedException ex)
+                catch (Exception ex)
                 {
                     throw new BusinessLayerException("Error on beginning a new transaction.", "BeginTransaction", ex);
                 }
@@ -137,7 +137,7 @@ namespace PersistentLayer.NHibernate.Impl
         /// <exception cref="CommitFailedException">
         /// Throws an exception when current transaction tries to commit.
         /// </exception>
-        public void CommitTransaction()
+        public virtual void CommitTransaction()
         {
             if (transactions.Count > 0)
             {
@@ -145,9 +145,25 @@ namespace PersistentLayer.NHibernate.Impl
                 if (transactions.Count == 0)
                 {
                     ITransaction transaction = null;
+                    ISession session = null;
+
                     try
                     {
-                        ISession session = this.GetCurrentSession();
+                        session = this.GetCurrentSession();
+                        if (session == null || !session.IsOpen)
+                            return;
+                    }
+                    catch (Exception)
+                    {
+                        return;
+                    }
+
+                    try
+                    {
+                        //ISession session = this.GetCurrentSession();
+                        //if (session == null)
+                        //    throw new SessionNotAvailableException("No session was found for making commit operation.", "CommitTransaction");
+
                         transaction = session.Transaction;
                         if (session.FlushMode == FlushMode.Never)
                         {
@@ -155,18 +171,10 @@ namespace PersistentLayer.NHibernate.Impl
                         }
                         transaction.Commit();
                     }
-                    catch (SessionNotBindedException)
-                    {
-                        /*
-                         No session instance was binded... 
-                         In this case It supposes that there's any actions to compute with data storage
-                        */
-                    }
                     catch (Exception ex)
                     {
-                        // accettarsi che la chiamata a RollBack non generi un'eccezione
-                        // in quel caso occorre gestirlo, eventualement risollervalo incapsulandolo in un'altra eccezione
-                        if (transaction != null) transaction.Rollback();
+                        if (transaction != null && transaction.IsActive)
+                            transaction.Rollback();
 
                         throw new CommitFailedException(string.Format("Error when the current session tries to commit the current transaction (name: {0}).", info.Name), "CommitTransaction", ex);
                     }
@@ -183,7 +191,7 @@ namespace PersistentLayer.NHibernate.Impl
         /// <exception cref="InnerRollBackException">
         /// Throws an exception when an inner transaction makes a rollback.
         /// </exception>
-        public void RollbackTransaction()
+        public virtual void RollbackTransaction()
         {
             this.RollbackTransaction(null);
         }
@@ -192,17 +200,28 @@ namespace PersistentLayer.NHibernate.Impl
         /// 
         /// </summary>
         /// <param name="cause"></param>
-        public void RollbackTransaction(Exception cause)
+        public virtual void RollbackTransaction(Exception cause)
         {
             if (transactions.Count > 0)
             {
                 ITransactionInfo info = transactions.Pop();
                 try
                 {
-                    ISession session = this.GetCurrentSession();
-                    ITransaction transaction = session.Transaction;
+                    ISession session;
                     try
                     {
+                        session = this.GetCurrentSession();
+                        if (session == null || !session.IsOpen)
+                            return;
+                    }
+                    catch (Exception)
+                    {
+                        return;
+                    }
+                    
+                    try
+                    {
+                        ITransaction transaction = session.Transaction;
                         transaction.Rollback();
                     }
                     catch (Exception ex)
@@ -216,22 +235,7 @@ namespace PersistentLayer.NHibernate.Impl
                      * 
                      */
                     if (transactions.Count > 0)
-                    {
                         throw new InnerRollBackException("An inner rollback transaction has occurred.", cause, info);
-                    }
-                }
-                catch (SessionNotBindedException)
-                {
-                    #region
-                    // eccezione sollevata dalla chiamata a GetCurrentSession()
-                    // e il motivo di questa eccezione è causato dal mancato binding della sessione corrente.
-                    /*
-                     * NOTA:
-                     * Questa eccezione non viene considerata perché significa che il codice chiamante
-                     * ha tentato di iniziare una transaction senza considerare che occorre fare il binding della 
-                     * sessione che si intende utilizzare, che serve per eseguire le operazioni verso il DataStore.
-                     * */
-                    #endregion
                 }
                 finally
                 {
@@ -241,13 +245,30 @@ namespace PersistentLayer.NHibernate.Impl
         }
 
         /// <summary>
-        /// 
+        /// Clear all internal transactions.
         /// </summary>
-        protected void Reset()
+        protected virtual void Reset()
         {
             this.transactions.Clear();
         }
 
-        
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual void Dispose()
+        {
+            try
+            {
+                if (this.InProgress)
+                    this.RollbackTransaction();
+            }
+            catch
+            {
+            }
+            finally
+            {
+                this.Reset();
+            }
+        }
     }
 }

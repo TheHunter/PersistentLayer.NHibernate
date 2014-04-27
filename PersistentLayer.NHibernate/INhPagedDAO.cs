@@ -9,7 +9,7 @@ namespace PersistentLayer.NHibernate
     /// <typeparam name="TEntity"></typeparam>
     /// <typeparam name="TKey"></typeparam>
     public interface INhPagedDAO<TEntity, TKey>
-        : ISessionDAO<TEntity, TKey>, IPagedDAO<TEntity, TKey>
+        : IEntityDAO<TEntity, TKey>, IPagedDAO<TEntity, TKey>
         where TEntity : class
     {
         /// <summary>
@@ -54,7 +54,7 @@ namespace PersistentLayer.NHibernate
     /// 
     /// </summary>
     public interface INhPagedDAO
-        : ISessionDAO, IPagedDAO
+        : IDomainDAO, IPagedDAO
     {
         /// <summary>
         /// 
