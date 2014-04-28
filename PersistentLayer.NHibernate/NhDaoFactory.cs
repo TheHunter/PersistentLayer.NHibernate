@@ -8,7 +8,7 @@ using PersistentLayer.NHibernate.Impl;
 namespace PersistentLayer.NHibernate
 {
     /// <summary>
-    /// 
+    /// An static class for making DAOs.
     /// </summary>
     public static class NhDaoFactory
     {

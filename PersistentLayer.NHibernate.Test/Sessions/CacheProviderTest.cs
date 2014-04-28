@@ -30,7 +30,7 @@ namespace PersistentLayer.NHibernate.Test.Sessions
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidSessionException))]
+        [ExpectedException(typeof(SessionNotAvailableException))]
         public void SessionCacheProviderWorngTest()
         {
             var tr = new SessionCacheProvider(this.SessionFactory.OpenSession, false, false);
@@ -259,7 +259,7 @@ namespace PersistentLayer.NHibernate.Test.Sessions
 
 
         [Test]
-        [ExpectedException(typeof(InvalidSessionException))]
+        [ExpectedException(typeof(SessionNotAvailableException))]
         public void FailedSessionCacheProviderMultiSession()
         {
             INhPagedDAO dao;

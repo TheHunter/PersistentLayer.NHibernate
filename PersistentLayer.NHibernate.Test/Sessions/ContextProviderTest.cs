@@ -25,7 +25,7 @@ namespace PersistentLayer.NHibernate.Test.Sessions
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidSessionException))]
+        [ExpectedException(typeof(SessionNotAvailableException))]
         public void SessionContextProviderWorngTest()
         {
             var tr = new SessionContextProvider(this.SessionFactory.OpenSession);
@@ -145,20 +145,7 @@ namespace PersistentLayer.NHibernate.Test.Sessions
             }
         }
 
-        //[Test]
-        //[ExpectedException(typeof(SessionNotAvailableException))]
-        //public void TestDisposableOnDao()
-        //{
-        //    INhPagedDAO dao = NhDaoFactory.MakePagedDAO(this.SessionFactory);
-        //    using (dao)
-        //    {
-        //        var res1 = dao.FindAll<Salesman>(salesman => salesman.ID < 10);
-        //        Assert.IsNotNull(res1);
-        //    }
-
-        //    var res2 = dao.FindAll<Salesman>(salesman => salesman.ID > 10);
-        //}
-
+        
         private ISession GetSession()
         {
             ISession session;
