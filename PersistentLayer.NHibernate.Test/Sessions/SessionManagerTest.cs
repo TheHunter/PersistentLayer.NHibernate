@@ -45,7 +45,6 @@ namespace PersistentLayer.NHibernate.Test.Sessions
             Assert.IsFalse(this.SessionProvider.InProgress);
         }
 
-
         [Test]
         public void FuckOpenTransactionWithInnerRollback()
         {
@@ -104,6 +103,29 @@ namespace PersistentLayer.NHibernate.Test.Sessions
             // nothing occurs here because there's no inner transaction..
             // so making rollback everything become like before...
             this.SessionProvider.RollbackTransaction();
+            Assert.IsFalse(this.SessionProvider.InProgress);
+        }
+
+        [Test]
+        public void FuckOpenTransactionTest4()
+        {
+            this.SessionProvider.BeginTransaction();
+            Assert.IsTrue(this.SessionProvider.InProgress);
+
+            this.SessionProvider.BeginTransaction();
+            Assert.IsTrue(this.SessionProvider.InProgress);
+
+            this.SessionProvider.BeginTransaction();
+            Assert.IsTrue(this.SessionProvider.InProgress);
+
+
+            this.SessionProvider.CommitTransaction();
+            Assert.IsTrue(this.SessionProvider.InProgress);
+
+            this.SessionProvider.CommitTransaction();
+            Assert.IsTrue(this.SessionProvider.InProgress);
+
+            this.SessionProvider.CommitTransaction();
             Assert.IsFalse(this.SessionProvider.InProgress);
         }
 
@@ -360,7 +382,7 @@ namespace PersistentLayer.NHibernate.Test.Sessions
         [Test]
         public void TestOnRollbackTransaction()
         {
-            ISessionProvider manager = new SessionContextProvider(this.SessionFactory.OpenSession());
+            ISessionProvider manager = new SessionContextProvider(this.SessionFactory.OpenSession);
             try
             {
                 manager.BeginTransaction();
@@ -375,43 +397,6 @@ namespace PersistentLayer.NHibernate.Test.Sessions
             Assert.IsFalse(manager.InProgress);
         }
 
-
-        [Test]
-        public void TestOnRollbackTransaction2()
-        {
-            ISession session = this.SessionFactory.OpenSession();
-
-            ISessionProvider manager = new SessionContextProvider(session);
-            manager.BeginTransaction();
-            manager.BeginTransaction();
-            manager.BeginTransaction();
-
-            session.Dispose();
-
-            /*
-             * this rollback operation doesn't throw an exception 'cause there's no avaible session 
-             * on which needs to make rollback.
-             */
-            manager.RollbackTransaction();      
-
-            Assert.IsFalse(manager.InProgress);
-        }
-
-        [Test]
-        public void TestOnRollbackTransaction3()
-        {
-            LifetimeScopeSessionProvider();
-            Assert.IsTrue(true);
-        }
-
-        private void LifetimeScopeSessionProvider()
-        {
-            ISession session = this.SessionFactory.OpenSession();
-            ISessionProvider manager = new SessionContextProvider(session);
-
-            manager.BeginTransaction();
-            manager.BeginTransaction("context1");
-
-        }
+        
     }
 }

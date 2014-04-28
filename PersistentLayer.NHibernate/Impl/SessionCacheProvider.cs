@@ -7,10 +7,10 @@ using NHibernate;
 namespace PersistentLayer.NHibernate.Impl
 {
     /// <summary>
-    /// 
+    /// Manages a contextual session during the its lifecycle, and opening new sessions after making rollback / commit transactions.
     /// </summary>
     public class SessionCacheProvider
-        : SessionDelegateProvider
+        : SessionContextProvider
     {
         private readonly bool newSessionAfterCommit;
         private readonly bool newSessionAfterRollback;
@@ -46,7 +46,7 @@ namespace PersistentLayer.NHibernate.Impl
         public override void CommitTransaction()
         {
             base.CommitTransaction();
-            if (this.newSessionAfterCommit)
+            if (this.newSessionAfterCommit && !this.InProgress)
                 this.Reset();
         }
 

@@ -114,7 +114,7 @@ namespace PersistentLayer.NHibernate.Impl
         {
             try
             {
-                this.UnBindSession();
+                this.onUnBinding.Invoke();
             }
             catch (Exception ex)
             {

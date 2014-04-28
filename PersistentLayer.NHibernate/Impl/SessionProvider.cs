@@ -17,10 +17,8 @@ namespace PersistentLayer.NHibernate.Impl
     {
         private readonly Stack<ITransactionInfo> transactions;
         /// <summary>
-        /// This is the factory which creates sessions, and It's able to reference the current binded session
-        /// made by CurrentSessionContext
+        /// This is the default naming for transactions.
         /// </summary>
-        
         private const string DefaultNaming = "anonymous";
 
         #region Session factory section

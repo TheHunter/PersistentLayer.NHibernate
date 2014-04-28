@@ -58,7 +58,6 @@
     <Compile Include="IHqlBuilder.cs" />
     <Compile Include="Impl\HqlBuilder.cs" />
     <Compile Include="Impl\SessionCacheProvider.cs" />
-    <Compile Include="Impl\SessionDelegateProvider.cs" />
     <Compile Include="Impl\SessionContextProvider.cs" />
     <Compile Include="Impl\EnterpriseRootDAO.cs" />
     <Compile Include="Impl\SessionProvider.cs" />
@@ -76,7 +75,7 @@
     <Compile Include="INhPagedDAO.cs" />
     <Compile Include="INhQueryableDAO.cs" />
     <Compile Include="INhTransactionProvider.cs" />
-    <Compile Include="InvalidSessionException.cs" />
+    <Compile Include="Exceptions\InvalidSessionException.cs" />
     <Compile Include="ISessionBinderProvider.cs" />
     <Compile Include="ISessionContext.cs" />
     <Compile Include="ISessionContextProvider.cs" />
@@ -94,9 +93,7 @@
     <None Include="LibDiagram.cd" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Exceptions\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="PersistentLayer.license.txt" />
     <Content Include="PersistentLayer.readme.html" />

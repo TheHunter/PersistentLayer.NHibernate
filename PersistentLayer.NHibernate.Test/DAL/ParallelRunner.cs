@@ -19,20 +19,10 @@ namespace PersistentLayer.NHibernate.Test.DAL
         [ExpectedException(typeof(SessionNotBindedException))]
         public void WrongRunInParallel()
         {
-            try
-            {
-                Thread t1 = new Thread(() => Run(0, 3));
+            Thread t1 = new Thread(() => Run(0, 3));
 
-                t1.Start();
-                t1.Join();
-
-                Console.WriteLine();
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("ciao");
-                throw;
-            }
+            t1.Start();
+            t1.Join();
         }
 
         public void Run(int startIndex, int pageSize)
@@ -77,7 +67,7 @@ namespace PersistentLayer.NHibernate.Test.DAL
 
         public void Run2(int startIndex, int pageSize, StringBuilder buffer)
         {
-            using (var sss = new SessionContextProvider(this.SessionFactory.OpenSession()))
+            using (var sss = new SessionContextProvider(this.SessionFactory.OpenSession))
             {
                 INhPagedDAO dao = new EnterprisePagedDAO(sss);
                 var result = dao.GetPagedResult<Salesman>(startIndex, pageSize, salesman => salesman.ID > 0);

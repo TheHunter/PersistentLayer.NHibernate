@@ -81,7 +81,7 @@ namespace PersistentLayer.NHibernate.Test
         }
 
         [TestFixtureTearDown]
-        public void OnFinishedTest()
+        public virtual void OnFinishedTest()
         {
             if (currentSession != null && currentSession.IsOpen)
             {

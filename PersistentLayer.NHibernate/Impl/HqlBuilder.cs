@@ -8,6 +8,7 @@ using NHibernate.Type;
 
 namespace PersistentLayer.NHibernate.Impl
 {
+    /*
     /// <summary>
     /// 
     /// </summary>
@@ -808,4 +809,6 @@ namespace PersistentLayer.NHibernate.Impl
             get { return hqlQuery.IsReadOnly; }
         }
     }
+     
+     */
 }

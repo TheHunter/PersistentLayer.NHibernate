@@ -9,6 +9,7 @@ using NHibernate.Type;
 
 namespace PersistentLayer.NHibernate
 {
+    /*
     /// <summary>
     /// 
     /// </summary>
@@ -548,4 +549,6 @@ namespace PersistentLayer.NHibernate
         //IFutureValue<T> FutureValue<T>();
         
     }
+     */
+
 }

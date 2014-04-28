@@ -14,11 +14,11 @@
       <FileName>FutureQueryResolver.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PersistentLayer.NHibernate.InvalidSessionException" Collapsed="true">
+  <Class Name="PersistentLayer.NHibernate.Exceptions.InvalidSessionException" Collapsed="true">
     <Position X="24.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>InvalidSessionException.cs</FileName>
+      <FileName>Exceptions\InvalidSessionException.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PersistentLayer.NHibernate.NhConfigurationBuilder" Collapsed="true">
@@ -36,13 +36,13 @@
     </TypeIdentifier>
   </Class>
   <Class Name="PersistentLayer.NHibernate.Impl.SessionManager">
-    <Position X="18.75" Y="17" Width="1.5" />
+    <Position X="20.25" Y="17" Width="1.5" />
     <InheritanceLine Type="PersistentLayer.NHibernate.Impl.SessionProvider" ManuallyRouted="true">
       <Path>
         <Point X="21" Y="15.545" />
         <Point X="21" Y="16.495" />
-        <Point X="19.5" Y="16.495" />
-        <Point X="19.5" Y="17" />
+        <Point X="21" Y="16.495" />
+        <Point X="21" Y="17" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
@@ -154,34 +154,18 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="PersistentLayer.NHibernate.Impl.SessionBinderProvider">
-    <Position X="16.25" Y="17" Width="1.5" />
+    <Position X="17.25" Y="17" Width="1.5" />
     <InheritanceLine Type="PersistentLayer.NHibernate.Impl.SessionProvider" ManuallyRouted="true">
       <Path>
         <Point X="21" Y="15.545" />
         <Point X="21" Y="16.454" />
-        <Point X="17" Y="16.454" />
-        <Point X="17" Y="17" />
+        <Point X="18" Y="16.454" />
+        <Point X="18" Y="17" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAACAAAAAgAAgAAAAAAAgIAAAAAAAAAAAAIAAAAAQBA=</HashCode>
       <FileName>Impl\SessionBinderProvider.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="PersistentLayer.NHibernate.Impl.SessionContextProvider">
-    <Position X="21.75" Y="17" Width="1.5" />
-    <InheritanceLine Type="PersistentLayer.NHibernate.Impl.SessionProvider" ManuallyRouted="true">
-      <Path>
-        <Point X="21" Y="15.545" />
-        <Point X="21" Y="16.538" />
-        <Point X="22.5" Y="16.538" />
-        <Point X="22.5" Y="17" />
-      </Path>
-    </InheritanceLine>
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAiACAAAAAgEBAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Impl\SessionContextProvider.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
@@ -218,138 +202,145 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="PersistentLayer.NHibernate.Impl.SessionCacheProvider">
-    <Position X="24.25" Y="21" Width="1.5" />
+    <Position X="23.25" Y="21" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAACIAIAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <HashCode>AAAAACAAIAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAIAA=</HashCode>
       <FileName>Impl\SessionCacheProvider.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PersistentLayer.NHibernate.Impl.SessionDelegateProvider">
-    <Position X="24.25" Y="17" Width="1.5" />
+  <Class Name="PersistentLayer.NHibernate.Impl.SessionContextProvider">
+    <Position X="23.25" Y="17" Width="1.5" />
     <InheritanceLine Type="PersistentLayer.NHibernate.Impl.SessionProvider" ManuallyRouted="true">
       <Path>
         <Point X="21" Y="15.545" />
         <Point X="21" Y="16.476" />
-        <Point X="25" Y="16.476" />
-        <Point X="25" Y="17" />
+        <Point X="24" Y="16.476" />
+        <Point X="24" Y="17" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAIAQiACBAAAAgABAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Impl\SessionDelegateProvider.cs</FileName>
+      <FileName>Impl\SessionContextProvider.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Interface Name="PersistentLayer.NHibernate.IDomainDAO">
-    <Position X="6" Y="5.75" Width="1.5" />
+    <Position X="7.75" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAIAAAAAAAgAAAARAAAAQAAAAAAAAAAAAAEAAAA=</HashCode>
       <FileName>IDomainDAO.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="PersistentLayer.NHibernate.IEntityDAO&lt;TEntity, TKey&gt;">
-    <Position X="14.25" Y="5.75" Width="1.5" />
+    <Position X="16" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAIAAAAAAAgAAAARAAAAQAAAAAAAAAAAAAEAAAA=</HashCode>
       <FileName>IEntityDAO.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="PersistentLayer.NHibernate.INhQueryableDAO&lt;TEntity, TKey&gt;">
-    <Position X="14.25" Y="3.25" Width="1.5" />
+    <Position X="16" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>INhQueryableDAO.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="PersistentLayer.NHibernate.INhQueryableDAO">
-    <Position X="6" Y="3.25" Width="1.5" />
+    <Position X="7.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>INhQueryableDAO.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="PersistentLayer.NHibernate.ISessionBinderProvider">
-    <Position X="0.5" Y="4.5" Width="1.5" />
+    <Position X="0.5" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAABA=</HashCode>
       <FileName>ISessionBinderProvider.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="PersistentLayer.NHibernate.ISessionContext">
-    <Position X="10" Y="0.5" Width="1.5" />
+    <Position X="11.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ISessionContext.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="PersistentLayer.NHibernate.ISessionManager">
-    <Position X="3" Y="4.5" Width="1.5" />
+    <Position X="2.75" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAA=</HashCode>
       <FileName>ISessionManager.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="PersistentLayer.NHibernate.ISessionProvider">
-    <Position X="1.75" Y="2.25" Width="1.5" />
+    <Position X="2.75" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ISessionProvider.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="PersistentLayer.NHibernate.INhRootQueryableDAO&lt;TRootEntity, TEntity&gt;">
-    <Position X="8.75" Y="3.25" Width="1.5" />
+    <Position X="10.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>INhRootQueryableDAO.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="PersistentLayer.NHibernate.INhRootQueryableDAO&lt;TRootEntity&gt;">
-    <Position X="11.5" Y="3.25" Width="1.5" />
+    <Position X="13.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>INhRootQueryableDAO.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="PersistentLayer.NHibernate.INhRootHybridDAO&lt;TRootEntity, TEntity&gt;">
-    <Position X="8.75" Y="5.75" Width="1.5" />
+    <Position X="10.5" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAIAAAAAAAgAAAARAAAAQAAAAAAAAAAAAAEAAAA=</HashCode>
       <FileName>INhRootHybridDAO.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="PersistentLayer.NHibernate.INhRootHybridDAO&lt;TRootEntity&gt;">
-    <Position X="11.5" Y="5.75" Width="1.5" />
+    <Position X="13.25" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAIAAAAAAAgAAAARAAAAQAAAAAAAAAAAAAEAAAA=</HashCode>
       <FileName>INhRootHybridDAO.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="PersistentLayer.NHibernate.INhRootPagedDAO&lt;TRootEntity, TEntity&gt;">
-    <Position X="8.75" Y="9.75" Width="1.5" />
+    <Position X="10.5" Y="9.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAEAAAAA=</HashCode>
       <FileName>INhRootPagedDAO.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="PersistentLayer.NHibernate.INhRootPagedDAO&lt;TRootEntity&gt;">
-    <Position X="11.5" Y="9.75" Width="1.5" />
+    <Position X="13.25" Y="9.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAEAAAAA=</HashCode>
       <FileName>INhRootPagedDAO.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="PersistentLayer.NHibernate.INhPagedDAO&lt;TEntity, TKey&gt;">
-    <Position X="14.25" Y="9.5" Width="1.5" />
+    <Position X="16" Y="9.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAEAAAAA=</HashCode>
       <FileName>INhPagedDAO.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="PersistentLayer.NHibernate.INhPagedDAO">
-    <Position X="6" Y="9.5" Width="1.5" />
+    <Position X="7.75" Y="9.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAEAAAAA=</HashCode>
       <FileName>INhPagedDAO.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="PersistentLayer.NHibernate.ISessionContextProvider">
+    <Position X="5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ISessionContextProvider.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Font Name="Segoe UI" Size="9" />
