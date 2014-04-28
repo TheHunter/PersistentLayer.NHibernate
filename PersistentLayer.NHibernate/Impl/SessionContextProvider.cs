@@ -91,7 +91,7 @@ namespace PersistentLayer.NHibernate.Impl
         public override ISession GetCurrentSession()
         {
             if (wasDisposed)
-                throw new InvalidSessionException("There's no suitable session for making CRUD operations because the calling instance was disposed.", "GetCurrentSession");
+                throw new SessionNotAvailableException("There's no suitable session for making CRUD operations because the calling instance was disposed.", "GetCurrentSession");
 
             try
             {
@@ -138,6 +138,31 @@ namespace PersistentLayer.NHibernate.Impl
 
                 this.sessionCached = null;
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+                return false;
+
+            if (obj is SessionContextProvider)
+                return this.GetHashCode() == obj.GetHashCode();
+
+            return false;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public override int GetHashCode()
+        {
+            return this.keyContext.GetHashCode();
         }
     }
 }

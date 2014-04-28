@@ -1,0 +1,16 @@
+Release notes:
+
+- New abstract class named SessionProvider, which implements ISessionProvider.
+- New SessionContextProvider which derives from SessionProvider, and implements the abstract GetCurrentSession method.
+  NOTE: this class is designed in order to use a local DAO which will contain a local session in order not to share its own session with another business logic contexts.
+  
+- New class named SessionBinderProvider, which can be used for automating binding / unbiding operations for ISession instances.
+- The method of DAO FindBy was modified, now this method tries to get instance from data store, if no instance is found it returns a null reference.
+- New extension method named Load (generic and non generic), which tries to load an instance with the identifier passed in Input, if no instance is found It will throw an exception.
+
+
+
+That's All.
+
+
+
