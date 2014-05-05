@@ -202,7 +202,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="PersistentLayer.NHibernate.Impl.SessionCacheProvider">
-    <Position X="23.25" Y="21" Width="1.5" />
+    <Position X="23.25" Y="21.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAACAAIAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAIAA=</HashCode>
       <FileName>Impl\SessionCacheProvider.cs</FileName>

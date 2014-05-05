@@ -328,10 +328,10 @@ namespace PersistentLayer.NHibernate.Impl
             ISession session = sourceDAO.SessionInfo.CurrentSession;
 
             if (id == null)
-                throw new QueryArgumentException("The given identifier cannot be null", "FindBy", "id");
+                throw new QueryArgumentException("The given identifier cannot be null", "Load", "id");
 
             if (type == null)
-                throw new QueryArgumentException("The object type cannot be null.", "FindBy", "type");
+                throw new QueryArgumentException("The object type cannot be null.", "Load", "type");
 
             try
             {
@@ -341,7 +341,7 @@ namespace PersistentLayer.NHibernate.Impl
             }
             catch (Exception ex)
             {
-                throw new ExecutionQueryException("Error on loading the persistent instance with the given indetifier.", "FindBy", ex);
+                throw new ExecutionQueryException("Error on loading the persistent instance with the given indetifier.", "Load", ex);
             }
         }
 
@@ -372,7 +372,7 @@ namespace PersistentLayer.NHibernate.Impl
             ISession session = sourceDAO.SessionInfo.CurrentSession;
 
             if (id == null)
-                throw new QueryArgumentException("The given identifier cannot be null", "FindBy", "id");
+                throw new QueryArgumentException("The given identifier cannot be null", "Load", "id");
 
             try
             {
@@ -382,7 +382,7 @@ namespace PersistentLayer.NHibernate.Impl
             }
             catch (Exception ex)
             {
-                throw new ExecutionQueryException("Error on loading the persistent instance with the given indetifier.", "FindBy", ex);
+                throw new ExecutionQueryException("Error on loading the persistent instance with the given indetifier.", "Load", ex);
             }
         }
 
@@ -568,12 +568,6 @@ namespace PersistentLayer.NHibernate.Impl
 
             if (classType == null)
                 throw new BusinessLayerException("The classType object cannot be null.");
-
-            //IClassMetadata metadata = session.SessionFactory.GetClassMetadata(classType);
-            //if (metadata != null)
-            //    return new PersistentClassInfo(metadata);
-
-            //return null;
 
             return session.SessionFactory.GetClassMetadata(classType);
         }

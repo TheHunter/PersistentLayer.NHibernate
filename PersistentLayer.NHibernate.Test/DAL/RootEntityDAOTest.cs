@@ -52,7 +52,7 @@ namespace PersistentLayer.NHibernate.Test.DAL
 
         [Test]
         [Category("QueryExecutions")]
-        [Description("Using a non generic method FindBy.")]
+        [Description("Using a non generic method Load.")]
         public void LoadTest3()
         {
             Assert.IsNotNull(CurrentRootPagedDAO.Load(typeof(Salesman), 1L, LockMode.Read));
@@ -66,6 +66,39 @@ namespace PersistentLayer.NHibernate.Test.DAL
         {
             object ret = CurrentRootPagedDAO.Load(typeof(Salesman), -1L, LockMode.Read);
             Assert.IsNotNull(ret);
+        }
+
+        [Test]
+        [Category("QueryExecutions")]
+        public void FindByTest1()
+        {
+            object ret = CurrentRootPagedDAO.FindBy<Salesman>(1L);
+            Assert.IsNotNull(ret);
+
+            object ret2 = CurrentRootPagedDAO.FindBy(typeof(Salesman), -1L);
+            Assert.IsNull(ret2);
+        }
+
+        [Test]
+        [Category("QueryExecutions")]
+        public void FindByTest2()
+        {
+            object ret = CurrentRootPagedDAO.FindBy<Salesman>(1L, LockMode.None);
+            Assert.IsNotNull(ret);
+
+            object ret2 = CurrentRootPagedDAO.FindBy(typeof(Salesman), -1L, LockMode.None);
+            Assert.IsNull(ret2);
+        }
+
+        [Test]
+        [Category("QueryExecutions")]
+        public void FindByTest3()
+        {
+            object ret = CurrentRootPagedDAO.FindBy<Salesman>(1L, LockMode.Upgrade);
+            Assert.IsNotNull(ret);
+
+            object ret2 = CurrentRootPagedDAO.FindBy(typeof(Salesman), -1L, LockMode.Upgrade);
+            Assert.IsNull(ret2);
         }
 
         [Test]
