@@ -16,6 +16,16 @@
             </summary>
             <typeparam name="TKey"></typeparam>
         </member>
+        <member name="T:EntityModel.IEntity">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EntityModel.IEntity.Key">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="P:EntityModel.IEntity`1.ID">
             <summary>
             
@@ -50,6 +60,11 @@
             It rappresents information about the current state of the calling entity.
             </summary>
             <returns></returns>
+        </member>
+        <member name="P:EntityModel.BaseEntity`1.EntityModel#IEntity#Key">
+            <summary>
+            
+            </summary>
         </member>
         <member name="P:EntityModel.BaseEntity`1.ID">
             <summary>

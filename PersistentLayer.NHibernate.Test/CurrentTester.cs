@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Xml;
+using EntityModel;
 using NHibernate;
 using NHibernate.Context;
 using NUnit.Framework;
@@ -37,7 +38,7 @@ namespace PersistentLayer.NHibernate.Test
         /// <summary>
         /// 
         /// </summary>
-        public INhRootPagedDAO<object> CurrentRootPagedDAO
+        public INhRootPagedDAO<IEntity> CurrentRootPagedDAO
         {
             get { return currentRootPagedDAO; }
         }

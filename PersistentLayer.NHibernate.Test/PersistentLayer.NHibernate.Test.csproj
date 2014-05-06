@@ -47,8 +47,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityModel">
-      <HintPath>..\packages\EntityModel.1.5.4.16\lib\net35\EntityModel.dll</HintPath>
+    <Reference Include="EntityModel, Version=1.5.5.16, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityModel.1.5.5.16\lib\net35\EntityModel.dll</HintPath>
     </Reference>
     <Reference Include="Iesi.Collections">
       <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>

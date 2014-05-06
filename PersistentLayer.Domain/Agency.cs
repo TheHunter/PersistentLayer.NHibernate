@@ -1,9 +1,11 @@
 ﻿using System;
+using EntityModel;
 
 namespace PersistentLayer.Domain
 {
     [Serializable]
     public class Agency
+        : BaseEntity<long>
     {
         private long id;
         private string name;

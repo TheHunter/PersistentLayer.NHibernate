@@ -1,6 +1,9 @@
-﻿namespace PersistentLayer.NHibernate.Test.PocoPrj
+﻿using EntityModel;
+
+namespace PersistentLayer.NHibernate.Test.PocoPrj
 {
     public class ReportSalesman
+        : BaseEntity<long>
     {
         public long ID
         {
