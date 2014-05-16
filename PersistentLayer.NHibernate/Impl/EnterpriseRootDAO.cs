@@ -341,6 +341,26 @@ namespace PersistentLayer.NHibernate.Impl
             return this.CurrentSession.RefreshState(entities);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="criteria"></param>
+        /// <returns></returns>
+        public TEntity UniqueResult(DetachedCriteria criteria)
+        {
+            return this.CurrentSession.UniqueResult<TEntity>(criteria);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="criteria"></param>
+        /// <returns></returns>
+        public TEntity UniqueResult(QueryOver<TEntity> criteria)
+        {
+            return this.CurrentSession.UniqueResult(criteria);
+        }
+
         ///// <summary>
         ///// 
         ///// </summary>
@@ -747,6 +767,27 @@ namespace PersistentLayer.NHibernate.Impl
         public IEnumerable<TEntity> RefreshState<TEntity>(IEnumerable<TEntity> entities) where TEntity : class, TRootEntity
         {
             return this.CurrentSession.RefreshState(entities);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="criteria"></param>
+        /// <returns></returns>
+        public TEntity UniqueResult<TEntity>(DetachedCriteria criteria) where TEntity : class, TRootEntity
+        {
+            return this.CurrentSession.UniqueResult<TEntity>(criteria);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="criteria"></param>
+        /// <returns></returns>
+        public TEntity UniqueResult<TEntity>(QueryOver<TEntity> criteria) where TEntity : class, TRootEntity
+        {
+            return this.CurrentSession.UniqueResult(criteria);
         }
 
         ///// <summary>

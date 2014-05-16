@@ -5,7 +5,7 @@ namespace PersistentLayer.NHibernate.Test.PocoPrj
     public class ReportSalesman
         : BaseEntity<long>
     {
-        public long ID
+        public new long ID
         {
             get;
             set;

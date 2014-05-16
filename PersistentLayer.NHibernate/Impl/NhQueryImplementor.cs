@@ -27,7 +27,7 @@ namespace PersistentLayer.NHibernate.Impl
         internal static TEntity FindBy<TEntity, TKey>(this ISession session, TKey id)
             where TEntity : class
         {
-            return session.FindBy<TEntity, TKey>(id, LockMode.Read);
+            return session.FindBy<TEntity, TKey>(id, null);
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace PersistentLayer.NHibernate.Impl
             }
             catch (Exception ex)
             {
-                throw new ExecutionQueryException(string.Format("Error on loading the persistent instance (type of <{0}>) with the given identifier (of <{1}>), and verify the kind of lock strategy is used.", typeof(TEntity).Name, typeof(TKey).Name), "FindBy", ex);
+                throw new ExecutionQueryException(string.Format("Error on finding the persistent instance (type of <{0}>) with the given identifier (of <{1}>), and verify the kind of lock strategy is used.", typeof(TEntity).Name, typeof(TKey).Name), "FindBy", ex);
             }
         }
 
@@ -73,7 +73,7 @@ namespace PersistentLayer.NHibernate.Impl
             }
             catch (Exception ex)
             {
-                throw new ExecutionQueryException(string.Format("Error on getting all persistent instances (collection type of <{0}>) from data store.", typeof(TEntity).Name), "FindAll", ex);
+                throw new ExecutionQueryException(string.Format("Error on finding all persistent instances (collection type of <{0}>) from data store.", typeof(TEntity).Name), "FindAll", ex);
             }
         }
 
@@ -968,6 +968,60 @@ namespace PersistentLayer.NHibernate.Impl
                 throw new ExecutionQueryException("Error on executing the paging IQueryable query.", "GetIndexPagedResult", ex);
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="session"></param>
+        /// <param name="criteria"></param>
+        /// <returns></returns>
+        internal static TEntity UniqueResult<TEntity>
+            (this ISession session, DetachedCriteria criteria)
+            where TEntity : class
+        {
+            //ISession session = sourceDAO.SessionInfo.CurrentSession;
+
+            if (criteria == null)
+                throw new QueryArgumentException("The criteria to use as filter cannot be null.", "UniqueResult", "criteria");
+
+            try
+            {
+                return criteria.GetExecutableCriteria(session)
+                               .UniqueResult<TEntity>();
+            }
+            catch (Exception ex)
+            {
+                throw new ExecutionQueryException("Error on executing the query which should return an unique result.", "UniqueResult", ex);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="session"></param>
+        /// <param name="criteria"></param>
+        /// <returns></returns>
+        internal static TEntity UniqueResult<TEntity>
+            (this ISession session, QueryOver<TEntity> criteria)
+            where TEntity : class
+        {
+            if (criteria == null)
+                throw new QueryArgumentException("The criteria to use as filter cannot be null.", "UniqueResult", "criteria");
+
+            try
+            {
+                return criteria.GetExecutableQueryOver(session)
+                               .UnderlyingCriteria
+                               .UniqueResult<TEntity>();
+            }
+            catch (Exception ex)
+            {
+                throw new ExecutionQueryException("Error on executing the query which should return an unique result.", "UniqueResult", ex);
+            }
+        }
+
 
         #region Helper methods.
 

@@ -125,5 +125,21 @@ namespace PersistentLayer.NHibernate
         /// <param name="entities"></param>
         /// <returns></returns>
         IEnumerable<TEntity> RefreshState<TEntity>(IEnumerable<TEntity> entities) where TEntity : class;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="criteria"></param>
+        /// <returns></returns>
+        TEntity UniqueResult<TEntity>(DetachedCriteria criteria) where TEntity : class;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="criteria"></param>
+        /// <returns></returns>
+        TEntity UniqueResult<TEntity>(QueryOver<TEntity> criteria) where TEntity : class;
     }
 }

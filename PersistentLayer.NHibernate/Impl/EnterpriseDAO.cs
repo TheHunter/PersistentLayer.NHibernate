@@ -345,5 +345,27 @@ namespace PersistentLayer.NHibernate.Impl
         {
             return this.CurrentSession.ToIQueryable<TEntity>(mode, region);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="criteria"></param>
+        /// <returns></returns>
+        public TEntity UniqueResult<TEntity>(DetachedCriteria criteria) where TEntity : class
+        {
+            return this.CurrentSession.UniqueResult<TEntity>(criteria);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="criteria"></param>
+        /// <returns></returns>
+        public TEntity UniqueResult<TEntity>(QueryOver<TEntity> criteria) where TEntity : class
+        {
+            return this.CurrentSession.UniqueResult(criteria);
+        }
     }
 }

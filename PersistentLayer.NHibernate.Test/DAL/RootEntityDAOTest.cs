@@ -27,10 +27,10 @@ namespace PersistentLayer.NHibernate.Test.DAL
 
         [Test]
         [Category("QueryExecutions")]
-        [ExpectedException(typeof(ExecutionQueryException))]
         public void FailedLoadTest0()
         {
-            CurrentRootPagedDAO.Load<Salesman>(-1L);
+            var cons = CurrentRootPagedDAO.Load<Salesman>(-1L);
+            Assert.IsNotNull(cons);
         }
 
         [Test]
@@ -859,6 +859,80 @@ namespace PersistentLayer.NHibernate.Test.DAL
         {
             FutureFunction function = new FutureFunction(typeof(Salesman));
             Assert.IsTrue(function != null);
+        }
+
+        //[Test]
+        //public void UniqueResult1()
+        //{
+        //    var result = CurrentPagedDAO.UniqueResult<Salesman>(salesman => salesman.ID == 1);
+        //    Assert.IsNotNull(result);
+        //}
+
+        //[Test]
+        //public void UniqueResult2()
+        //{
+        //    var result = CurrentPagedDAO.UniqueResult<Salesman>(salesman => salesman.ID == -1);
+        //    Assert.IsNull(result);
+        //}
+
+        //[Test]
+        //[ExpectedException(typeof(ExecutionQueryException))]
+        //public void WrongUniqueResult1()
+        //{
+        //    var result = CurrentPagedDAO.UniqueResult<Salesman>(salesman => salesman.Name == "Manuel");
+        //    Assert.IsNull(result);
+        //}
+
+
+        [Test]
+        public void UniqueResult3()
+        {
+            var criteria = DetachedCriteria.For<Salesman>().Add(Restrictions.Eq("ID", 1L));
+            var result = CurrentPagedDAO.UniqueResult<Salesman>(criteria);
+            Assert.IsNotNull(result);
+        }
+
+        [Test]
+        public void UniqueResult4()
+        {
+            var criteria = DetachedCriteria.For<Salesman>().Add(Restrictions.Eq("ID", -1L));
+            var result = CurrentPagedDAO.UniqueResult<Salesman>(criteria);
+            Assert.IsNull(result);
+        }
+
+        [Test]
+        [ExpectedException(typeof(ExecutionQueryException))]
+        public void WrongUniqueResult2()
+        {
+            var criteria = DetachedCriteria.For<Salesman>().Add(Restrictions.Eq("Name", "Manuel"));
+            var result = CurrentPagedDAO.UniqueResult<Salesman>(criteria);
+            Assert.IsNull(result);
+        }
+
+
+        [Test]
+        public void UniqueResult5()
+        {
+            var criteria = QueryOver.Of<Salesman>().Where(salesman => salesman.ID == 1);
+            var result = CurrentPagedDAO.UniqueResult(criteria);
+            Assert.IsNotNull(result);
+        }
+
+        [Test]
+        public void UniqueResult6()
+        {
+            var criteria = QueryOver.Of<Salesman>().Where(salesman => salesman.ID == -1);
+            var result = CurrentPagedDAO.UniqueResult(criteria);
+            Assert.IsNull(result);
+        }
+
+        [Test]
+        [ExpectedException(typeof(ExecutionQueryException))]
+        public void WrongUniqueResult3()
+        {
+            var criteria = QueryOver.Of<Salesman>().Where(salesman => salesman.Name == "Manuel");
+            var result = CurrentPagedDAO.UniqueResult(criteria);
+            Assert.IsNull(result);
         }
 
     }

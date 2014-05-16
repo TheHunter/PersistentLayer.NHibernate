@@ -118,6 +118,20 @@ namespace PersistentLayer.NHibernate
         /// <param name="entities"></param>
         /// <returns></returns>
         IEnumerable<TEntity> RefreshState(IEnumerable<TEntity> entities);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="criteria"></param>
+        /// <returns></returns>
+        TEntity UniqueResult(DetachedCriteria criteria);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="criteria"></param>
+        /// <returns></returns>
+        TEntity UniqueResult(QueryOver<TEntity> criteria);
     }
 
 
@@ -243,5 +257,21 @@ namespace PersistentLayer.NHibernate
         /// <param name="entities"></param>
         /// <returns></returns>
         IEnumerable<TEntity> RefreshState<TEntity>(IEnumerable<TEntity> entities) where TEntity : class, TRootEntity;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="criteria"></param>
+        /// <returns></returns>
+        TEntity UniqueResult<TEntity>(DetachedCriteria criteria) where TEntity : class, TRootEntity;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="criteria"></param>
+        /// <returns></returns>
+        TEntity UniqueResult<TEntity>(QueryOver<TEntity> criteria) where TEntity : class, TRootEntity;
     }
 }

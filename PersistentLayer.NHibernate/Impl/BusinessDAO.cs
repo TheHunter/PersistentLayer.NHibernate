@@ -280,6 +280,26 @@ namespace PersistentLayer.NHibernate.Impl
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="criteria"></param>
+        /// <returns></returns>
+        public TEntity UniqueResult(DetachedCriteria criteria)
+        {
+            return this.CurrentSession.UniqueResult<TEntity>(criteria);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="criteria"></param>
+        /// <returns></returns>
+        public TEntity UniqueResult(QueryOver<TEntity> criteria)
+        {
+            return this.CurrentSession.UniqueResult(criteria);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <returns></returns>
         public IQueryable<TEntity> ToIQueryable()
         {

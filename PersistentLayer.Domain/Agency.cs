@@ -7,15 +7,15 @@ namespace PersistentLayer.Domain
     public class Agency
         : BaseEntity<long>
     {
-        private long id;
+        //private long id;
         private string name;
         private long idManager;
 
-        public virtual long ID
-        {
-            set { this.id = value; }
-            get { return this.id; }
-        }
+        //public virtual long ID
+        //{
+        //    set { this.id = value; }
+        //    get { return this.id; }
+        //}
 
         public virtual string Name
         {

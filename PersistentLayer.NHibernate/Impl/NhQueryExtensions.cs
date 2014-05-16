@@ -280,7 +280,7 @@ namespace PersistentLayer.NHibernate.Impl
         public static object FindBy
             (this ISessionContext sourceDAO, Type type, object id)
         {
-            return sourceDAO.FindBy(type, id, LockMode.None);
+            return sourceDAO.FindBy(type, id, null);
         }
 
         /// <summary>
@@ -355,7 +355,7 @@ namespace PersistentLayer.NHibernate.Impl
         public static TEntity Load<TEntity>
             (this ISessionContext sourceDAO, object id) where TEntity : class
         {
-            return sourceDAO.Load<TEntity>(id, LockMode.Read);
+            return sourceDAO.Load<TEntity>(id, null);
         }
 
         /// <summary>
@@ -1049,7 +1049,7 @@ namespace PersistentLayer.NHibernate.Impl
 
             if (instances == null)
                 throw new QueryArgumentException("Persistent collection cannot be null.", "MakeFilter", "instances");
-
+            
             try
             {
                 return session.CreateFilter(instances, filter);
@@ -1059,5 +1059,31 @@ namespace PersistentLayer.NHibernate.Impl
                 throw new QueryFormatException("It's impossible to make a filter with the given persistent collection.", "MakeFilter", ex);
             }
         }
+
+
+        
+        //public static TEntity UniqueResult<TEntity>
+        //    (this ISessionContext sourceDAO, Expression<Func<TEntity, bool>> clause)
+        //    where TEntity : class
+        //{
+        //    ISession session = sourceDAO.SessionInfo.CurrentSession;
+            
+        //    if (clause == null)
+        //        throw new QueryArgumentException("The expression to use as filter cannot be null.", "UniqueResult", "clause");
+
+        //    try
+        //    {
+        //        var result = new NhPagedResult<TEntity>(0, 1, session.Query<TEntity>().Where(clause));
+        //        if (result.Counter > 1)
+        //            throw new NonUniqueResultException(result.Counter);
+
+        //        return result.GetResult().FirstOrDefault();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new ExecutionQueryException("Error on executing the query which should return an unique result.", "UniqueResult", ex);
+        //    }
+        //}
+
     }
 }
