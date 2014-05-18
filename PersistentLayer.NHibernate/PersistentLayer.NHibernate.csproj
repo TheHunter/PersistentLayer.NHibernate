@@ -40,9 +40,8 @@
     <Reference Include="NHibernate">
       <HintPath>..\packages\NHibernate.3.3.3.4001\lib\Net35\NHibernate.dll</HintPath>
     </Reference>
-    <Reference Include="PersistentLayer, Version=5.2.2.12, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\PersistentLayer.5.2.2.12\lib\net35\PersistentLayer.dll</HintPath>
+    <Reference Include="PersistentLayer">
+      <HintPath>..\packages\PersistentLayer.5.2.3.12\lib\net35\PersistentLayer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -93,7 +92,6 @@
     <None Include="LibDiagram.cd" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="PersistentLayer.license.txt" />
     <Content Include="PersistentLayer.readme.html" />

@@ -57,7 +57,6 @@
       <HashCode>AAAAAAAAAAAAAAAEgAAAAAQAAAAEAIAAAAEAAAABAAA=</HashCode>
       <FileName>TransactionInfo.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
   </Class>
   <Class Name="PersistentLayer.NHibernate.Impl.BusinessPagedDAO&lt;TEntity, TKey&gt;">
     <Position X="30.75" Y="12.25" Width="1.5" />
@@ -89,12 +88,11 @@
       <HashCode>AAAAAAAAAAAAgAAABIAAAAQAAQAAAIEAAACAAAAAAAA=</HashCode>
       <FileName>Impl\NhPagedResult.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
   </Class>
   <Class Name="PersistentLayer.NHibernate.Impl.NhQueryExtensions">
     <Position X="42.5" Y="6" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAgIAEIAkgAAgCAEAQEEAABIAAAQAIAIEAIAAJAgI=</HashCode>
+      <HashCode>AAAAgIAEIAkgAAgAAEAQEEAABIAAAQAIAIEAIAAJAgI=</HashCode>
       <FileName>Impl\NhQueryExtensions.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -225,30 +223,50 @@
     <Lollipop Position="0.2" />
   </Class>
   <Interface Name="PersistentLayer.NHibernate.IDomainDAO">
-    <Position X="7.75" Y="5.75" Width="1.5" />
+    <Position X="7.75" Y="7.25" Width="1.5" />
+    <InheritanceLine Type="PersistentLayer.NHibernate.ISessionContext" ManuallyRouted="true">
+      <Path>
+        <Point X="12.5" Y="1.733" />
+        <Point X="12.5" Y="6.625" />
+        <Point X="11.333" Y="6.625" Type="JumpStart" />
+        <Point X="11.167" Y="6.625" Type="JumpEnd" />
+        <Point X="8.5" Y="6.625" />
+        <Point X="8.5" Y="7.25" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAIAAAAAAAgCAAARAAAAQAAAAAAAAAAAAAEAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>IDomainDAO.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="PersistentLayer.NHibernate.IEntityDAO&lt;TEntity, TKey&gt;">
-    <Position X="16" Y="5.75" Width="1.5" />
+    <Position X="16" Y="7.25" Width="1.5" />
+    <InheritanceLine Type="PersistentLayer.NHibernate.ISessionContext" ManuallyRouted="true">
+      <Path>
+        <Point X="12.5" Y="1.733" />
+        <Point X="12.5" Y="6.615" />
+        <Point X="13.917" Y="6.615" Type="JumpStart" />
+        <Point X="14.083" Y="6.615" Type="JumpEnd" />
+        <Point X="16.75" Y="6.615" />
+        <Point X="16.75" Y="7.25" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAIAAAAAAAgCAAARAAAAQAAAAAAAAAAAAAEAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>IEntityDAO.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="PersistentLayer.NHibernate.INhQueryableDAO&lt;TEntity, TKey&gt;">
     <Position X="16" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAIAAAAAAAgCAAARQAAAQAAAAAAAAAAAAAEAAAA=</HashCode>
       <FileName>INhQueryableDAO.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="PersistentLayer.NHibernate.INhQueryableDAO">
     <Position X="7.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAIAAAAAAAgCAAARQAAAQAAAAAAAAAAAAAEAAAA=</HashCode>
       <FileName>INhQueryableDAO.cs</FileName>
     </TypeIdentifier>
   </Interface>
@@ -283,54 +301,62 @@
   <Interface Name="PersistentLayer.NHibernate.INhRootQueryableDAO&lt;TRootEntity, TEntity&gt;">
     <Position X="10.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAIAAAAAAAgCAAARQAAAQAAAAAAAAAAAAAEAAAA=</HashCode>
       <FileName>INhRootQueryableDAO.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="PersistentLayer.NHibernate.INhRootQueryableDAO&lt;TRootEntity&gt;">
     <Position X="13.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAIAAAAAAAgCAAARQAAAQAAAAAAAAAAAAAEAAAA=</HashCode>
       <FileName>INhRootQueryableDAO.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="PersistentLayer.NHibernate.INhRootHybridDAO&lt;TRootEntity, TEntity&gt;">
-    <Position X="10.5" Y="5.75" Width="1.5" />
+    <Position X="10.5" Y="7.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAIAAAAAAAgCAAARAAAAQAAAAAAAAAAAAAEAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>INhRootHybridDAO.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="PersistentLayer.NHibernate.INhRootHybridDAO&lt;TRootEntity&gt;">
-    <Position X="13.25" Y="5.75" Width="1.5" />
+    <Position X="13.25" Y="7.25" Width="1.5" />
+    <InheritanceLine Type="PersistentLayer.NHibernate.ISessionContext" ManuallyRouted="true">
+      <Path>
+        <Point X="12.5" Y="1.733" />
+        <Point X="12.5" Y="6.917" />
+        <Point X="14" Y="6.917" />
+        <Point X="14" Y="7.25" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAIAAAAAAAgCAAARAAAAQAAAAAAAAAAAAAEAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>INhRootHybridDAO.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="PersistentLayer.NHibernate.INhRootPagedDAO&lt;TRootEntity, TEntity&gt;">
-    <Position X="10.5" Y="9.75" Width="1.5" />
+    <Position X="10.5" Y="10.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAEAAAAA=</HashCode>
       <FileName>INhRootPagedDAO.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="PersistentLayer.NHibernate.INhRootPagedDAO&lt;TRootEntity&gt;">
-    <Position X="13.25" Y="9.75" Width="1.5" />
+    <Position X="13.25" Y="10.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAEAAAAA=</HashCode>
       <FileName>INhRootPagedDAO.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="PersistentLayer.NHibernate.INhPagedDAO&lt;TEntity, TKey&gt;">
-    <Position X="16" Y="9.5" Width="1.5" />
+    <Position X="16" Y="10.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAEAAAAA=</HashCode>
       <FileName>INhPagedDAO.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="PersistentLayer.NHibernate.INhPagedDAO">
-    <Position X="7.75" Y="9.5" Width="1.5" />
+    <Position X="7.75" Y="10.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAEAAAAA=</HashCode>
       <FileName>INhPagedDAO.cs</FileName>

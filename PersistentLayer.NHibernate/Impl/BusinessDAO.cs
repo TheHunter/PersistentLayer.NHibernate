@@ -59,11 +59,11 @@ namespace PersistentLayer.NHibernate.Impl
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="where"></param>
+        /// <param name="predicate"></param>
         /// <returns></returns>
-        public IEnumerable<TEntity> FindAll(Expression<Func<TEntity, bool>> where)
+        public IEnumerable<TEntity> FindAll(Expression<Func<TEntity, bool>> predicate)
         {
-            return this.CurrentSession.FindAll(where);
+            return this.CurrentSession.FindAll(predicate);
         }
 
         /// <summary>
@@ -275,6 +275,16 @@ namespace PersistentLayer.NHibernate.Impl
         public IEnumerable<TEntity> RefreshState(IEnumerable<TEntity> entities)
         {
             return this.CurrentSession.RefreshState(entities);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        public TEntity UniqueResult(Expression<Func<TEntity, bool>> predicate)
+        {
+            return this.CurrentSession.UniqueResult(predicate);
         }
 
         /// <summary>

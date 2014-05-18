@@ -344,6 +344,16 @@ namespace PersistentLayer.NHibernate.Impl
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        public TEntity UniqueResult(Expression<Func<TEntity, bool>> predicate)
+        {
+            return this.CurrentSession.UniqueResult(predicate);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="criteria"></param>
         /// <returns></returns>
         public TEntity UniqueResult(DetachedCriteria criteria)
@@ -767,6 +777,17 @@ namespace PersistentLayer.NHibernate.Impl
         public IEnumerable<TEntity> RefreshState<TEntity>(IEnumerable<TEntity> entities) where TEntity : class, TRootEntity
         {
             return this.CurrentSession.RefreshState(entities);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        public TEntity UniqueResult<TEntity>(Expression<Func<TEntity, bool>> predicate) where TEntity : class, TRootEntity
+        {
+            return this.CurrentSession.UniqueResult(predicate);
         }
 
         /// <summary>

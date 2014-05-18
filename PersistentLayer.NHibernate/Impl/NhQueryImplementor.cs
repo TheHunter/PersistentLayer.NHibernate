@@ -974,6 +974,34 @@ namespace PersistentLayer.NHibernate.Impl
         /// </summary>
         /// <typeparam name="TEntity"></typeparam>
         /// <param name="session"></param>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        internal static TEntity UniqueResult<TEntity>
+            (this ISession session, Expression<Func<TEntity, bool>> predicate)
+            where TEntity : class
+        {
+            if (predicate == null)
+                throw new QueryArgumentException("The expression to use as filter cannot be null.", "UniqueResult", "clause");
+
+            try
+            {
+                var result = new NhPagedResult<TEntity>(0, 1, session.Query<TEntity>().Where(predicate));
+                if (result.Counter > 1)
+                    throw new NonUniqueResultException(result.Counter);
+
+                return result.GetResult().FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw new ExecutionQueryException("Error on executing the query which should return an unique result.", "UniqueResult", ex);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="session"></param>
         /// <param name="criteria"></param>
         /// <returns></returns>
         internal static TEntity UniqueResult<TEntity>

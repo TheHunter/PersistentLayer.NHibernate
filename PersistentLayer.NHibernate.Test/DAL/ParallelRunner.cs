@@ -83,15 +83,5 @@ namespace PersistentLayer.NHibernate.Test.DAL
             }
         }
 
-        [Test]
-        public void FuckingFlushSession()
-        {
-            ISession session = this.SessionFactory.OpenSession();
-            session.Flush();
-            session.Flush();
-            session.Flush();
-            session.Dispose();
-        }
-
     }
 }

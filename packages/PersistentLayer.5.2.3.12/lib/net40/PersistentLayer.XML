@@ -646,6 +646,13 @@
             <param name="identifier"></param>
             <returns></returns>
         </member>
+        <member name="M:PersistentLayer.IQueryableDAO`2.UniqueResult(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
         <member name="M:PersistentLayer.IQueryableDAO`2.FindAll">
             <summary>
             
@@ -763,6 +770,14 @@
             <param name="identifier"></param>
             <returns></returns>
         </member>
+        <member name="M:PersistentLayer.IQueryableDAO.UniqueResult``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
         <member name="M:PersistentLayer.IQueryableDAO.FindAll``1">
             <summary>
             
@@ -878,6 +893,14 @@
             <param name="identifier"></param>
             <returns></returns>
         </member>
+        <member name="M:PersistentLayer.IRootQueryableDAO`1.UniqueResult``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
         <member name="M:PersistentLayer.IRootQueryableDAO`1.FindAll``1">
             <summary>
             
@@ -989,6 +1012,13 @@
             
             </summary>
             <param name="identifier"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.IRootQueryableDAO`2.UniqueResult(System.Linq.Expressions.Expression{System.Func{`1,System.Boolean}})">
+            <summary>
+            
+            </summary>
+            <param name="predicate"></param>
             <returns></returns>
         </member>
         <member name="M:PersistentLayer.IRootQueryableDAO`2.FindAll">

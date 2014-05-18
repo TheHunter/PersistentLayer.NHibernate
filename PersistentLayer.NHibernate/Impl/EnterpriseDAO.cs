@@ -20,7 +20,6 @@ namespace PersistentLayer.NHibernate.Impl
         public EnterpriseDAO(ISessionProvider sessionProvider)
             :base(sessionProvider)
         {
-            
         }
 
         /// <summary>
@@ -344,6 +343,17 @@ namespace PersistentLayer.NHibernate.Impl
         public IQueryable<TEntity> ToIQueryable<TEntity>(CacheMode mode, string region) where TEntity : class
         {
             return this.CurrentSession.ToIQueryable<TEntity>(mode, region);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        public TEntity UniqueResult<TEntity>(Expression<Func<TEntity, bool>> predicate) where TEntity : class
+        {
+            return this.CurrentSession.UniqueResult(predicate);
         }
 
         /// <summary>

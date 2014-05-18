@@ -27,9 +27,10 @@ namespace PersistentLayer.NHibernate.Test.DAL
 
         [Test]
         [Category("QueryExecutions")]
+        [ExpectedException(typeof(ExecutionQueryException))]
         public void FailedLoadTest0()
         {
-            var cons = CurrentRootPagedDAO.Load<Salesman>(-1L);
+            var cons = CurrentRootPagedDAO.Load<Salesman>(-1L, LockMode.Read);
             Assert.IsNotNull(cons);
         }
 
@@ -861,27 +862,27 @@ namespace PersistentLayer.NHibernate.Test.DAL
             Assert.IsTrue(function != null);
         }
 
-        //[Test]
-        //public void UniqueResult1()
-        //{
-        //    var result = CurrentPagedDAO.UniqueResult<Salesman>(salesman => salesman.ID == 1);
-        //    Assert.IsNotNull(result);
-        //}
+        [Test]
+        public void UniqueResult1()
+        {
+            var result = CurrentPagedDAO.UniqueResult<Salesman>(salesman => salesman.ID == 1);
+            Assert.IsNotNull(result);
+        }
 
-        //[Test]
-        //public void UniqueResult2()
-        //{
-        //    var result = CurrentPagedDAO.UniqueResult<Salesman>(salesman => salesman.ID == -1);
-        //    Assert.IsNull(result);
-        //}
+        [Test]
+        public void UniqueResult2()
+        {
+            var result = CurrentPagedDAO.UniqueResult<Salesman>(salesman => salesman.ID == -1);
+            Assert.IsNull(result);
+        }
 
-        //[Test]
-        //[ExpectedException(typeof(ExecutionQueryException))]
-        //public void WrongUniqueResult1()
-        //{
-        //    var result = CurrentPagedDAO.UniqueResult<Salesman>(salesman => salesman.Name == "Manuel");
-        //    Assert.IsNull(result);
-        //}
+        [Test]
+        [ExpectedException(typeof(ExecutionQueryException))]
+        public void WrongUniqueResult1()
+        {
+            var result = CurrentPagedDAO.UniqueResult<Salesman>(salesman => salesman.Name == "Manuel");
+            Assert.IsNull(result);
+        }
 
 
         [Test]
