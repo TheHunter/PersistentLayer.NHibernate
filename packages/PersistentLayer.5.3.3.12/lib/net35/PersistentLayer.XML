@@ -520,6 +520,14 @@
             <param name="predicate"></param>
             <returns></returns>
         </member>
+        <member name="M:PersistentLayer.IQueryableDAO`2.ExecuteExpression``1(System.Linq.Expressions.Expression{System.Func{System.Collections.Generic.IEnumerable{`0},``0}})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <param name="queryExpr"></param>
+            <returns></returns>
+        </member>
         <member name="T:PersistentLayer.ITransactionContext">
             <summary>
             
@@ -645,6 +653,15 @@
             </summary>
             <typeparam name="TEntity"></typeparam>
             <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.IQueryableDAO.ExecuteExpression``2(System.Linq.Expressions.Expression{System.Func{System.Collections.Generic.IEnumerable{``0},``1}})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TResult"></typeparam>
+            <param name="queryExpr"></param>
             <returns></returns>
         </member>
         <member name="M:PersistentLayer.IPersisterDAO.MakePersistent``1(``0)">
@@ -861,6 +878,14 @@
             </summary>
             <typeparam name="TRootEntity"></typeparam>
         </member>
+        <member name="M:PersistentLayer.IRootQueryableDAO`1.FindBy``1(System.Object)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="identifier"></param>
+            <returns></returns>
+        </member>
         <member name="M:PersistentLayer.IRootQueryableDAO`1.Exists``1(System.Object)">
             <summary>
             
@@ -885,14 +910,6 @@
             <param name="predicate"></param>
             <returns></returns>
         </member>
-        <member name="M:PersistentLayer.IRootQueryableDAO`1.FindBy``1(System.Object)">
-            <summary>
-            
-            </summary>
-            <typeparam name="TEntity"></typeparam>
-            <param name="identifier"></param>
-            <returns></returns>
-        </member>
         <member name="M:PersistentLayer.IRootQueryableDAO`1.UniqueResult``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
             <summary>
             
@@ -914,6 +931,15 @@
             </summary>
             <typeparam name="TEntity"></typeparam>
             <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.IRootQueryableDAO`1.ExecuteExpression``2(System.Linq.Expressions.Expression{System.Func{System.Collections.Generic.IEnumerable{``0},``1}})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TResult"></typeparam>
+            <param name="queryExpr"></param>
             <returns></returns>
         </member>
         <member name="M:PersistentLayer.IRootPersisterDAO`1.MakePersistent``1(``0)">
@@ -1032,6 +1058,14 @@
             
             </summary>
             <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.IRootQueryableDAO`2.ExecuteExpression``1(System.Linq.Expressions.Expression{System.Func{System.Collections.Generic.IEnumerable{`1},``0}})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <param name="queryExpr"></param>
             <returns></returns>
         </member>
         <member name="M:PersistentLayer.IRootPersisterDAO`2.MakePersistent(`1)">

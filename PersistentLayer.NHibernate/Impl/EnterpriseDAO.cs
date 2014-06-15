@@ -305,50 +305,6 @@ namespace PersistentLayer.NHibernate.Impl
         /// 
         /// </summary>
         /// <typeparam name="TEntity"></typeparam>
-        /// <returns></returns>
-        public IQueryable<TEntity> ToIQueryable<TEntity>() where TEntity : class
-        {
-            return this.CurrentSession.ToIQueryable<TEntity>();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="TEntity"></typeparam>
-        /// <param name="mode"></param>
-        /// <returns></returns>
-        public IQueryable<TEntity> ToIQueryable<TEntity>(CacheMode mode) where TEntity : class
-        {
-            return this.CurrentSession.ToIQueryable<TEntity>(mode);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="TEntity"></typeparam>
-        /// <param name="region"></param>
-        /// <returns></returns>
-        public IQueryable<TEntity> ToIQueryable<TEntity>(string region) where TEntity : class
-        {
-            return this.CurrentSession.ToIQueryable<TEntity>(region);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="TEntity"></typeparam>
-        /// <param name="mode"></param>
-        /// <param name="region"></param>
-        /// <returns></returns>
-        public IQueryable<TEntity> ToIQueryable<TEntity>(CacheMode mode, string region) where TEntity : class
-        {
-            return this.CurrentSession.ToIQueryable<TEntity>(mode, region);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="TEntity"></typeparam>
         /// <param name="predicate"></param>
         /// <returns></returns>
         public TEntity UniqueResult<TEntity>(Expression<Func<TEntity, bool>> predicate) where TEntity : class
@@ -387,7 +343,91 @@ namespace PersistentLayer.NHibernate.Impl
         /// <returns></returns>
         public TResult ExecuteExpression<TEntity, TResult>(Expression<Func<IEnumerable<TEntity>, TResult>> queryExpr) where TEntity : class
         {
-            return this.CurrentSession.ExecuteExpression(queryExpr);
+            return this.CurrentSession.ExecuteExpression(queryExpr, null, null);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="queryExpr"></param>
+        /// <param name="mode"></param>
+        /// <returns></returns>
+        public TResult ExecuteExpression<TEntity, TResult>(Expression<Func<IEnumerable<TEntity>, TResult>> queryExpr, CacheMode mode) where TEntity : class
+        {
+            return this.CurrentSession.ExecuteExpression(queryExpr, mode, null);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="queryExpr"></param>
+        /// <param name="region"></param>
+        /// <returns></returns>
+        public TResult ExecuteExpression<TEntity, TResult>(Expression<Func<IEnumerable<TEntity>, TResult>> queryExpr, string region) where TEntity : class
+        {
+            return this.CurrentSession.ExecuteExpression(queryExpr, null, region);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="queryExpr"></param>
+        /// <param name="mode"></param>
+        /// <param name="region"></param>
+        /// <returns></returns>
+        public TResult ExecuteExpression<TEntity, TResult>(Expression<Func<IEnumerable<TEntity>, TResult>> queryExpr, CacheMode mode, string region) where TEntity : class
+        {
+            return this.CurrentSession.ExecuteExpression(queryExpr, mode, region);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <returns></returns>
+        public IQueryable<TEntity> ToIQueryable<TEntity>() where TEntity : class
+        {
+            return this.CurrentSession.ToIQueryable<TEntity>();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="mode"></param>
+        /// <returns></returns>
+        public IQueryable<TEntity> ToIQueryable<TEntity>(CacheMode mode) where TEntity : class
+        {
+            return this.CurrentSession.ToIQueryable<TEntity>(mode);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="region"></param>
+        /// <returns></returns>
+        public IQueryable<TEntity> ToIQueryable<TEntity>(string region) where TEntity : class
+        {
+            return this.CurrentSession.ToIQueryable<TEntity>(region);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="mode"></param>
+        /// <param name="region"></param>
+        /// <returns></returns>
+        public IQueryable<TEntity> ToIQueryable<TEntity>(CacheMode mode, string region) where TEntity : class
+        {
+            return this.CurrentSession.ToIQueryable<TEntity>(mode, region);
         }
     }
 }

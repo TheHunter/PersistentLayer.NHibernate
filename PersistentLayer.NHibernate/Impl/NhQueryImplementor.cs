@@ -577,6 +577,66 @@ namespace PersistentLayer.NHibernate.Impl
         /// 
         /// </summary>
         /// <typeparam name="TEntity"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="session"></param>
+        /// <param name="queryExpr"></param>
+        /// <param name="mode"></param>
+        /// <param name="region"></param>
+        /// <returns></returns>
+        internal static TResult ExecuteExpression<TEntity, TResult>(
+            this ISession session, Expression<Func<IEnumerable<TEntity>, TResult>> queryExpr, CacheMode? mode, string region)
+            where TEntity : class
+        {
+            if (queryExpr == null)
+                throw new QueryArgumentException("Expression to evaluate cannot be null.", "ExecuteExpression", "queryExpr");
+
+            try
+            {
+                IQueryable<TEntity> query = session.Query<TEntity>();
+                if (region != null && region.Trim() != string.Empty)
+                    query.CacheRegion(region.Trim());
+
+                if (mode != null)
+                    query.Cacheable()
+                         .CacheMode(mode.Value);
+
+                TResult ret = queryExpr.Compile()
+                                .Invoke(query);
+
+                Type resultType = typeof(TResult);
+                if (resultType.IsInterface && resultType.Implements(typeof(IEnumerable)))
+                {
+                    if (resultType.IsGenericType)
+                    {
+                        // for version net40
+                        //Type t1 = resultType.GetGenericArguments()[0];
+                        //if (t1.IsAnonymous())
+                        //{
+                        //    Delegate del = ReflectionExtension.ToListEnumerableDelegate(resultType);
+                        //    object res = del.DynamicInvoke(ret);
+                        //    return (TResult)res;
+                        //}
+                        //return Enumerable.ToList(ret as dynamic);
+
+                        //for version net.35
+                        Delegate del = ReflectionExtension.ToListEnumerableDelegate(resultType);
+                        object res = del.DynamicInvoke(ret);
+                        return (TResult)res;
+                    }
+                }
+                return ret;
+            }
+            catch (Exception ex)
+            {
+                throw new ExecutionQueryException("Error on executing the Expression, see inner exception for details.", "ExecuteExpression", ex);
+            }
+        }
+
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
         /// <param name="session"></param>
         /// <param name="entity"></param>
         /// <exception cref="BusinessPersistentException"></exception>
@@ -1048,37 +1108,6 @@ namespace PersistentLayer.NHibernate.Impl
             {
                 throw new ExecutionQueryException("Error on executing the query which should return an unique result.", "UniqueResult", ex);
             }
-        }
-
-
-        internal static TResult ExecuteExpression<TEntity, TResult>(
-            this ISession session, Expression<Func<IEnumerable<TEntity>, TResult>> queryExpr)
-            where TEntity : class
-        {
-            var ret = queryExpr.Compile()
-                            .Invoke(session.Query<TEntity>());
-            Type resultType = typeof(TResult);
-            if (resultType.IsInterface && resultType.Implements(typeof(IEnumerable)))
-            {
-                if (resultType.IsGenericType)
-                {
-                    // for version net40
-                    //Type t1 = resultType.GetGenericArguments()[0];
-                    //if (t1.IsAnonymous())
-                    //{
-                    //    Delegate del = ReflectionExtension.ToListEnumerableDelegate(resultType);
-                    //    object res = del.DynamicInvoke(ret);
-                    //    return (TResult)res;
-                    //}
-                    //return Enumerable.ToList(ret as dynamic);
-
-                     //for version net.35
-                    Delegate del = ReflectionExtension.ToListEnumerableDelegate(resultType);
-                    object res = del.DynamicInvoke(ret);
-                    return (TResult)res;
-                }
-            }
-            return ret;
         }
 
         #region Helper methods.

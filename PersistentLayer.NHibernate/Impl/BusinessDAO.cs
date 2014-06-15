@@ -310,6 +310,54 @@ namespace PersistentLayer.NHibernate.Impl
         /// <summary>
         /// 
         /// </summary>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="queryExpr"></param>
+        /// <returns></returns>
+        public TResult ExecuteExpression<TResult>(Expression<Func<IEnumerable<TEntity>, TResult>> queryExpr)
+        {
+            return this.CurrentSession.ExecuteExpression(queryExpr, null, null);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="queryExpr"></param>
+        /// <param name="mode"></param>
+        /// <returns></returns>
+        public TResult ExecuteExpression<TResult>(Expression<Func<IEnumerable<TEntity>, TResult>> queryExpr, CacheMode mode)
+        {
+            return this.CurrentSession.ExecuteExpression(queryExpr, mode, null);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="queryExpr"></param>
+        /// <param name="region"></param>
+        /// <returns></returns>
+        public TResult ExecuteExpression<TResult>(Expression<Func<IEnumerable<TEntity>, TResult>> queryExpr, string region)
+        {
+            return this.CurrentSession.ExecuteExpression(queryExpr, null, region);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="queryExpr"></param>
+        /// <param name="mode"></param>
+        /// <param name="region"></param>
+        /// <returns></returns>
+        public TResult ExecuteExpression<TResult>(Expression<Func<IEnumerable<TEntity>, TResult>> queryExpr, CacheMode mode, string region)
+        {
+            return this.CurrentSession.ExecuteExpression(queryExpr, mode, region);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <returns></returns>
         public IQueryable<TEntity> ToIQueryable()
         {

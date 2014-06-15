@@ -1,14 +1,9 @@
 Release notes:
 
 New interfaces for new DAO hierarchies:
-- interface IRootQueryableDAO<in TRootEntity>
-- interface IRootQueryableDAO<in TRootEntity, TEntity>
-- interface IRootPersisterDAO<in TRootEntity>
-- interface IRootPersisterDAO<in TRootEntity, TEntity>
-- interface IRootPagedDAO<in TRootEntity>
-- interface IRootPagedDAO<in TRootEntity, TEntity>
+- New method named UniqueResult, which returns an unique instance for the given expression passed as argument.
+- New method named ExecuteExpression, which computes an expression that caould return any kind of data related to the given output expression.
 
-With these new interfaces, you can apply DDD pattern in order to apply "Root entities" which can be defined as Aggregate Entity types for DAOs.
 
 
 That's All.

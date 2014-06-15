@@ -41,7 +41,7 @@
       <HintPath>..\packages\NHibernate.3.3.3.4001\lib\Net35\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="PersistentLayer">
-      <HintPath>..\packages\PersistentLayer.5.2.3.12\lib\net35\PersistentLayer.dll</HintPath>
+      <HintPath>..\packages\PersistentLayer.5.3.3.12\lib\net35\PersistentLayer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

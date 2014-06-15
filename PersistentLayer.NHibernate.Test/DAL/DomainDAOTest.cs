@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using NHibernate;
 using NUnit.Framework;
 using NHibernate.Criterion;
@@ -938,6 +939,66 @@ namespace PersistentLayer.NHibernate.Test.DAL
             var criteria = QueryOver.Of<Salesman>().Where(salesman => salesman.Name == "Manuel");
             var result = CurrentPagedDAO.UniqueResult(criteria);
             Assert.IsNull(result);
+        }
+
+        [Test]
+        public void TestExternalExpExecutors1()
+        {
+            var customDAO = this.CurrentPagedDAO;
+
+            Expression<Func<IEnumerable<Salesman>, Salesman>> queryExpr
+                = persons => (from a in persons
+                              where a.ID == 1
+                              select a)
+                             .FirstOrDefault()
+                ;
+
+            var person = customDAO.ExecuteExpression(queryExpr);
+            Assert.IsNotNull(person);
+        }
+
+        [Test]
+        public void TestExternalExpExecutors2()
+        {
+            var customDAO = this.CurrentPagedDAO;
+
+            Expression<Func<IEnumerable<Salesman>, IEnumerable<string>>> queryExpr
+                = persons => (from a in persons
+                              select a.Name
+                              )
+                              .ToList()
+                ;
+
+            var peopleName = customDAO.ExecuteExpression(queryExpr);
+            Assert.IsNotNull(peopleName);
+        }
+
+        [Test]
+        public void TestExpressionExecutors()
+        {
+            var customDAO = this.CurrentPagedDAO;
+
+            var result1 = customDAO.ExecuteExpression((IEnumerable<Salesman> entities) => entities.FirstOrDefault());
+            Assert.IsNotNull(result1);
+
+            var result2 = customDAO.ExecuteExpression((IEnumerable<Salesman> entities) => entities.Where(person1 => person1.ID < 5));
+            Assert.IsNotNull(result2);
+
+            var result3 = customDAO.ExecuteExpression((IEnumerable<Salesman> entities) => entities.Select(person => new { person.Name, person.Surname }));
+            Assert.IsNotNull(result3);
+
+            var result4 = customDAO.ExecuteExpression((IEnumerable<Salesman> entities) => entities.Where(person => person.ID > 1).Select(person => new { person.Name, person.Surname }));
+            Assert.IsNotNull(result4);
+
+            var result5 = customDAO.ExecuteExpression((IEnumerable<Salesman> entities) => entities.Select(person => new SalesmanPrj { Name = person.Name, Surname = person.Surname }));
+            Assert.IsNotNull(result5);
+
+            // I don't understand how come this instruction works .... 
+            // dynamic was introduced in framework 4.0 version !
+
+            //var result6 = customDAO.ExecuteExpression((IEnumerable<Salesman> entities) => entities.Select<Salesman, dynamic>(person => new { Name = person.Name, Surname = person.Surname }));
+            //Assert.IsNotNull(result6);
+
         }
     }
 }

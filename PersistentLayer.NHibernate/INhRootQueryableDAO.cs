@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using NHibernate;
 using NHibernate.Criterion;
@@ -20,6 +21,7 @@ namespace PersistentLayer.NHibernate
         /// 
         /// </summary>
         /// <returns></returns>
+        [Obsolete("Use ExecuteExpression method in order to use Linq Expressions.")]
         IQueryable<TEntity> ToIQueryable();
 
         /// <summary>
@@ -27,6 +29,7 @@ namespace PersistentLayer.NHibernate
         /// </summary>
         /// <param name="mode"></param>
         /// <returns></returns>
+        [Obsolete("Use ExecuteExpression method in order to use Linq Expressions.")]
         IQueryable<TEntity> ToIQueryable(CacheMode mode);
 
         /// <summary>
@@ -34,6 +37,7 @@ namespace PersistentLayer.NHibernate
         /// </summary>
         /// <param name="region"></param>
         /// <returns></returns>
+        [Obsolete("Use ExecuteExpression method in order to use Linq Expressions.")]
         IQueryable<TEntity> ToIQueryable(string region);
 
         /// <summary>
@@ -42,9 +46,41 @@ namespace PersistentLayer.NHibernate
         /// <param name="mode"></param>
         /// <param name="region"></param>
         /// <returns></returns>
+        [Obsolete("Use ExecuteExpression method in order to use Linq Expressions.")]
         IQueryable<TEntity> ToIQueryable(CacheMode mode, string region);
         #endregion
 
+
+        #region Advanced query expressions.
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="queryExpr"></param>
+        /// <param name="mode"></param>
+        /// <returns></returns>
+        TResult ExecuteExpression<TResult>(Expression<Func<IEnumerable<TEntity>, TResult>> queryExpr, CacheMode mode);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="queryExpr"></param>
+        /// <param name="region"></param>
+        /// <returns></returns>
+        TResult ExecuteExpression<TResult>(Expression<Func<IEnumerable<TEntity>, TResult>> queryExpr, string region);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="queryExpr"></param>
+        /// <param name="mode"></param>
+        /// <param name="region"></param>
+        /// <returns></returns>
+        TResult ExecuteExpression<TResult>(Expression<Func<IEnumerable<TEntity>, TResult>> queryExpr, CacheMode mode,
+                                           string region);
+        #endregion
 
         /// <summary>
         /// Finds the object which matches with the given key.
@@ -177,6 +213,7 @@ namespace PersistentLayer.NHibernate
         /// 
         /// </summary>
         /// <returns></returns>
+        [Obsolete("Use ExecuteExpression method in order to use Linq Expressions.")]
         IQueryable<TEntity> ToIQueryable<TEntity>() where TEntity : class, TRootEntity;
 
         /// <summary>
@@ -184,6 +221,7 @@ namespace PersistentLayer.NHibernate
         /// </summary>
         /// <param name="mode"></param>
         /// <returns></returns>
+        [Obsolete("Use ExecuteExpression method in order to use Linq Expressions.")]
         IQueryable<TEntity> ToIQueryable<TEntity>(CacheMode mode) where TEntity : class, TRootEntity;
 
         /// <summary>
@@ -191,6 +229,7 @@ namespace PersistentLayer.NHibernate
         /// </summary>
         /// <param name="region"></param>
         /// <returns></returns>
+        [Obsolete("Use ExecuteExpression method in order to use Linq Expressions.")]
         IQueryable<TEntity> ToIQueryable<TEntity>(string region) where TEntity : class, TRootEntity;
 
         /// <summary>
@@ -199,9 +238,44 @@ namespace PersistentLayer.NHibernate
         /// <param name="mode"></param>
         /// <param name="region"></param>
         /// <returns></returns>
+        [Obsolete("Use ExecuteExpression method in order to use Linq Expressions.")]
         IQueryable<TEntity> ToIQueryable<TEntity>(CacheMode mode, string region) where TEntity : class, TRootEntity;
         #endregion
 
+
+        #region Advanced query expressions.
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="queryExpr"></param>
+        /// <param name="mode"></param>
+        /// <returns></returns>
+        TResult ExecuteExpression<TEntity, TResult>(Expression<Func<IEnumerable<TEntity>, TResult>> queryExpr, CacheMode mode) where TEntity : class, TRootEntity;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="queryExpr"></param>
+        /// <param name="region"></param>
+        /// <returns></returns>
+        TResult ExecuteExpression<TEntity, TResult>(Expression<Func<IEnumerable<TEntity>, TResult>> queryExpr, string region) where TEntity : class, TRootEntity;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="queryExpr"></param>
+        /// <param name="mode"></param>
+        /// <param name="region"></param>
+        /// <returns></returns>
+        TResult ExecuteExpression<TEntity, TResult>(Expression<Func<IEnumerable<TEntity>, TResult>> queryExpr, CacheMode mode,
+                                           string region) where TEntity : class, TRootEntity;
+        #endregion
 
         /// <summary>
         /// 

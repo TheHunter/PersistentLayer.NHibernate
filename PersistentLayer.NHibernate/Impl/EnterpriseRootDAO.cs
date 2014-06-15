@@ -371,6 +371,54 @@ namespace PersistentLayer.NHibernate.Impl
             return this.CurrentSession.UniqueResult(criteria);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="queryExpr"></param>
+        /// <returns></returns>
+        public TResult ExecuteExpression<TResult>(Expression<Func<IEnumerable<TEntity>, TResult>> queryExpr)
+        {
+            return this.CurrentSession.ExecuteExpression(queryExpr, null, null);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="queryExpr"></param>
+        /// <param name="mode"></param>
+        /// <returns></returns>
+        public TResult ExecuteExpression<TResult>(Expression<Func<IEnumerable<TEntity>, TResult>> queryExpr, CacheMode mode)
+        {
+            return this.CurrentSession.ExecuteExpression(queryExpr, mode, null);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="queryExpr"></param>
+        /// <param name="region"></param>
+        /// <returns></returns>
+        public TResult ExecuteExpression<TResult>(Expression<Func<IEnumerable<TEntity>, TResult>> queryExpr, string region)
+        {
+            return this.CurrentSession.ExecuteExpression(queryExpr, null, region);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="queryExpr"></param>
+        /// <param name="mode"></param>
+        /// <param name="region"></param>
+        /// <returns></returns>
+        public TResult ExecuteExpression<TResult>(Expression<Func<IEnumerable<TEntity>, TResult>> queryExpr, CacheMode mode, string region)
+        {
+            return this.CurrentSession.ExecuteExpression(queryExpr, mode, region);
+        }
+
         ///// <summary>
         ///// 
         ///// </summary>
@@ -809,6 +857,58 @@ namespace PersistentLayer.NHibernate.Impl
         public TEntity UniqueResult<TEntity>(QueryOver<TEntity> criteria) where TEntity : class, TRootEntity
         {
             return this.CurrentSession.UniqueResult(criteria);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="queryExpr"></param>
+        /// <returns></returns>
+        public TResult ExecuteExpression<TEntity, TResult>(Expression<Func<IEnumerable<TEntity>, TResult>> queryExpr) where TEntity : class, TRootEntity
+        {
+            return this.CurrentSession.ExecuteExpression(queryExpr, null, null);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="queryExpr"></param>
+        /// <param name="mode"></param>
+        /// <returns></returns>
+        public TResult ExecuteExpression<TEntity, TResult>(Expression<Func<IEnumerable<TEntity>, TResult>> queryExpr, CacheMode mode) where TEntity : class, TRootEntity
+        {
+            return this.CurrentSession.ExecuteExpression(queryExpr, mode, null);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="queryExpr"></param>
+        /// <param name="region"></param>
+        /// <returns></returns>
+        public TResult ExecuteExpression<TEntity, TResult>(Expression<Func<IEnumerable<TEntity>, TResult>> queryExpr, string region) where TEntity : class, TRootEntity
+        {
+            return this.CurrentSession.ExecuteExpression(queryExpr, null, region);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="queryExpr"></param>
+        /// <param name="mode"></param>
+        /// <param name="region"></param>
+        /// <returns></returns>
+        public TResult ExecuteExpression<TEntity, TResult>(Expression<Func<IEnumerable<TEntity>, TResult>> queryExpr, CacheMode mode, string region) where TEntity : class, TRootEntity
+        {
+            return this.CurrentSession.ExecuteExpression(queryExpr, mode, region);
         }
 
         ///// <summary>

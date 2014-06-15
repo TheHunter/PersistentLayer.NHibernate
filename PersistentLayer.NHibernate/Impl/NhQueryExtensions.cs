@@ -1061,29 +1061,5 @@ namespace PersistentLayer.NHibernate.Impl
         }
 
 
-        
-        //public static TEntity UniqueResult<TEntity>
-        //    (this ISessionContext sourceDAO, Expression<Func<TEntity, bool>> clause)
-        //    where TEntity : class
-        //{
-        //    ISession session = sourceDAO.SessionInfo.CurrentSession;
-            
-        //    if (clause == null)
-        //        throw new QueryArgumentException("The expression to use as filter cannot be null.", "UniqueResult", "clause");
-
-        //    try
-        //    {
-        //        var result = new NhPagedResult<TEntity>(0, 1, session.Query<TEntity>().Where(clause));
-        //        if (result.Counter > 1)
-        //            throw new NonUniqueResultException(result.Counter);
-
-        //        return result.GetResult().FirstOrDefault();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw new ExecutionQueryException("Error on executing the query which should return an unique result.", "UniqueResult", ex);
-        //    }
-        //}
-
     }
 }
