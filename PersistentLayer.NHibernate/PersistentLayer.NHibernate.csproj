@@ -84,6 +84,7 @@
     <Compile Include="NhConfigurationBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Impl\SessionBinderProvider.cs" />
+    <Compile Include="ReflectionExtension.cs" />
     <Compile Include="SessionInfo.cs" />
     <Compile Include="Impl\SessionManager.cs" />
     <Compile Include="TransactionInfo.cs" />

@@ -1051,6 +1051,36 @@ namespace PersistentLayer.NHibernate.Impl
         }
 
 
+        internal static TResult ExecuteExpression<TEntity, TResult>(
+            this ISession session, Expression<Func<IEnumerable<TEntity>, TResult>> queryExpr)
+            where TEntity : class
+        {
+            var ret = queryExpr.Compile()
+                            .Invoke(session.Query<TEntity>());
+            Type resultType = typeof(TResult);
+            if (resultType.IsInterface && resultType.Implements(typeof(IEnumerable)))
+            {
+                if (resultType.IsGenericType)
+                {
+                    // for version net40
+                    //Type t1 = resultType.GetGenericArguments()[0];
+                    //if (t1.IsAnonymous())
+                    //{
+                    //    Delegate del = ReflectionExtension.ToListEnumerableDelegate(resultType);
+                    //    object res = del.DynamicInvoke(ret);
+                    //    return (TResult)res;
+                    //}
+                    //return Enumerable.ToList(ret as dynamic);
+
+                     //for version net.35
+                    Delegate del = ReflectionExtension.ToListEnumerableDelegate(resultType);
+                    object res = del.DynamicInvoke(ret);
+                    return (TResult)res;
+                }
+            }
+            return ret;
+        }
+
         #region Helper methods.
 
         /// <summary>

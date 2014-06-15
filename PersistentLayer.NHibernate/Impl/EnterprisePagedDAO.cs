@@ -64,12 +64,6 @@ namespace PersistentLayer.NHibernate.Impl
             return this.CurrentSession.GetPagedResult(startIndex, pageSize, IQuerable);
         }
 
-        //public IPagedResult<TEntity> GetPagedResult<TEntity>(int startIndex, int pageSize, IQueryable<TEntity> query)
-        //    where TEntity : class
-        //{
-        //    return this.CurrentSession.GetPagedResult(startIndex, pageSize, query);
-        //}
-
         /// <summary>
         /// 
         /// </summary>

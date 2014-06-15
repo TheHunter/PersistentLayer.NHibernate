@@ -377,5 +377,17 @@ namespace PersistentLayer.NHibernate.Impl
         {
             return this.CurrentSession.UniqueResult(criteria);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="queryExpr"></param>
+        /// <returns></returns>
+        public TResult ExecuteExpression<TEntity, TResult>(Expression<Func<IEnumerable<TEntity>, TResult>> queryExpr) where TEntity : class
+        {
+            return this.CurrentSession.ExecuteExpression(queryExpr);
+        }
     }
 }
