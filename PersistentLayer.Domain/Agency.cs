@@ -3,7 +3,7 @@ using EntityModel;
 
 namespace PersistentLayer.Domain
 {
-    [Serializable]
+    //[Serializable]
     public class Agency
         : BaseEntity<long>
     {

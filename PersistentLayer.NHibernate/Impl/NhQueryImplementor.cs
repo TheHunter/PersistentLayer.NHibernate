@@ -597,8 +597,11 @@ namespace PersistentLayer.NHibernate.Impl
                     query.CacheRegion(region.Trim());
 
                 if (mode != null)
+                {
                     query.Cacheable()
-                         .CacheMode(mode.Value);
+                         .CacheMode(mode.Value)
+                        ;
+                }
 
                 TResult ret = queryExpr.Compile()
                                 .Invoke(query);

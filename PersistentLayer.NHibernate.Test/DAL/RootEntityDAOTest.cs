@@ -996,5 +996,31 @@ namespace PersistentLayer.NHibernate.Test.DAL
             //Assert.IsNotNull(result6);
 
         }
+
+        [Test]
+        [ExpectedException(typeof(QueryArgumentException))]
+        public void TestExecuteBadExpression1()
+        {
+            this.CurrentRootPagedDAO.ExecuteExpression<Salesman, Salesman>(null);
+        }
+
+
+        [Test]
+        public void TestExecutesuspiciousExpression()
+        {
+            //this.CurrentRootPagedDAO.ExecuteExpression<Salesman, IEnumerable<Salesman>>(enumerable => enumerable.Where(salesman => salesman.Name.StartsWith("M")));
+            this.CurrentRootPagedDAO.ExecuteExpression<Salesman, IEnumerable<Salesman>>
+                (
+                //enumerable => enumerable.Where(salesman => salesman.Name.Trim().StartsWith("M"))                  //fuck
+                //enumerable => enumerable.Where(salesman => salesman.Name.Trim().Equals("Manuel"))                 //fuck
+                //enumerable => enumerable.Where(salesman => salesman.Name.Trim().GetHashCode() > 0)                //fuck
+                //enumerable => enumerable.Where(salesman => salesman.Name.Trim().Substring(2, 1).Equals("n"))      //fuck
+                //enumerable => enumerable.Where(salesman => salesman.Name.Trim().Substring(2, 1).Equals("n"))      //fuck
+                    enumerable => enumerable.Where(salesman => !salesman.Name.Trim()
+                        .Trim()
+                        .Trim()
+                        .Substring(2, 1).Equals("n"))    //fuck
+                );
+        }
     }
 }
