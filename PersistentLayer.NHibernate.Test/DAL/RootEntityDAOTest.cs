@@ -293,10 +293,20 @@ namespace PersistentLayer.NHibernate.Test.DAL
         [Description("Test on IQueryable objects.")]
         public void ToIQueryableTest()
         {
-            Assert.IsTrue(CurrentRootPagedDAO.ToIQueryable<Salesman>().Any());
-            Assert.IsTrue(CurrentRootPagedDAO.ToIQueryable<Salesman>(CacheMode.Refresh).Any());
-            Assert.IsTrue(CurrentRootPagedDAO.ToIQueryable<Salesman>("pages1").Any());
-            Assert.IsTrue(CurrentRootPagedDAO.ToIQueryable<Salesman>(CacheMode.Refresh, "pages2").Any());
+            //Assert.IsTrue(CurrentRootPagedDAO.ToIQueryable<Salesman>().Any());
+            Assert.IsTrue(CurrentRootPagedDAO.ExecuteExpression((IEnumerable<Salesman> col) => col.Any()));
+
+            //Assert.IsTrue(CurrentRootPagedDAO.ToIQueryable<Salesman>(CacheMode.Refresh).Any());
+            Assert.IsTrue(CurrentRootPagedDAO.ExecuteExpression((IEnumerable<Salesman> col) => col.Any(),
+                          CacheMode.Refresh));
+
+            //Assert.IsTrue(CurrentRootPagedDAO.ToIQueryable<Salesman>("pages1").Any());
+            Assert.IsTrue(CurrentRootPagedDAO.ExecuteExpression((IEnumerable<Salesman> col) => col.Any(),
+                          "pages1"));
+
+            //Assert.IsTrue(CurrentRootPagedDAO.ToIQueryable<Salesman>(CacheMode.Refresh, "pages2").Any());
+            Assert.IsTrue(CurrentRootPagedDAO.ExecuteExpression((IEnumerable<Salesman> col) => col.Any(),
+                          CacheMode.Refresh, "pages2"));
         }
 
         [Test]
@@ -343,15 +353,15 @@ namespace PersistentLayer.NHibernate.Test.DAL
              */
 
             SessionProvider.BeginTransaction(IsolationLevel.ReadCommitted);
-            Salesman cons = CurrentRootPagedDAO.ToIQueryable<Salesman>().First();
+            Salesman cons = CurrentRootPagedDAO.ExecuteExpression<Salesman, Salesman>(saleswoman => saleswoman.First());
             Salesman cons2 = new Salesman
-            {
-                //ID = cons.ID,
-                IdentityCode = cons.IdentityCode,
-                Name = cons.Name,
-                Surname = cons.Surname,
-                Email = cons.Email
-            };
+                {
+                    //ID = cons.ID,
+                    IdentityCode = cons.IdentityCode,
+                    Name = cons.Name,
+                    Surname = cons.Surname,
+                    Email = cons.Email
+                };
             cons2.UpdateId(cons);
 
             cons2.UpdateVersion(cons);
@@ -375,7 +385,8 @@ namespace PersistentLayer.NHibernate.Test.DAL
             try
             {
                 SessionProvider.BeginTransaction(IsolationLevel.ReadCommitted);
-                Salesman cons = CurrentRootPagedDAO.ToIQueryable<Salesman>().First(n => n.ID == 11);
+                //Salesman cons = CurrentRootPagedDAO.ToIQueryable<Salesman>().First(n => n.ID == 11);
+                Salesman cons = CurrentRootPagedDAO.ExecuteExpression<Salesman, Salesman>(saleswoman => saleswoman.First(salesman => salesman.ID == 11));
                 Assert.IsNotNull(cons);
                 Assert.IsTrue(CurrentRootPagedDAO.IsCached(cons));
                 string oldEmail = cons.Email;
@@ -404,7 +415,8 @@ namespace PersistentLayer.NHibernate.Test.DAL
             try
             {
                 SessionProvider.BeginTransaction(IsolationLevel.ReadCommitted);
-                Salesman cons = CurrentRootPagedDAO.ToIQueryable<Salesman>().First(n => n.ID == 11);
+                //Salesman cons = CurrentRootPagedDAO.ToIQueryable<Salesman>().First(n => n.ID == 11);
+                Salesman cons = CurrentRootPagedDAO.UniqueResult<Salesman>(salesman => salesman.ID == 11);
                 cons.Email = "test_email";
                 /*
                  * the calling of this method fails because It tries to update an persistent instance reference (cons),
