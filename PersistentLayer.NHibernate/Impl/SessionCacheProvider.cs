@@ -67,7 +67,8 @@ namespace PersistentLayer.NHibernate.Impl
             base.RollbackTransaction(cause);
             if (this.newSessionAfterRollback)
                 this.Reset();
-        }
+        }
+
        
     }
 }
