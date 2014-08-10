@@ -61,7 +61,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="PersistentLayer">
+    <Reference Include="PersistentLayer, Version=5.3.3.12, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\PersistentLayer.5.3.4.12\lib\net35\PersistentLayer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
