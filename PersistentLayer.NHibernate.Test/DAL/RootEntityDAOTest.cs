@@ -294,18 +294,18 @@ namespace PersistentLayer.NHibernate.Test.DAL
         public void ToIQueryableTest()
         {
             //Assert.IsTrue(CurrentRootPagedDAO.ToIQueryable<Salesman>().Any());
-            Assert.IsTrue(CurrentRootPagedDAO.ExecuteExpression((IEnumerable<Salesman> col) => col.Any()));
+            Assert.IsTrue(CurrentRootPagedDAO.ExecuteExpression((IQueryable<Salesman> col) => col.Any()));
 
             //Assert.IsTrue(CurrentRootPagedDAO.ToIQueryable<Salesman>(CacheMode.Refresh).Any());
-            Assert.IsTrue(CurrentRootPagedDAO.ExecuteExpression((IEnumerable<Salesman> col) => col.Any(),
+            Assert.IsTrue(CurrentRootPagedDAO.ExecuteExpression((IQueryable<Salesman> col) => col.Any(),
                           CacheMode.Refresh));
 
             //Assert.IsTrue(CurrentRootPagedDAO.ToIQueryable<Salesman>("pages1").Any());
-            Assert.IsTrue(CurrentRootPagedDAO.ExecuteExpression((IEnumerable<Salesman> col) => col.Any(),
+            Assert.IsTrue(CurrentRootPagedDAO.ExecuteExpression((IQueryable<Salesman> col) => col.Any(),
                           "pages1"));
 
             //Assert.IsTrue(CurrentRootPagedDAO.ToIQueryable<Salesman>(CacheMode.Refresh, "pages2").Any());
-            Assert.IsTrue(CurrentRootPagedDAO.ExecuteExpression((IEnumerable<Salesman> col) => col.Any(),
+            Assert.IsTrue(CurrentRootPagedDAO.ExecuteExpression((IQueryable<Salesman> col) => col.Any(),
                           CacheMode.Refresh, "pages2"));
         }
 
@@ -954,7 +954,7 @@ namespace PersistentLayer.NHibernate.Test.DAL
         {
             var customDAO = this.CurrentRootPagedDAO;
 
-            Expression<Func<IEnumerable<Salesman>, Salesman>> queryExpr
+            Expression<Func<IQueryable<Salesman>, Salesman>> queryExpr
                 = persons => (from a in persons
                               where a.ID == 1
                               select a)
@@ -970,7 +970,7 @@ namespace PersistentLayer.NHibernate.Test.DAL
         {
             var customDAO = this.CurrentRootPagedDAO;
 
-            Expression<Func<IEnumerable<Salesman>, IEnumerable<string>>> queryExpr
+            Expression<Func<IQueryable<Salesman>, IEnumerable<string>>> queryExpr
                 = persons => (from a in persons
                               select a.Name
                               )
@@ -986,19 +986,19 @@ namespace PersistentLayer.NHibernate.Test.DAL
         {
             var customDAO = this.CurrentRootPagedDAO;
 
-            var result1 = customDAO.ExecuteExpression((IEnumerable<Salesman> entities) => entities.FirstOrDefault());
+            var result1 = customDAO.ExecuteExpression((IQueryable<Salesman> entities) => entities.FirstOrDefault());
             Assert.IsNotNull(result1);
 
-            var result2 = customDAO.ExecuteExpression((IEnumerable<Salesman> entities) => entities.Where(person1 => person1.ID < 5));
+            var result2 = customDAO.ExecuteExpression((IQueryable<Salesman> entities) => entities.Where(person1 => person1.ID < 5));
             Assert.IsNotNull(result2);
 
-            var result3 = customDAO.ExecuteExpression((IEnumerable<Salesman> entities) => entities.Select(person => new { person.Name, person.Surname }));
+            var result3 = customDAO.ExecuteExpression((IQueryable<Salesman> entities) => entities.Select(person => new { person.Name, person.Surname }));
             Assert.IsNotNull(result3);
 
-            var result4 = customDAO.ExecuteExpression((IEnumerable<Salesman> entities) => entities.Where(person => person.ID > 1).Select(person => new { person.Name, person.Surname }));
+            var result4 = customDAO.ExecuteExpression((IQueryable<Salesman> entities) => entities.Where(person => person.ID > 1).Select(person => new { person.Name, person.Surname }));
             Assert.IsNotNull(result4);
 
-            var result5 = customDAO.ExecuteExpression((IEnumerable<Salesman> entities) => entities.Select(person => new SalesmanPrj { Name = person.Name, Surname = person.Surname }));
+            var result5 = customDAO.ExecuteExpression((IQueryable<Salesman> entities) => entities.Select(person => new SalesmanPrj { Name = person.Name, Surname = person.Surname }));
             Assert.IsNotNull(result5);
 
             // I don't understand how come this instruction works .... 
@@ -1007,6 +1007,44 @@ namespace PersistentLayer.NHibernate.Test.DAL
             //var result6 = customDAO.ExecuteExpression((IEnumerable<Salesman> entities) => entities.Select<Salesman, dynamic>(person => new { Name = person.Name, Surname = person.Surname }));
             //Assert.IsNotNull(result6);
 
+            Expression<Func<IQueryable<Salesman>, IEnumerable<Salesman>>> a =
+                entities => entities.Where(person1 => person1.ID < 5);
+
+            var res = customDAO.ExecuteExpression(a);
+            Assert.IsNotNull(res);
+
+
+            Expression<Func<IQueryable<Salesman>, IEnumerable<Salesman>>> b =
+                entities => entities.Where(salesman => salesman.ID > 5)
+                                    .ToList();
+
+            var res2 = customDAO.ExecuteExpression(b);
+            Assert.IsNotNull(res2);
+
+
+            Expression<Func<IQueryable<Salesman>, IEnumerable<Salesman>>> c =
+                entities => entities.Where(salesman => salesman.ID < 5)
+                                    .ToArray();
+
+            var res3 = customDAO.ExecuteExpression(c);
+            Assert.IsNotNull(res3);
+
+
+            Expression<Func<IQueryable<Salesman>, object>> d =
+                entities => entities.Where(salesman => salesman.ID > 5)
+                                    .Select(salesman => new { salesman.ID, salesman.Name });
+
+            var res4 = customDAO.ExecuteExpression(d);
+            Assert.IsNotNull(res4);
+
+
+            Func<IQueryable<Salesman>, object> e =
+                entities => entities.Where(salesman => salesman.ID > 5)
+                                    .Select(salesman => new { salesman.ID, salesman.Name });
+
+            Expression<Func<IQueryable<Salesman>, object>> f = queryable => e(queryable);
+            var res5 = customDAO.ExecuteExpression(f);
+            Assert.IsNotNull(res5);
         }
 
         [Test]

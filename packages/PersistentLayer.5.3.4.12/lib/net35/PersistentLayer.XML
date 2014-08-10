@@ -4,6 +4,11 @@
         <name>PersistentLayer</name>
     </assembly>
     <members>
+        <member name="T:PersistentLayer.Exceptions.ContextRollbackException">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:PersistentLayer.Exceptions.BusinessLayerException">
             <summary>
             Rappresents a generic exception when there's an error on managing the current Unit of Work.
@@ -38,121 +43,6 @@
             <param name="innerException"></param>
         </member>
         <member name="P:PersistentLayer.Exceptions.BusinessLayerException.InvokerName">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="T:PersistentLayer.Exceptions.BusinessObjectException">
-            <summary>
-            Rappresents an generic error when business DAOs execute any kind of query on data store.
-            </summary>
-        </member>
-        <member name="M:PersistentLayer.Exceptions.BusinessObjectException.#ctor(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="message"></param>
-        </member>
-        <member name="M:PersistentLayer.Exceptions.BusinessObjectException.#ctor(System.String,System.Exception)">
-            <summary>
-            
-            </summary>
-            <param name="message"></param>
-            <param name="innerException"></param>
-        </member>
-        <member name="T:PersistentLayer.Exceptions.BusinessPersistentException">
-            <summary>
-            An exception which is thrown when a generic query is executed through DAO methods because of a failed persistent operation.
-            </summary>
-        </member>
-        <member name="T:PersistentLayer.Exceptions.ExecutionQueryException">
-            <summary>
-            An exception which is thrown when a generic query is executed through DAO methods.
-            </summary>
-        </member>
-        <member name="M:PersistentLayer.Exceptions.ExecutionQueryException.#ctor(System.String,System.String)">
-            <summary>
-            
-            </summary>
-            <param name="message"></param>
-            <param name="methodInvoker"></param>
-        </member>
-        <member name="M:PersistentLayer.Exceptions.ExecutionQueryException.#ctor(System.String,System.Exception)">
-            <summary>
-            
-            </summary>
-            <param name="message"></param>
-            <param name="innerException"></param>
-        </member>
-        <member name="M:PersistentLayer.Exceptions.ExecutionQueryException.#ctor(System.String,System.String,System.Exception)">
-            <summary>
-            
-            </summary>
-            <param name="message"></param>
-            <param name="methodInvoker"></param>
-            <param name="innerException"></param>
-        </member>
-        <member name="P:PersistentLayer.Exceptions.ExecutionQueryException.MethodInvoker">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:PersistentLayer.Exceptions.BusinessPersistentException.#ctor(System.String,System.String)">
-            <summary>
-            
-            </summary>
-            <param name="message"></param>
-            <param name="methodInvoker"></param>
-        </member>
-        <member name="M:PersistentLayer.Exceptions.BusinessPersistentException.#ctor(System.String,System.Exception)">
-            <summary>
-            
-            </summary>
-            <param name="message"></param>
-            <param name="innerException"></param>
-        </member>
-        <member name="M:PersistentLayer.Exceptions.BusinessPersistentException.#ctor(System.String,System.String,System.Exception)">
-            <summary>
-            
-            </summary>
-            <param name="message"></param>
-            <param name="methodInvoker"></param>
-            <param name="innerException"></param>
-        </member>
-        <member name="T:PersistentLayer.Exceptions.CommitFailedException">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:PersistentLayer.Exceptions.CommitFailedException.#ctor(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="message"></param>
-        </member>
-        <member name="M:PersistentLayer.Exceptions.CommitFailedException.#ctor(System.String,System.String)">
-            <summary>
-            
-            </summary>
-            <param name="message"></param>
-            <param name="invokerName"></param>
-        </member>
-        <member name="M:PersistentLayer.Exceptions.CommitFailedException.#ctor(System.String,System.Exception)">
-            <summary>
-            
-            </summary>
-            <param name="message"></param>
-            <param name="innerException"></param>
-        </member>
-        <member name="M:PersistentLayer.Exceptions.CommitFailedException.#ctor(System.String,System.String,System.Exception)">
-            <summary>
-            
-            </summary>
-            <param name="message"></param>
-            <param name="invokerName"></param>
-            <param name="innerException"></param>
-        </member>
-        <member name="T:PersistentLayer.Exceptions.ContextRollbackException">
             <summary>
             
             </summary>
@@ -241,6 +131,24 @@
             
             </summary>
         </member>
+        <member name="T:PersistentLayer.Exceptions.BusinessObjectException">
+            <summary>
+            Rappresents an generic error when business DAOs execute any kind of query on data store.
+            </summary>
+        </member>
+        <member name="M:PersistentLayer.Exceptions.BusinessObjectException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:PersistentLayer.Exceptions.BusinessObjectException.#ctor(System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="innerException"></param>
+        </member>
         <member name="M:PersistentLayer.Exceptions.InvalidIdentifierException.#ctor(System.String)">
             <summary>
             
@@ -278,60 +186,6 @@
             <summary>
             The missing property.
             </summary>
-        </member>
-        <member name="T:PersistentLayer.Exceptions.QueryArgumentException">
-            <summary>
-            An exception which is thrown when a generic query is executed through DAO methods because of an not valid argument
-            </summary>
-        </member>
-        <member name="M:PersistentLayer.Exceptions.QueryArgumentException.#ctor(System.String,System.String,System.String)">
-            <summary>
-            
-            </summary>
-            <param name="message"></param>
-            <param name="methodInvoker"></param>
-            <param name="argumentName"></param>
-        </member>
-        <member name="M:PersistentLayer.Exceptions.QueryArgumentException.#ctor(System.String,System.String,System.String,System.Exception)">
-            <summary>
-            
-            </summary>
-            <param name="message"></param>
-            <param name="methodInvoker"></param>
-            <param name="argumentName"></param>
-            <param name="innerException"></param>
-        </member>
-        <member name="P:PersistentLayer.Exceptions.QueryArgumentException.ArgumentName">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="T:PersistentLayer.Exceptions.QueryFormatException">
-            <summary>
-            An exception which is thrown when a generic query is executed through DAO methods because of an not valid query syntax.
-            </summary>
-        </member>
-        <member name="M:PersistentLayer.Exceptions.QueryFormatException.#ctor(System.String,System.String)">
-            <summary>
-            
-            </summary>
-            <param name="message"></param>
-            <param name="methodInvoker"></param>
-        </member>
-        <member name="M:PersistentLayer.Exceptions.QueryFormatException.#ctor(System.String,System.Exception)">
-            <summary>
-            
-            </summary>
-            <param name="message"></param>
-            <param name="innerException"></param>
-        </member>
-        <member name="M:PersistentLayer.Exceptions.QueryFormatException.#ctor(System.String,System.String,System.Exception)">
-            <summary>
-            
-            </summary>
-            <param name="message"></param>
-            <param name="methodInvoker"></param>
-            <param name="innerException"></param>
         </member>
         <member name="T:PersistentLayer.Exceptions.RollbackFailedException">
             <summary>
@@ -666,7 +520,7 @@
             <param name="predicate"></param>
             <returns></returns>
         </member>
-        <member name="M:PersistentLayer.IQueryableDAO`2.ExecuteExpression``1(System.Linq.Expressions.Expression{System.Func{System.Collections.Generic.IEnumerable{`0},``0}})">
+        <member name="M:PersistentLayer.IQueryableDAO`2.ExecuteExpression``1(System.Linq.Expressions.Expression{System.Func{System.Linq.IQueryable{`0},``0}})">
             <summary>
             
             </summary>
@@ -801,7 +655,7 @@
             <param name="predicate"></param>
             <returns></returns>
         </member>
-        <member name="M:PersistentLayer.IQueryableDAO.ExecuteExpression``2(System.Linq.Expressions.Expression{System.Func{System.Collections.Generic.IEnumerable{``0},``1}})">
+        <member name="M:PersistentLayer.IQueryableDAO.ExecuteExpression``2(System.Linq.Expressions.Expression{System.Func{System.Linq.IQueryable{``0},``1}})">
             <summary>
             
             </summary>
@@ -859,6 +713,152 @@
             <param name="pageSize"></param>
             <param name="predicate"></param>
             <returns></returns>
+        </member>
+        <member name="T:PersistentLayer.Exceptions.BusinessPersistentException">
+            <summary>
+            An exception which is thrown when a generic query is executed through DAO methods because of a failed persistent operation.
+            </summary>
+        </member>
+        <member name="T:PersistentLayer.Exceptions.ExecutionQueryException">
+            <summary>
+            An exception which is thrown when a generic query is executed through DAO methods.
+            </summary>
+        </member>
+        <member name="M:PersistentLayer.Exceptions.ExecutionQueryException.#ctor(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="methodInvoker"></param>
+        </member>
+        <member name="M:PersistentLayer.Exceptions.ExecutionQueryException.#ctor(System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="innerException"></param>
+        </member>
+        <member name="M:PersistentLayer.Exceptions.ExecutionQueryException.#ctor(System.String,System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="methodInvoker"></param>
+            <param name="innerException"></param>
+        </member>
+        <member name="P:PersistentLayer.Exceptions.ExecutionQueryException.MethodInvoker">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:PersistentLayer.Exceptions.BusinessPersistentException.#ctor(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="methodInvoker"></param>
+        </member>
+        <member name="M:PersistentLayer.Exceptions.BusinessPersistentException.#ctor(System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="innerException"></param>
+        </member>
+        <member name="M:PersistentLayer.Exceptions.BusinessPersistentException.#ctor(System.String,System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="methodInvoker"></param>
+            <param name="innerException"></param>
+        </member>
+        <member name="T:PersistentLayer.Exceptions.CommitFailedException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:PersistentLayer.Exceptions.CommitFailedException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:PersistentLayer.Exceptions.CommitFailedException.#ctor(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="invokerName"></param>
+        </member>
+        <member name="M:PersistentLayer.Exceptions.CommitFailedException.#ctor(System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="innerException"></param>
+        </member>
+        <member name="M:PersistentLayer.Exceptions.CommitFailedException.#ctor(System.String,System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="invokerName"></param>
+            <param name="innerException"></param>
+        </member>
+        <member name="T:PersistentLayer.Exceptions.QueryArgumentException">
+            <summary>
+            An exception which is thrown when a generic query is executed through DAO methods because of an not valid argument
+            </summary>
+        </member>
+        <member name="M:PersistentLayer.Exceptions.QueryArgumentException.#ctor(System.String,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="methodInvoker"></param>
+            <param name="argumentName"></param>
+        </member>
+        <member name="M:PersistentLayer.Exceptions.QueryArgumentException.#ctor(System.String,System.String,System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="methodInvoker"></param>
+            <param name="argumentName"></param>
+            <param name="innerException"></param>
+        </member>
+        <member name="P:PersistentLayer.Exceptions.QueryArgumentException.ArgumentName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:PersistentLayer.Exceptions.QueryFormatException">
+            <summary>
+            An exception which is thrown when a generic query is executed through DAO methods because of an not valid query syntax.
+            </summary>
+        </member>
+        <member name="M:PersistentLayer.Exceptions.QueryFormatException.#ctor(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="methodInvoker"></param>
+        </member>
+        <member name="M:PersistentLayer.Exceptions.QueryFormatException.#ctor(System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="innerException"></param>
+        </member>
+        <member name="M:PersistentLayer.Exceptions.QueryFormatException.#ctor(System.String,System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="methodInvoker"></param>
+            <param name="innerException"></param>
         </member>
         <member name="T:PersistentLayer.IRootPagedDAO`1">
             <summary>
@@ -933,7 +933,7 @@
             <param name="predicate"></param>
             <returns></returns>
         </member>
-        <member name="M:PersistentLayer.IRootQueryableDAO`1.ExecuteExpression``2(System.Linq.Expressions.Expression{System.Func{System.Collections.Generic.IEnumerable{``0},``1}})">
+        <member name="M:PersistentLayer.IRootQueryableDAO`1.ExecuteExpression``2(System.Linq.Expressions.Expression{System.Func{System.Linq.IQueryable{``0},``1}})">
             <summary>
             
             </summary>
@@ -1060,7 +1060,7 @@
             <param name="predicate"></param>
             <returns></returns>
         </member>
-        <member name="M:PersistentLayer.IRootQueryableDAO`2.ExecuteExpression``1(System.Linq.Expressions.Expression{System.Func{System.Collections.Generic.IEnumerable{`1},``0}})">
+        <member name="M:PersistentLayer.IRootQueryableDAO`2.ExecuteExpression``1(System.Linq.Expressions.Expression{System.Func{System.Linq.IQueryable{`1},``0}})">
             <summary>
             
             </summary>

@@ -377,7 +377,7 @@ namespace PersistentLayer.NHibernate.Impl
         /// <typeparam name="TResult"></typeparam>
         /// <param name="queryExpr"></param>
         /// <returns></returns>
-        public TResult ExecuteExpression<TResult>(Expression<Func<IEnumerable<TEntity>, TResult>> queryExpr)
+        public TResult ExecuteExpression<TResult>(Expression<Func<IQueryable<TEntity>, TResult>> queryExpr)
         {
             return this.CurrentSession.ExecuteExpression(queryExpr, null, null);
         }
@@ -389,7 +389,7 @@ namespace PersistentLayer.NHibernate.Impl
         /// <param name="queryExpr"></param>
         /// <param name="mode"></param>
         /// <returns></returns>
-        public TResult ExecuteExpression<TResult>(Expression<Func<IEnumerable<TEntity>, TResult>> queryExpr, CacheMode mode)
+        public TResult ExecuteExpression<TResult>(Expression<Func<IQueryable<TEntity>, TResult>> queryExpr, CacheMode mode)
         {
             return this.CurrentSession.ExecuteExpression(queryExpr, mode, null);
         }
@@ -401,7 +401,7 @@ namespace PersistentLayer.NHibernate.Impl
         /// <param name="queryExpr"></param>
         /// <param name="region"></param>
         /// <returns></returns>
-        public TResult ExecuteExpression<TResult>(Expression<Func<IEnumerable<TEntity>, TResult>> queryExpr, string region)
+        public TResult ExecuteExpression<TResult>(Expression<Func<IQueryable<TEntity>, TResult>> queryExpr, string region)
         {
             return this.CurrentSession.ExecuteExpression(queryExpr, null, region);
         }
@@ -414,7 +414,7 @@ namespace PersistentLayer.NHibernate.Impl
         /// <param name="mode"></param>
         /// <param name="region"></param>
         /// <returns></returns>
-        public TResult ExecuteExpression<TResult>(Expression<Func<IEnumerable<TEntity>, TResult>> queryExpr, CacheMode mode, string region)
+        public TResult ExecuteExpression<TResult>(Expression<Func<IQueryable<TEntity>, TResult>> queryExpr, CacheMode mode, string region)
         {
             return this.CurrentSession.ExecuteExpression(queryExpr, mode, region);
         }
@@ -866,7 +866,7 @@ namespace PersistentLayer.NHibernate.Impl
         /// <typeparam name="TResult"></typeparam>
         /// <param name="queryExpr"></param>
         /// <returns></returns>
-        public TResult ExecuteExpression<TEntity, TResult>(Expression<Func<IEnumerable<TEntity>, TResult>> queryExpr) where TEntity : class, TRootEntity
+        public TResult ExecuteExpression<TEntity, TResult>(Expression<Func<IQueryable<TEntity>, TResult>> queryExpr) where TEntity : class, TRootEntity
         {
             return this.CurrentSession.ExecuteExpression(queryExpr, null, null);
         }
@@ -879,7 +879,7 @@ namespace PersistentLayer.NHibernate.Impl
         /// <param name="queryExpr"></param>
         /// <param name="mode"></param>
         /// <returns></returns>
-        public TResult ExecuteExpression<TEntity, TResult>(Expression<Func<IEnumerable<TEntity>, TResult>> queryExpr, CacheMode mode) where TEntity : class, TRootEntity
+        public TResult ExecuteExpression<TEntity, TResult>(Expression<Func<IQueryable<TEntity>, TResult>> queryExpr, CacheMode mode) where TEntity : class, TRootEntity
         {
             return this.CurrentSession.ExecuteExpression(queryExpr, mode, null);
         }
@@ -892,7 +892,7 @@ namespace PersistentLayer.NHibernate.Impl
         /// <param name="queryExpr"></param>
         /// <param name="region"></param>
         /// <returns></returns>
-        public TResult ExecuteExpression<TEntity, TResult>(Expression<Func<IEnumerable<TEntity>, TResult>> queryExpr, string region) where TEntity : class, TRootEntity
+        public TResult ExecuteExpression<TEntity, TResult>(Expression<Func<IQueryable<TEntity>, TResult>> queryExpr, string region) where TEntity : class, TRootEntity
         {
             return this.CurrentSession.ExecuteExpression(queryExpr, null, region);
         }
@@ -906,7 +906,7 @@ namespace PersistentLayer.NHibernate.Impl
         /// <param name="mode"></param>
         /// <param name="region"></param>
         /// <returns></returns>
-        public TResult ExecuteExpression<TEntity, TResult>(Expression<Func<IEnumerable<TEntity>, TResult>> queryExpr, CacheMode mode, string region) where TEntity : class, TRootEntity
+        public TResult ExecuteExpression<TEntity, TResult>(Expression<Func<IQueryable<TEntity>, TResult>> queryExpr, CacheMode mode, string region) where TEntity : class, TRootEntity
         {
             return this.CurrentSession.ExecuteExpression(queryExpr, mode, region);
         }

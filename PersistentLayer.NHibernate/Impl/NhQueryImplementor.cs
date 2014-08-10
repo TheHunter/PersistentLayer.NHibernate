@@ -13,7 +13,7 @@ namespace PersistentLayer.NHibernate.Impl
     /// <summary>
     /// A basic class which implements all business DAO methods.
     /// </summary>
-    internal static class NhQueryImplementor
+    public static class NhQueryImplementor
     {
         /// <summary>
         /// 
@@ -584,7 +584,7 @@ namespace PersistentLayer.NHibernate.Impl
         /// <param name="region"></param>
         /// <returns></returns>
         internal static TResult ExecuteExpression<TEntity, TResult>(
-            this ISession session, Expression<Func<IEnumerable<TEntity>, TResult>> queryExpr, CacheMode? mode, string region)
+            this ISession session, Expression<Func<IQueryable<TEntity>, TResult>> queryExpr, CacheMode? mode, string region)
             where TEntity : class
         {
             if (queryExpr == null)
@@ -606,11 +606,12 @@ namespace PersistentLayer.NHibernate.Impl
                 TResult ret = queryExpr.Compile()
                                 .Invoke(query);
 
-                Type resultType = typeof(TResult);
-                if (resultType.IsInterface && resultType.Implements(typeof(IEnumerable)))
+                Type resultType = ret.GetType();
+                if (resultType.Implements(typeof(IQueryable<>)))
                 {
                     if (resultType.IsGenericType)
                     {
+                        #region
                         // for version net40
                         //Type t1 = resultType.GetGenericArguments()[0];
                         //if (t1.IsAnonymous())
@@ -622,8 +623,18 @@ namespace PersistentLayer.NHibernate.Impl
                         //return Enumerable.ToList(ret as dynamic);
 
                         //for version net.35
-                        Delegate del = ReflectionExtension.ToListEnumerableDelegate(resultType);
-                        object res = del.DynamicInvoke(ret);
+                        //Delegate del = ReflectionExtension.ToListEnumerableDelegate(resultType);
+                        //object res = del.DynamicInvoke(ret);
+                        //return (TResult)res;
+                        #endregion
+
+                        Type genArg = resultType.GetGenericArguments()[0];
+                        Delegate del = ReflectionExtension.ToListEnumerableDelegate(genArg);
+                        object list = del.DynamicInvoke(ret);
+
+                        Delegate delQ = ReflectionExtension.AsQueryable(genArg);
+                        object res = delQ.DynamicInvoke(list);
+
                         return (TResult)res;
                     }
                 }
@@ -646,7 +657,7 @@ namespace PersistentLayer.NHibernate.Impl
         /// <returns></returns>
         internal static TEntity MakePersistent<TEntity>(this ISession session, TEntity entity)
             where TEntity : class
-        {
+        {   
             try
             {
                 session.SaveOrUpdate(entity);

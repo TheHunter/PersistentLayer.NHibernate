@@ -59,7 +59,7 @@ namespace PersistentLayer.NHibernate
         /// <param name="queryExpr"></param>
         /// <param name="mode"></param>
         /// <returns></returns>
-        TResult ExecuteExpression<TResult>(Expression<Func<IEnumerable<TEntity>, TResult>> queryExpr, CacheMode mode);
+        TResult ExecuteExpression<TResult>(Expression<Func<IQueryable<TEntity>, TResult>> queryExpr, CacheMode mode);
 
         /// <summary>
         /// 
@@ -68,7 +68,7 @@ namespace PersistentLayer.NHibernate
         /// <param name="queryExpr"></param>
         /// <param name="region"></param>
         /// <returns></returns>
-        TResult ExecuteExpression<TResult>(Expression<Func<IEnumerable<TEntity>, TResult>> queryExpr, string region);
+        TResult ExecuteExpression<TResult>(Expression<Func<IQueryable<TEntity>, TResult>> queryExpr, string region);
 
         /// <summary>
         /// 
@@ -78,7 +78,7 @@ namespace PersistentLayer.NHibernate
         /// <param name="mode"></param>
         /// <param name="region"></param>
         /// <returns></returns>
-        TResult ExecuteExpression<TResult>(Expression<Func<IEnumerable<TEntity>, TResult>> queryExpr, CacheMode mode,
+        TResult ExecuteExpression<TResult>(Expression<Func<IQueryable<TEntity>, TResult>> queryExpr, CacheMode mode,
                                            string region);
         #endregion
 
@@ -252,7 +252,7 @@ namespace PersistentLayer.NHibernate
         /// <param name="queryExpr"></param>
         /// <param name="mode"></param>
         /// <returns></returns>
-        TResult ExecuteExpression<TEntity, TResult>(Expression<Func<IEnumerable<TEntity>, TResult>> queryExpr, CacheMode mode) where TEntity : class, TRootEntity;
+        TResult ExecuteExpression<TEntity, TResult>(Expression<Func<IQueryable<TEntity>, TResult>> queryExpr, CacheMode mode) where TEntity : class, TRootEntity;
 
         /// <summary>
         /// 
@@ -262,7 +262,7 @@ namespace PersistentLayer.NHibernate
         /// <param name="queryExpr"></param>
         /// <param name="region"></param>
         /// <returns></returns>
-        TResult ExecuteExpression<TEntity, TResult>(Expression<Func<IEnumerable<TEntity>, TResult>> queryExpr, string region) where TEntity : class, TRootEntity;
+        TResult ExecuteExpression<TEntity, TResult>(Expression<Func<IQueryable<TEntity>, TResult>> queryExpr, string region) where TEntity : class, TRootEntity;
 
         /// <summary>
         /// 
@@ -273,7 +273,7 @@ namespace PersistentLayer.NHibernate
         /// <param name="mode"></param>
         /// <param name="region"></param>
         /// <returns></returns>
-        TResult ExecuteExpression<TEntity, TResult>(Expression<Func<IEnumerable<TEntity>, TResult>> queryExpr, CacheMode mode,
+        TResult ExecuteExpression<TEntity, TResult>(Expression<Func<IQueryable<TEntity>, TResult>> queryExpr, CacheMode mode,
                                            string region) where TEntity : class, TRootEntity;
         #endregion
 

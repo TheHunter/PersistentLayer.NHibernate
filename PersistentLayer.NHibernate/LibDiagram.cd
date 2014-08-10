@@ -93,7 +93,7 @@
   <Class Name="PersistentLayer.NHibernate.Impl.NhQueryImplementor">
     <Position X="44.75" Y="6" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAIAAAAgAAgCAAARQAAQQAAAAAAAAAEAAEEFAAA=</HashCode>
+      <HashCode>AAAAEAIAAAAgAAgCAAARQAAQQAAAAAAAAAEAAEEFAAA=</HashCode>
       <FileName>Impl\NhQueryImplementor.cs</FileName>
     </TypeIdentifier>
   </Class>
