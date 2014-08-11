@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping
+    xmlns="urn:nhibernate-mapping-2.2"
+    assembly="PersistentLayer.Domain"
+    namespace="PersistentLayer.Domain"
+    default-access="property"
+    >
+    <class name="NumEntity">
+        <id name="ID" unsaved-value="0">
+            <generator class="identity">
+            </generator>
+        </id>
+        <property name="Testo" type="String" />
+
+    </class>
+</hibernate-mapping>

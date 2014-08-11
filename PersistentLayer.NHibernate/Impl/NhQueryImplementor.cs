@@ -611,31 +611,25 @@ namespace PersistentLayer.NHibernate.Impl
                 {
                     if (resultType.IsGenericType)
                     {
-                        #region
-                        // for version net40
-                        //Type t1 = resultType.GetGenericArguments()[0];
-                        //if (t1.IsAnonymous())
-                        //{
-                        //    Delegate del = ReflectionExtension.ToListEnumerableDelegate(resultType);
-                        //    object res = del.DynamicInvoke(ret);
-                        //    return (TResult)res;
-                        //}
-                        //return Enumerable.ToList(ret as dynamic);
 
-                        //for version net.35
-                        //Delegate del = ReflectionExtension.ToListEnumerableDelegate(resultType);
-                        //object res = del.DynamicInvoke(ret);
-                        //return (TResult)res;
-                        #endregion
+                        #if (Dynamic)
+                        {
+                            var list = Enumerable.ToList(ret as dynamic);
+                            var queryable = Queryable.AsQueryable(list);
+                            return queryable;
+                        }
+                        #else
+                        {
+                            Type genArg = resultType.GetGenericArguments()[0];
+                            Delegate del = ReflectionExtension.ToListDelegate(genArg);
+                            object list = del.DynamicInvoke(ret);
 
-                        Type genArg = resultType.GetGenericArguments()[0];
-                        Delegate del = ReflectionExtension.ToListEnumerableDelegate(genArg);
-                        object list = del.DynamicInvoke(ret);
+                            Delegate delQ = ReflectionExtension.AsQueryableDelegate(genArg);
+                            object res = delQ.DynamicInvoke(list);
 
-                        Delegate delQ = ReflectionExtension.AsQueryable(genArg);
-                        object res = delQ.DynamicInvoke(list);
-
-                        return (TResult)res;
+                            return (TResult)res;
+                        }
+                        #endif
                     }
                 }
                 return ret;

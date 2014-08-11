@@ -172,7 +172,7 @@ namespace PersistentLayer.NHibernate
         /// </summary>
         /// <param name="genericArg"></param>
         /// <returns></returns>
-        internal static Delegate ToListEnumerableDelegate(Type genericArg)
+        internal static Delegate ToListDelegate(Type genericArg)
         {
             if (ToListDelegates.ContainsKey(genericArg))
                 return ToListDelegates[genericArg];
@@ -189,7 +189,7 @@ namespace PersistentLayer.NHibernate
         }
 
 
-        internal static Delegate AsQueryable(Type genericArg)
+        internal static Delegate AsQueryableDelegate(Type genericArg)
         {
             if (AsQueryableDelegates.ContainsKey(genericArg))
                 return AsQueryableDelegates[genericArg];

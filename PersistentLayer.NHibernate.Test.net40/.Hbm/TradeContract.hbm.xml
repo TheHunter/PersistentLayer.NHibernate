@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping
+  assembly="PersistentLayer.Domain"
+  namespace="PersistentLayer.Domain"
+  default-access="property"
+  xmlns="urn:nhibernate-mapping-2.2">
+  
+  <class name="TradeContract" abstract="true">
+      
+    <id name="ID" column="ID" type="long">
+        <generator class="native" />
+    </id>
+    <version name="Version" type="int" />
+    <property name="Number" type="long" />
+    <property name="Description" type="String" />
+
+    <many-to-one name="Owner"
+                 class="Salesman"
+                 column="FKSalesman"
+                 not-null="false"
+                 >
+    </many-to-one>
+      
+    <property name="BeginDate" type="DateTime" not-null="false" />
+    <property name="Price" type="int" not-null="false" />
+
+      <joined-subclass name="CarContract">
+          <key column="IDCarContract" />
+          <property name="BrandName" type="String" />
+      </joined-subclass>
+      
+      <joined-subclass name="HomeContract">
+          <key column="IDHomeContract" />
+          <property name="Town" type="String" />
+      </joined-subclass>
+      
+  </class>
+</hibernate-mapping>

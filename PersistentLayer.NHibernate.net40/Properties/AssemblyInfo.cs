@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("PersistentLayer.NHibernate")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("This version is dedicated for framework version higher than net35.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("The hunter company")]
 [assembly: AssemblyProduct("PersistentLayer.NHibernate")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("2980d28f-1c29-4056-ae82-3c1d05453f09")]
+[assembly: Guid("c562d812-1873-4fbb-a583-d56a1a41fa56")]
 
 // Version information for an assembly consists of the following four values:
 //

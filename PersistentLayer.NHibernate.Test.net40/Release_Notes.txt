@@ -1,0 +1,12 @@
+Release notes:
+
+New interfaces for new DAO hierarchies:
+- New method named UniqueResult, which returns an unique instance for the given expression passed as argument.
+- New method named ExecuteExpression, which computes an expression that caould return any kind of data related to the given output expression.
+
+
+
+That's All.
+
+
+

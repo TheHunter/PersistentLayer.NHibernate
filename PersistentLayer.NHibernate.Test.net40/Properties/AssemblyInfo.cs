@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("PersistentLayer.NHibernate")]
+[assembly: AssemblyTitle("PersistentLayer.NHibernate.Test.net40")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("The hunter company")]
-[assembly: AssemblyProduct("PersistentLayer.NHibernate")]
-[assembly: AssemblyCopyright("Licensed under LGPL")]
+[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyProduct("PersistentLayer.NHibernate.Test.net40")]
+[assembly: AssemblyCopyright("Copyright © Microsoft 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("2980d28f-1c29-4056-ae82-3c1d05453f09")]
+[assembly: Guid("23751492-0008-42fe-94d0-d5b83898da77")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2.4.12.30")]
-[assembly: AssemblyFileVersion("2.4.12.30")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]

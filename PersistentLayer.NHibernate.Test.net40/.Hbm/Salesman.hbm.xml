@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping
+  assembly="PersistentLayer.Domain"
+  namespace="PersistentLayer.Domain"
+  default-access="property"
+  xmlns="urn:nhibernate-mapping-2.2">
+  
+  <class name="Salesman" optimistic-lock="version" lazy="true">
+      
+    <id name="ID" column="ID" type="long">
+        <generator class="native" />
+    </id>
+    <version name="Version" type="int" />
+    <property name="Name" type="String" />
+    <property name="Surname" type="String" />
+    <property name="Email" type="String" />
+    <property name="IdentityCode" type="int" not-null="false" />
+    
+    <set name="Agents"
+        inverse="true"
+        batch-size="10"
+        cascade="none"
+        table="SalesmanAgent"
+        >
+        <subselect>
+            <![CDATA[
+            select IDSalesman, max(BeginDate) as BeginDate, IDAgent FROM SalesmanAgent 
+            group by IDSalesman, IDAgent
+            ]]>
+        </subselect>
+        <key column="IDSalesman" not-null="false" />
+        <many-to-many class="Salesman" column="IDAgent" not-found="ignore" />
+    </set>
+    <set name="Contracts"
+         inverse="true"
+         batch-size="10"
+         table="TradeContract"
+         cascade="save-update"
+        >
+        <key column="FKSalesman" not-null="true" />
+        <one-to-many class="TradeContract" />
+    </set>
+    <set name="Agencies"
+        inverse="true"
+        batch-size="10"
+        lazy="false"
+        cascade="none"
+        table="Agency"
+        >
+        <key column="IDManager" not-null="true" />
+        <one-to-many class="Agency" />
+    </set>
+  </class>
+</hibernate-mapping>

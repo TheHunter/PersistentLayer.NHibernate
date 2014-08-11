@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping
+    assembly="PersistentLayer.Domain"
+    namespace="PersistentLayer.Domain"
+    default-access="property"
+    xmlns="urn:nhibernate-mapping-2.2">
+
+    <class name="Agency">
+        <id name="ID">
+            <generator class="native" />
+        </id>
+        <property name="Name" type="String" />
+        <property name="IDManager" type="long" />
+    </class>
+
+</hibernate-mapping>
