@@ -66,7 +66,7 @@ namespace PersistentLayer.NHibernate.Test.Sessions
                 }
 
             }
-            catch (InnerRollBackException ex)
+            catch (InnerRollBackException)
             {
                 Assert.IsFalse(this.SessionProvider.InProgress);
             }
