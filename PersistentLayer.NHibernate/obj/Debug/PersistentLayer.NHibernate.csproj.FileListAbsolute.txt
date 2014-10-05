@@ -1,0 +1,11 @@
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate\bin\Debug\PersistentLayer.NHibernate.XML
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate\bin\Debug\PersistentLayer.NHibernate.dll
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate\bin\Debug\PersistentLayer.NHibernate.pdb
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate\bin\Debug\Iesi.Collections.dll
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate\bin\Debug\NHibernate.dll
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate\bin\Debug\PersistentLayer.dll
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate\bin\Debug\Iesi.Collections.xml
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate\bin\Debug\NHibernate.xml
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate\bin\Debug\PersistentLayer.xml
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate\obj\Debug\PersistentLayer.NHibernate.dll
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate\obj\Debug\PersistentLayer.NHibernate.pdb

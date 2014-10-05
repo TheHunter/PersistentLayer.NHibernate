@@ -1,0 +1,11 @@
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate.net40\bin\Release\PersistentLayer.NHibernate.XML
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate.net40\bin\Release\PersistentLayer.NHibernate.dll
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate.net40\bin\Release\PersistentLayer.NHibernate.pdb
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate.net40\bin\Release\Iesi.Collections.dll
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate.net40\bin\Release\NHibernate.dll
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate.net40\bin\Release\PersistentLayer.dll
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate.net40\bin\Release\Iesi.Collections.xml
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate.net40\bin\Release\NHibernate.xml
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate.net40\bin\Release\PersistentLayer.xml
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate.net40\obj\Release\PersistentLayer.NHibernate.dll
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate.net40\obj\Release\PersistentLayer.NHibernate.pdb

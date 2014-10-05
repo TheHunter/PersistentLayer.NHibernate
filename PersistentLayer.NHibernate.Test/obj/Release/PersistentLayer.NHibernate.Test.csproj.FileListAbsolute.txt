@@ -1,0 +1,50 @@
+C:\Users\Diego\Documents\Visual Studio 2012\Projects\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\bin\Release\DB\SalesArea.mdf
+C:\Users\Diego\Documents\Visual Studio 2012\Projects\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\bin\Release\DB\SalesArea_log.ldf
+C:\Users\Diego\Documents\Visual Studio 2012\Projects\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\bin\Release\PersistentLayer.NHibernate.Test.dll.config
+C:\Users\Diego\Documents\Visual Studio 2012\Projects\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\bin\Release\PersistentLayer.NHibernate.Test.dll
+C:\Users\Diego\Documents\Visual Studio 2012\Projects\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\bin\Release\PersistentLayer.NHibernate.Test.pdb
+C:\Users\Diego\Documents\Visual Studio 2012\Projects\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\bin\Release\EntityModel.dll
+C:\Users\Diego\Documents\Visual Studio 2012\Projects\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\bin\Release\Iesi.Collections.dll
+C:\Users\Diego\Documents\Visual Studio 2012\Projects\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\bin\Release\NHibernate.dll
+C:\Users\Diego\Documents\Visual Studio 2012\Projects\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\bin\Release\nunit.framework.dll
+C:\Users\Diego\Documents\Visual Studio 2012\Projects\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\bin\Release\PersistentLayer.dll
+C:\Users\Diego\Documents\Visual Studio 2012\Projects\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\bin\Release\PersistentLayer.Domain.dll
+C:\Users\Diego\Documents\Visual Studio 2012\Projects\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\bin\Release\PersistentLayer.NHibernate.dll
+C:\Users\Diego\Documents\Visual Studio 2012\Projects\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\bin\Release\PersistentLayer.Domain.pdb
+C:\Users\Diego\Documents\Visual Studio 2012\Projects\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\bin\Release\PersistentLayer.NHibernate.pdb
+C:\Users\Diego\Documents\Visual Studio 2012\Projects\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\bin\Release\PersistentLayer.NHibernate.xml
+C:\Users\Diego\Documents\Visual Studio 2012\Projects\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\bin\Release\EntityModel.xml
+C:\Users\Diego\Documents\Visual Studio 2012\Projects\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\bin\Release\Iesi.Collections.xml
+C:\Users\Diego\Documents\Visual Studio 2012\Projects\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\bin\Release\NHibernate.xml
+C:\Users\Diego\Documents\Visual Studio 2012\Projects\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\bin\Release\nunit.framework.xml
+C:\Users\Diego\Documents\Visual Studio 2012\Projects\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\bin\Release\PersistentLayer.xml
+C:\Users\Diego\Documents\Visual Studio 2012\Projects\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\obj\Release\PersistentLayer.NHibernate.Test.csprojResolveAssemblyReference.cache
+C:\Users\Diego\Documents\Visual Studio 2012\Projects\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\obj\Release\PersistentLayer.NHibernate.Test.Properties.Resources.resources
+C:\Users\Diego\Documents\Visual Studio 2012\Projects\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\obj\Release\PersistentLayer.NHibernate.Test.csproj.GenerateResource.Cache
+C:\Users\Diego\Documents\Visual Studio 2012\Projects\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\obj\Release\PersistentLayer.NHibernate.Test.dll
+C:\Users\Diego\Documents\Visual Studio 2012\Projects\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\obj\Release\PersistentLayer.NHibernate.Test.pdb
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\bin\Release\DB\SalesArea.mdf
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\bin\Release\DB\SalesArea_log.ldf
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\bin\Release\PersistentLayer.NHibernate.Test.dll.config
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\bin\Release\PersistentLayer.NHibernate.Test.dll
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\bin\Release\PersistentLayer.NHibernate.Test.pdb
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\bin\Release\EntityModel.dll
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\bin\Release\Iesi.Collections.dll
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\bin\Release\NHibernate.dll
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\bin\Release\nunit.framework.dll
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\bin\Release\PersistentLayer.dll
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\bin\Release\PersistentLayer.Domain.dll
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\bin\Release\PersistentLayer.NHibernate.dll
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\bin\Release\PersistentLayer.Domain.pdb
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\bin\Release\PersistentLayer.NHibernate.pdb
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\bin\Release\PersistentLayer.NHibernate.xml
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\bin\Release\EntityModel.xml
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\bin\Release\Iesi.Collections.xml
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\bin\Release\NHibernate.xml
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\bin\Release\nunit.framework.xml
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\bin\Release\PersistentLayer.xml
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\obj\Release\PersistentLayer.NHibernate.Test.csprojResolveAssemblyReference.cache
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\obj\Release\PersistentLayer.NHibernate.Test.Properties.Resources.resources
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\obj\Release\PersistentLayer.NHibernate.Test.csproj.GenerateResource.Cache
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\obj\Release\PersistentLayer.NHibernate.Test.dll
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.NHibernate.Test\obj\Release\PersistentLayer.NHibernate.Test.pdb

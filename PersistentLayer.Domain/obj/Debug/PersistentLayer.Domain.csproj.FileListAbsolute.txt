@@ -1,0 +1,6 @@
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.Domain\bin\Debug\PersistentLayer.Domain.dll
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.Domain\bin\Debug\PersistentLayer.Domain.pdb
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.Domain\bin\Debug\EntityModel.dll
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.Domain\bin\Debug\EntityModel.xml
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.Domain\obj\Debug\PersistentLayer.Domain.dll
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.Domain\obj\Debug\PersistentLayer.Domain.pdb

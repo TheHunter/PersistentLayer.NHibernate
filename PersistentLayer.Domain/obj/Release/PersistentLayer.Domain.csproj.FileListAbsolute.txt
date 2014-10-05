@@ -1,0 +1,13 @@
+C:\Users\Diego\Documents\Visual Studio 2012\Projects\PersistentLayer.NHibernate\PersistentLayer.Domain\bin\Release\PersistentLayer.Domain.dll
+C:\Users\Diego\Documents\Visual Studio 2012\Projects\PersistentLayer.NHibernate\PersistentLayer.Domain\bin\Release\PersistentLayer.Domain.pdb
+C:\Users\Diego\Documents\Visual Studio 2012\Projects\PersistentLayer.NHibernate\PersistentLayer.Domain\bin\Release\EntityModel.dll
+C:\Users\Diego\Documents\Visual Studio 2012\Projects\PersistentLayer.NHibernate\PersistentLayer.Domain\bin\Release\EntityModel.xml
+C:\Users\Diego\Documents\Visual Studio 2012\Projects\PersistentLayer.NHibernate\PersistentLayer.Domain\obj\Release\PersistentLayer.Domain.csprojResolveAssemblyReference.cache
+C:\Users\Diego\Documents\Visual Studio 2012\Projects\PersistentLayer.NHibernate\PersistentLayer.Domain\obj\Release\PersistentLayer.Domain.dll
+C:\Users\Diego\Documents\Visual Studio 2012\Projects\PersistentLayer.NHibernate\PersistentLayer.Domain\obj\Release\PersistentLayer.Domain.pdb
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.Domain\bin\Release\PersistentLayer.Domain.dll
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.Domain\bin\Release\PersistentLayer.Domain.pdb
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.Domain\bin\Release\EntityModel.dll
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.Domain\bin\Release\EntityModel.xml
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.Domain\obj\Release\PersistentLayer.Domain.dll
+C:\Users\Diego\Documents\Progetti\Net\HunterRepo\PersistentLayer.NHibernate\PersistentLayer.Domain\obj\Release\PersistentLayer.Domain.pdb
