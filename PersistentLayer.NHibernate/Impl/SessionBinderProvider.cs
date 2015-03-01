@@ -20,7 +20,7 @@ namespace PersistentLayer.NHibernate.Impl
         /// </summary>
         private readonly Action onBinding;
         /// <summary>
-        /// A delegate which will be executed whenver a session must be unbinded from user custom context.
+        /// A delegate which will be executed whenever a session must be unbinded from user custom context.
         /// </summary>
         private readonly Action onUnBinding;
         /// <summary>
@@ -29,12 +29,17 @@ namespace PersistentLayer.NHibernate.Impl
         private readonly Func<bool> hasSessionBinded;
 
         /// <summary>
-        /// 
+        /// Initializes a new instance of the <see cref="SessionBinderProvider"/> class.
         /// </summary>
-        /// <param name="onRetrievingSession"></param>
-        /// <param name="onBinding"></param>
-        /// <param name="onUnBinding"></param>
-        /// <param name="hasSessionBinded"></param>
+        /// <param name="onRetrievingSession">The on retrieving session.</param>
+        /// <param name="onBinding">The on binding.</param>
+        /// <param name="onUnBinding">The on un binding.</param>
+        /// <param name="hasSessionBinded">The has session binded.</param>
+        /// <exception cref="PersistentLayer.Exceptions.BusinessLayerException">
+        /// The delegate to retrieve the session to bind cannot be null.;ctor SessionBinderProvider
+        /// or
+        /// The delegate to unbind the session cannot be null.;ctor SessionBinderProvider
+        /// </exception>
         public SessionBinderProvider(Func<ISession> onRetrievingSession, Action onBinding, Action onUnBinding, Func<bool> hasSessionBinded)
         {
             if (onRetrievingSession == null)
@@ -50,9 +55,12 @@ namespace PersistentLayer.NHibernate.Impl
         }
 
         /// <summary>
-        /// 
+        /// Gets the current bounded session by a higher implementation level.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Returns the current binded session by a higher implementation level.</returns>
+        /// <exception cref="System.NullReferenceException">The session retrieved is null.</exception>
+        /// <exception cref="PersistentLayer.Exceptions.SessionNotOpenedException">Session retrieved is closed.</exception>
+        /// <exception cref="PersistentLayer.Exceptions.SessionNotBindedException">There's no binded session, so first It would require to open a new session.;GetCurrentSession</exception>
         public override ISession GetCurrentSession()
         {
             try
@@ -74,8 +82,9 @@ namespace PersistentLayer.NHibernate.Impl
         }
 
         /// <summary>
-        /// 
+        /// Binds the current session.
         /// </summary>
+        /// <exception cref="PersistentLayer.Exceptions.BusinessLayerException">Error on invoking the delegate which binds the session, see inner exception for details.;BindSession</exception>
         public void BindSession()
         {
             try
@@ -90,9 +99,10 @@ namespace PersistentLayer.NHibernate.Impl
         }
 
         /// <summary>
-        /// 
+        /// Determines whether [has session binded].
         /// </summary>
-        /// <returns></returns>
+        /// <returns><c>true</c> if [has session binded]; otherwise, <c>false</c>.</returns>
+        /// <exception cref="PersistentLayer.Exceptions.BusinessLayerException">Error on invoking the delegate which verifies if exists any session binded, see inner exception for details.;HasSessionBinded</exception>
         public bool HasSessionBinded()
         {
             try
@@ -107,9 +117,9 @@ namespace PersistentLayer.NHibernate.Impl
         }
 
         /// <summary>
-        /// 
+        /// Unbind the current session.
         /// </summary>
-        /// <returns></returns>
+        /// <exception cref="PersistentLayer.Exceptions.BusinessLayerException">Error on invoking the delegate which unbinds the session, see inner exception for details.;UnBindSession</exception>
         public void UnBindSession()
         {
             try

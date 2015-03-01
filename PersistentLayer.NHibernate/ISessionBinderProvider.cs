@@ -7,50 +7,25 @@ using NHibernate;
 namespace PersistentLayer.NHibernate
 {
     /// <summary>
-    /// 
+    /// Interface ISessionBinderProvider
     /// </summary>
     public interface ISessionBinderProvider
         : ISessionProvider
     {
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        ///// <returns></returns>
-        //ISession OpenSession();
-
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        ///// <param name="session"></param>
-        ///// <param name="mode"></param>
-        //void BindSession(ISession session, FlushMode mode);
-
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        ///// <returns></returns>
-        //bool HasSessionBinded();
-
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        ///// <returns></returns>
-        //ISession UnbindSession();
-
         /// <summary>
-        /// 
+        /// Binds the current session.
         /// </summary>
         void BindSession();
 
         /// <summary>
-        /// 
+        /// Unbind the current session.
         /// </summary>
         void UnBindSession();
 
         /// <summary>
-        /// 
+        /// Determines whether [has session binded].
         /// </summary>
-        /// <returns></returns>
+        /// <returns><c>true</c> if [has session binded]; otherwise, <c>false</c>.</returns>
         bool HasSessionBinded();
 
     }

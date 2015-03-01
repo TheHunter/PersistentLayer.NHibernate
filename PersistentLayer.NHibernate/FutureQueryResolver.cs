@@ -4,20 +4,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Text;
 using NHibernate;
 
 namespace PersistentLayer.NHibernate
 {
     /// <summary>
-    /// 
+    /// Class FutureQueryResolver.
     /// </summary>
     public static class FutureQueryResolver
     {
         private static readonly HashSet<FutureFunction> Functions;
 
         /// <summary>
-        /// 
+        /// Initializes static members of the <see cref="FutureQueryResolver"/> class.
         /// </summary>
         static FutureQueryResolver()
         {
@@ -25,10 +24,10 @@ namespace PersistentLayer.NHibernate
         }
 
         /// <summary>
-        /// 
+        /// To the future.
         /// </summary>
-        /// <param name="criteria"></param>
-        /// <returns></returns>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>IEnumerable.</returns>
         public static IEnumerable ToFuture(ICriteria criteria)
         {
             Type collectionType;
@@ -54,7 +53,7 @@ namespace PersistentLayer.NHibernate
     }
 
     /// <summary>
-    /// 
+    /// Class FutureFunction.
     /// </summary>
     public class FutureFunction
     {
@@ -67,7 +66,7 @@ namespace PersistentLayer.NHibernate
         private readonly Func<ICriteria, IEnumerable> futureExecutor;
 
         /// <summary>
-        /// 
+        /// Initializes static members of the <see cref="FutureFunction"/> class.
         /// </summary>
         static FutureFunction()
         {
@@ -77,9 +76,9 @@ namespace PersistentLayer.NHibernate
         }
 
         /// <summary>
-        /// 
+        /// Initializes a new instance of the <see cref="FutureFunction"/> class.
         /// </summary>
-        /// <param name="collectionType"></param>
+        /// <param name="collectionType">Type of the collection.</param>
         public FutureFunction(Type collectionType)
         {
             this.collectionType = collectionType;
@@ -92,28 +91,29 @@ namespace PersistentLayer.NHibernate
         }
 
         /// <summary>
-        /// 
+        /// Gets the type of the collection.
         /// </summary>
+        /// <value>The type of the collection.</value>
         public Type CollectionType
         {
             get { return this.collectionType; }
         }
 
         /// <summary>
-        /// 
+        /// Executes the future.
         /// </summary>
-        /// <param name="criteria"></param>
-        /// <returns></returns>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>IEnumerable.</returns>
         public IEnumerable ExecuteFuture(ICriteria criteria)
         {
             return this.futureExecutor.Invoke(criteria);
         }
 
         /// <summary>
-        /// 
+        /// Determines whether the specified <see cref="System.Object" /> is equal to this instance.
         /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
+        /// <param name="obj">The <see cref="T:System.Object" /> to compare with the current <see cref="T:System.Object" />.</param>
+        /// <returns><c>true</c> if the specified <see cref="System.Object" /> is equal to this instance; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj)
         {
             if (obj == null)
@@ -126,18 +126,18 @@ namespace PersistentLayer.NHibernate
         }
 
         /// <summary>
-        /// 
+        /// Returns a hash code for this instance.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
         public override int GetHashCode()
         {
             return this.collectionType.GetHashCode();
         }
 
         /// <summary>
-        /// 
+        /// Returns a <see cref="System.String" /> that represents this instance.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
         public override string ToString()
         {
             return string.Format("Collection Future of <{0}>", this.collectionType.Name);

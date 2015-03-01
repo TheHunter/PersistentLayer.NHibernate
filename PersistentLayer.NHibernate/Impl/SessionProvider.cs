@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
 using NHibernate;
 using PersistentLayer.Exceptions;
 
 namespace PersistentLayer.NHibernate.Impl
 {
     /// <summary>
-    /// 
+    /// Class SessionProvider.
     /// </summary>
     [Serializable]
     public abstract class SessionProvider
@@ -24,7 +23,7 @@ namespace PersistentLayer.NHibernate.Impl
         #region Session factory section
 
         /// <summary>
-        /// 
+        /// Initializes a new instance of the <see cref="SessionProvider"/> class.
         /// </summary>
         protected SessionProvider()
         {
@@ -34,25 +33,25 @@ namespace PersistentLayer.NHibernate.Impl
         #endregion
 
         /// <summary>
-        /// 
+        /// Gets the current bounded session by a higher implementation level.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Returns the current binded session by a higher implementation level.</returns>
         public abstract ISession GetCurrentSession();
-        
 
         /// <summary>
-        /// 
+        /// Indicates if the root transaction is in progress.
         /// </summary>
+        /// <value><c>true</c> if [in progress]; otherwise, <c>false</c>.</value>
         public bool InProgress
         {
             get { return this.transactions.Count > 0; }
         }
 
         /// <summary>
-        /// 
+        /// Indicates if there's a transaction with the given name.
         /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
+        /// <param name="name">The name.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         public bool Exists(string name)
         {
             if (name == null)
@@ -62,7 +61,7 @@ namespace PersistentLayer.NHibernate.Impl
         }
 
         /// <summary>
-        /// 
+        /// Begin a new transaction with a default name target.
         /// </summary>
         public virtual void BeginTransaction()
         {
@@ -70,9 +69,9 @@ namespace PersistentLayer.NHibernate.Impl
         }
 
         /// <summary>
-        /// 
+        /// Begin a new transaction with the given name target.
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="name">The name.</param>
         public virtual void BeginTransaction(string name)
         {
             // ReSharper disable RedundantCast
@@ -81,13 +80,9 @@ namespace PersistentLayer.NHibernate.Impl
         }
 
         /// <summary>
-        /// Begin a new transaction from the current binded session with the specified IsolationLevel.
+        /// Begin a new transaction
         /// </summary>
-        /// <param name="level">IsolationLevel for this transaction.</param>
-        /// <exception cref="BusinessLayerException"></exception>
-        /// <exception cref="SessionNotBindedException">
-        /// Throws an exception when there's no session binded into any CurrentSessionContext.
-        /// </exception>
+        /// <param name="level">The level.</param>
         public virtual void BeginTransaction(IsolationLevel? level)
         {
             int index = transactions.Count;
@@ -95,11 +90,17 @@ namespace PersistentLayer.NHibernate.Impl
         }
 
         /// <summary>
-        /// 
+        /// Begin a new transaction with the given name.
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="level"></param>
-        /// <exception cref="BusinessLayerException"></exception>
+        /// <param name="name">The name.</param>
+        /// <param name="level">The level.</param>
+        /// <exception cref="PersistentLayer.Exceptions.BusinessLayerException">
+        /// The transaction name cannot be null or empty;BeginTransaction
+        /// or
+        /// BeginTransaction
+        /// or
+        /// Error on beginning a new transaction.;BeginTransaction
+        /// </exception>
         public virtual void BeginTransaction(string name, IsolationLevel? level)
         {
             if (name == null || name.Trim().Equals(string.Empty))
@@ -130,11 +131,9 @@ namespace PersistentLayer.NHibernate.Impl
         }
 
         /// <summary>
-        /// Commit the current transaction and flushes the associated session.
+        /// Commit the transaction.
         /// </summary>
-        /// <exception cref="CommitFailedException">
-        /// Throws an exception when current transaction tries to commit.
-        /// </exception>
+        /// <exception cref="PersistentLayer.Exceptions.CommitFailedException">CommitTransaction</exception>
         public virtual void CommitTransaction()
         {
             if (transactions.Count > 0)
@@ -143,7 +142,7 @@ namespace PersistentLayer.NHibernate.Impl
                 if (transactions.Count == 0)
                 {
                     ITransaction transaction = null;
-                    ISession session = null;
+                    ISession session;
 
                     try
                     {
@@ -158,10 +157,6 @@ namespace PersistentLayer.NHibernate.Impl
 
                     try
                     {
-                        //ISession session = this.GetCurrentSession();
-                        //if (session == null)
-                        //    throw new SessionNotAvailableException("No session was found for making commit operation.", "CommitTransaction");
-
                         transaction = session.Transaction;
                         if (session.FlushMode == FlushMode.Never)
                         {
@@ -181,23 +176,19 @@ namespace PersistentLayer.NHibernate.Impl
         }
 
         /// <summary>
-        /// Makes a rollback into current transaction
+        /// Makes a rollback the transaction.
         /// </summary>
-        /// <exception cref="RollbackFailedException">
-        /// Throws an exception when current transaction makes a rollback.
-        /// </exception>
-        /// <exception cref="InnerRollBackException">
-        /// Throws an exception when an inner transaction makes a rollback.
-        /// </exception>
         public virtual void RollbackTransaction()
         {
             this.RollbackTransaction(null);
         }
 
         /// <summary>
-        /// 
+        /// Makes a rollback, indicating the exception associated to the last transaction.
         /// </summary>
-        /// <param name="cause"></param>
+        /// <param name="cause">The cause.</param>
+        /// <exception cref="PersistentLayer.Exceptions.RollbackFailedException">Error on calling RollbackTransaction method</exception>
+        /// <exception cref="PersistentLayer.Exceptions.InnerRollBackException">An inner rollback transaction has occurred.</exception>
         public virtual void RollbackTransaction(Exception cause)
         {
             if (transactions.Count > 0)
@@ -243,7 +234,7 @@ namespace PersistentLayer.NHibernate.Impl
         }
 
         /// <summary>
-        /// Clear all internal transactions.
+        /// Resets this instance.
         /// </summary>
         protected virtual void Reset()
         {
@@ -251,7 +242,7 @@ namespace PersistentLayer.NHibernate.Impl
         }
 
         /// <summary>
-        /// 
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
         public virtual void Dispose()
         {

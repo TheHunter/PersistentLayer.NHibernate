@@ -8,8 +8,10 @@ using NHibernate.Criterion;
 namespace PersistentLayer.NHibernate
 {
     /// <summary>
-    /// 
+    /// Interface INhQueryableDAO
     /// </summary>
+    /// <typeparam name="TEntity">The type of the t entity.</typeparam>
+    /// <typeparam name="TKey">The type of the t key.</typeparam>
     public interface INhQueryableDAO<TEntity, TKey>
         : IQueryableDAO<TEntity, TKey>
         where TEntity : class
@@ -49,32 +51,33 @@ namespace PersistentLayer.NHibernate
         #endregion
 
         #region Advanced query expressions.
+
         /// <summary>
-        /// 
+        /// Executes the expression.
         /// </summary>
-        /// <typeparam name="TResult"></typeparam>
-        /// <param name="queryExpr"></param>
-        /// <param name="mode"></param>
-        /// <returns></returns>
+        /// <typeparam name="TResult">The type of the t result.</typeparam>
+        /// <param name="queryExpr">The query expr.</param>
+        /// <param name="mode">The mode.</param>
+        /// <returns>TResult.</returns>
         TResult ExecuteExpression<TResult>(Expression<Func<IQueryable<TEntity>, TResult>> queryExpr, CacheMode mode);
 
         /// <summary>
-        /// 
+        /// Executes the expression.
         /// </summary>
-        /// <typeparam name="TResult"></typeparam>
-        /// <param name="queryExpr"></param>
-        /// <param name="region"></param>
-        /// <returns></returns>
+        /// <typeparam name="TResult">The type of the t result.</typeparam>
+        /// <param name="queryExpr">The query expr.</param>
+        /// <param name="region">The region.</param>
+        /// <returns>TResult.</returns>
         TResult ExecuteExpression<TResult>(Expression<Func<IQueryable<TEntity>, TResult>> queryExpr, string region);
 
         /// <summary>
-        /// 
+        /// Executes the expression.
         /// </summary>
-        /// <typeparam name="TResult"></typeparam>
-        /// <param name="queryExpr"></param>
-        /// <param name="mode"></param>
-        /// <param name="region"></param>
-        /// <returns></returns>
+        /// <typeparam name="TResult">The type of the t result.</typeparam>
+        /// <param name="queryExpr">The query expr.</param>
+        /// <param name="mode">The mode.</param>
+        /// <param name="region">The region.</param>
+        /// <returns>TResult.</returns>
         TResult ExecuteExpression<TResult>(Expression<Func<IQueryable<TEntity>, TResult>> queryExpr, CacheMode mode,
                                            string region);
         #endregion
@@ -96,112 +99,113 @@ namespace PersistentLayer.NHibernate
         IEnumerable<TEntity> FindAll(bool cacheable);
 
         /// <summary>
-        /// 
+        /// Finds all instances associated if It exists the given cache.
         /// </summary>
-        /// <param name="cacheRegion"></param>
-        /// <returns></returns>
+        /// <param name="cacheRegion">The cache region.</param>
+        /// <returns>IEnumerable&lt;TEntity&gt;.</returns>
         IEnumerable<TEntity> FindAll(string cacheRegion);
 
         /// <summary>
-        /// sets the pre loaded of istances from the database.
+        /// Finds all isntances using the given fetch size.
         /// </summary>
-        /// <param name="fetchSize"></param>
-        /// <returns></returns>
+        /// <param name="fetchSize">Size of the fetch.</param>
+        /// <returns>IEnumerable&lt;TEntity&gt;.</returns>
         IEnumerable<TEntity> FindAll(int fetchSize);
 
         /// <summary>
-        /// 
+        /// Finds all instances using the given criteria.
         /// </summary>
-        /// <param name="criteria"></param>
-        /// <returns></returns>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>IEnumerable&lt;TEntity&gt;.</returns>
         IEnumerable<TEntity> FindAll(DetachedCriteria criteria);
 
         /// <summary>
-        /// 
+        /// Finds all instances using the given query over.
         /// </summary>
-        /// <param name="query"></param>
-        /// <returns></returns>
+        /// <param name="query">The query.</param>
+        /// <returns>IEnumerable&lt;TEntity&gt;.</returns>
         IEnumerable<TEntity> FindAll(QueryOver<TEntity> query);
 
         #region Future section
+
         /// <summary>
-        /// 
+        /// Finds all future instances using the given criteria.
         /// </summary>
-        /// <param name="criteria"></param>
-        /// <returns></returns>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>IEnumerable&lt;TEntity&gt;.</returns>
         IEnumerable<TEntity> FindAllFuture(DetachedCriteria criteria);
 
         /// <summary>
-        /// 
+        /// Finds all future instances using the given query over criteria.
         /// </summary>
-        /// <param name="query"></param>
-        /// <returns></returns>
+        /// <param name="query">The query.</param>
+        /// <returns>IEnumerable&lt;TEntity&gt;.</returns>
         IEnumerable<TEntity> FindAllFuture(QueryOver<TEntity> query);
 
         /// <summary>
-        /// 
+        /// Gets the future value.
         /// </summary>
-        /// <typeparam name="TFutureValue"></typeparam>
-        /// <param name="criteria"></param>
-        /// <returns></returns>
+        /// <typeparam name="TFutureValue">The type of the t future value.</typeparam>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>IFutureValue&lt;TFutureValue&gt;.</returns>
         IFutureValue<TFutureValue> GetFutureValue<TFutureValue>(DetachedCriteria criteria);
 
         /// <summary>
-        /// 
+        /// Gets the future value.
         /// </summary>
-        /// <typeparam name="TFutureValue"></typeparam>
-        /// <param name="query"></param>
-        /// <returns></returns>
+        /// <typeparam name="TFutureValue">The type of the t future value.</typeparam>
+        /// <param name="query">The query.</param>
+        /// <returns>IFutureValue&lt;TFutureValue&gt;.</returns>
         IFutureValue<TFutureValue> GetFutureValue<TFutureValue>(QueryOver<TEntity> query);
 
         #endregion
 
         /// <summary>
-        /// 
+        /// Exists instances using the specified criteria.
         /// </summary>
-        /// <param name="criteria"></param>
-        /// <returns></returns>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         bool Exists(DetachedCriteria criteria);
 
         /// <summary>
-        /// 
+        /// Exists instances the specified query.
         /// </summary>
-        /// <param name="query"></param>
-        /// <returns></returns>
+        /// <param name="query">The query.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         bool Exists(QueryOver<TEntity> query);
 
         /// <summary>
-        /// 
+        /// Refreshes the state.
         /// </summary>
-        /// <param name="entity"></param>
-        /// <returns></returns>
+        /// <param name="entity">The entity.</param>
+        /// <returns>TEntity.</returns>
         TEntity RefreshState(TEntity entity);
 
         /// <summary>
-        /// 
+        /// Refreshes the state.
         /// </summary>
-        /// <param name="entities"></param>
-        /// <returns></returns>
+        /// <param name="entities">The entities.</param>
+        /// <returns>IEnumerable&lt;TEntity&gt;.</returns>
         IEnumerable<TEntity> RefreshState(IEnumerable<TEntity> entities);
 
         /// <summary>
-        /// 
+        /// Uniques the result.
         /// </summary>
-        /// <param name="criteria"></param>
-        /// <returns></returns>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>TEntity.</returns>
         TEntity UniqueResult(DetachedCriteria criteria);
 
         /// <summary>
-        /// 
+        /// Uniques the result.
         /// </summary>
-        /// <param name="criteria"></param>
-        /// <returns></returns>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>TEntity.</returns>
         TEntity UniqueResult(QueryOver<TEntity> criteria);
 
     }
 
     /// <summary>
-    /// 
+    /// Interface INhQueryableDAO
     /// </summary>
     public interface INhQueryableDAO
         : IQueryableDAO

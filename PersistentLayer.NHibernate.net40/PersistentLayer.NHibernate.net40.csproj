@@ -107,6 +107,9 @@
     <Compile Include="..\PersistentLayer.NHibernate\Impl\SessionContextProvider.cs">
       <Link>Impl\SessionContextProvider.cs</Link>
     </Compile>
+    <Compile Include="..\PersistentLayer.NHibernate\Impl\SessionExternalProvider.cs">
+      <Link>Impl\SessionExternalProvider.cs</Link>
+    </Compile>
     <Compile Include="..\PersistentLayer.NHibernate\Impl\SessionManager.cs">
       <Link>Impl\SessionManager.cs</Link>
     </Compile>

@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Impl\SessionExternalProvider.cs" />
     <Compile Include="NhDaoFactory.cs" />
     <Compile Include="FutureQueryResolver.cs" />
     <Compile Include="IDomainDAO.cs" />

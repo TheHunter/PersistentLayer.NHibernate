@@ -9,32 +9,49 @@ using PersistentLayer.NHibernate.Exceptions;
 namespace PersistentLayer.NHibernate.Impl
 {
     /// <summary>
-    /// 
+    /// Represents a session provider which is associated into particular context.
     /// </summary>
     public class SessionContextProvider
         : SessionProvider, ISessionContextProvider
     {
         private readonly object keyContext;
         private readonly Func<ISession> sessionSupplier;
+
         /// <summary>
-        /// 
+        /// The default context
         /// </summary>
         public const string DefaultContext = "_defaultContext_";
         private ISession sessionCached;
         private bool wasDisposed;
 
         /// <summary>
-        /// 
+        /// Initializes a new instance of the <see cref="SessionContextProvider"/> class.
         /// </summary>
-        /// <param name="sessionSupplier"></param>
+        /// <param name="sessionSupplier">The session supplier.</param>
         public SessionContextProvider(Func<ISession> sessionSupplier)
             : this(sessionSupplier, DefaultContext)
         {
         }
 
         /// <summary>
-        /// 
+        /// Initializes a new instance of the <see cref="SessionContextProvider"/> class.
         /// </summary>
+        /// <param name="sessionSupplier">The session supplier.</param>
+        /// <param name="keyContext">The key context.</param>
+        /// <exception cref="PersistentLayer.Exceptions.BusinessLayerException">
+        /// The delegate for retrieving / opening the session for the calling instance cannot be null.
+        /// or
+        /// The keyContext argument cannot be null;ctor SessionContextProvider;new ArgumentNullException(keyContext, The keyContext argument cannot be null)
+        /// or
+        /// The keyContext argument cannot be empty;ctor SessionContextProvider;new ArgumentNullException(keyContext, The keyContext argument cannot be empty)
+        /// </exception>
+        /// <exception cref="System.ArgumentNullException">
+        /// keyContext;The keyContext argument cannot be null
+        /// or
+        /// keyContext;The keyContext argument cannot be empty
+        /// </exception>
+        /// <exception cref="PersistentLayer.Exceptions.SessionNotAvailableException">The session supplier returns a null reference.;ctor SessionDelegateProvider</exception>
+        /// <exception cref="InvalidSessionException">The session supplier must return unique sessions, so no session could be recycled.;ctor SessionDelegateProvider</exception>
         public SessionContextProvider(Func<ISession> sessionSupplier, object keyContext)
         {
             if (sessionSupplier == null)
@@ -77,17 +94,26 @@ namespace PersistentLayer.NHibernate.Impl
         }
 
         /// <summary>
-        /// 
+        /// Gets the key context.
         /// </summary>
+        /// <value>The key context.</value>
         public object KeyContext
         {
             get { return keyContext; }
         }
 
         /// <summary>
-        /// 
+        /// Gets the current bounded session by a higher implementation level.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Returns the current binded session by a higher implementation level.</returns>
+        /// <exception cref="PersistentLayer.Exceptions.SessionNotAvailableException">
+        /// There's no suitable session for making CRUD operations because the calling instance was disposed.;GetCurrentSession
+        /// or
+        /// Error on opening a new session for the calling session provider instance.;GetCurrentSession
+        /// or
+        /// Error on retrieving the session, see inner exception for details.;GetCurrentSession
+        /// </exception>
+        /// <exception cref="PersistentLayer.Exceptions.SessionNotOpenedException">The session associated into the calling instance must be opened.</exception>
         public override ISession GetCurrentSession()
         {
             if (wasDisposed)
@@ -115,7 +141,7 @@ namespace PersistentLayer.NHibernate.Impl
         }
 
         /// <summary>
-        /// 
+        /// Disposes this instance.
         /// </summary>
         public override void Dispose()
         {
@@ -126,7 +152,7 @@ namespace PersistentLayer.NHibernate.Impl
         }
 
         /// <summary>
-        /// Clear all internal transactions and close current session.
+        /// Clear all internal transactions.
         /// </summary>
         protected override void Reset()
         {
@@ -141,10 +167,10 @@ namespace PersistentLayer.NHibernate.Impl
         }
 
         /// <summary>
-        /// 
+        /// Determines whether the specified <see cref="System.Object" /> is equal to this instance.
         /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
+        /// <param name="obj">The <see cref="T:System.Object" /> to compare with the current <see cref="T:System.Object" />.</param>
+        /// <returns><c>true</c> if the specified <see cref="System.Object" /> is equal to this instance; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj)
         {
             if (obj == null)
@@ -157,9 +183,9 @@ namespace PersistentLayer.NHibernate.Impl
         }
 
         /// <summary>
-        /// 
+        /// Returns a hash code for this instance.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
         public override int GetHashCode()
         {
             return this.keyContext.GetHashCode();

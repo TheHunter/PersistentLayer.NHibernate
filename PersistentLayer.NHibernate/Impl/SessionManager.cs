@@ -19,10 +19,10 @@ namespace PersistentLayer.NHibernate.Impl
         #region Session factory section
 
         /// <summary>
-        /// 
+        /// Initializes a new instance of the <see cref="SessionManager"/> class.
         /// </summary>
-        /// <param name="sessionFactory"></param>
-        /// <exception cref="BusinessLayerException"></exception>
+        /// <param name="sessionFactory">The session factory.</param>
+        /// <exception cref="PersistentLayer.Exceptions.BusinessLayerException">The SessionFactory for SessionManager cannot be null.;ctor SessionManager</exception>
         public SessionManager(ISessionFactory sessionFactory)
         {
             if (sessionFactory == null)
@@ -34,20 +34,19 @@ namespace PersistentLayer.NHibernate.Impl
         #endregion
 
         /// <summary>
-        /// 
+        /// Gets the session factory.
         /// </summary>
+        /// <value>The session factory.</value>
         public ISessionFactory SessionFactory
         {
             get { return this.sessionFactory; }
         }
 
         /// <summary>
-        /// Gets the current binded session from the calling session manager.
+        /// Gets the current bounded session by a higher implementation level.
         /// </summary>
-        /// <returns>returns the current binded session</returns>
-        /// <exception cref="SessionNotBindedException">
-        /// Throws an exception when there's no session binded into any CurrentSessionContext.
-        /// </exception>
+        /// <returns>Returns the current binded session by a higher implementation level.</returns>
+        /// <exception cref="PersistentLayer.Exceptions.SessionNotBindedException">There's no binded session, so first It would require to open a new session.;GetCurrentSession</exception>
         public override ISession GetCurrentSession()
         {
             try

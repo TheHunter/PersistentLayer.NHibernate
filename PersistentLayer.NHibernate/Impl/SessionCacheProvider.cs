@@ -7,7 +7,7 @@ using NHibernate;
 namespace PersistentLayer.NHibernate.Impl
 {
     /// <summary>
-    /// Manages a contextual session during the its lifecycle, and opening new sessions after making rollback / commit transactions.
+    /// Manages a contextual session during the its life cycle, and opening new sessions after making rollback / commit transactions.
     /// </summary>
     public class SessionCacheProvider
         : SessionContextProvider
@@ -16,23 +16,23 @@ namespace PersistentLayer.NHibernate.Impl
         private readonly bool newSessionAfterRollback;
 
         /// <summary>
-        /// 
+        /// Initializes a new instance of the <see cref="SessionCacheProvider"/> class.
         /// </summary>
-        /// <param name="sessionSupplier"></param>
-        /// <param name="newSessionAfterCommit"></param>
-        /// <param name="newSessionAfterRollback"></param>
+        /// <param name="sessionSupplier">The session supplier.</param>
+        /// <param name="newSessionAfterCommit">if set to <c>true</c> [new session after commit].</param>
+        /// <param name="newSessionAfterRollback">if set to <c>true</c> [new session after rollback].</param>
         public SessionCacheProvider(Func<ISession> sessionSupplier, bool newSessionAfterCommit, bool newSessionAfterRollback)
             : this(sessionSupplier, DefaultContext, newSessionAfterCommit, newSessionAfterRollback)
         {
         }
 
         /// <summary>
-        /// 
+        /// Initializes a new instance of the <see cref="SessionCacheProvider"/> class.
         /// </summary>
-        /// <param name="sessionSupplier"></param>
-        /// <param name="keyContext"></param>
-        /// <param name="newSessionAfterCommit"></param>
-        /// <param name="newSessionAfterRollback"></param>
+        /// <param name="sessionSupplier">The session supplier.</param>
+        /// <param name="keyContext">The key context.</param>
+        /// <param name="newSessionAfterCommit">if set to <c>true</c> [new session after commit].</param>
+        /// <param name="newSessionAfterRollback">if set to <c>true</c> [new session after rollback].</param>
         public SessionCacheProvider(Func<ISession> sessionSupplier, object keyContext, bool newSessionAfterCommit, bool newSessionAfterRollback)
             : base(sessionSupplier, keyContext)
         {
@@ -41,7 +41,7 @@ namespace PersistentLayer.NHibernate.Impl
         }
 
         /// <summary>
-        /// 
+        /// Commit the transaction.
         /// </summary>
         public override void CommitTransaction()
         {
@@ -51,7 +51,7 @@ namespace PersistentLayer.NHibernate.Impl
         }
 
         /// <summary>
-        /// 
+        /// Makes a rollback the transaction.
         /// </summary>
         public override void RollbackTransaction()
         {
@@ -59,9 +59,9 @@ namespace PersistentLayer.NHibernate.Impl
         }
 
         /// <summary>
-        /// 
+        /// Makes a rollback, indicating the exception associated to the last transaction.
         /// </summary>
-        /// <param name="cause"></param>
+        /// <param name="cause">The cause.</param>
         public override void RollbackTransaction(Exception cause)
         {
             base.RollbackTransaction(cause);

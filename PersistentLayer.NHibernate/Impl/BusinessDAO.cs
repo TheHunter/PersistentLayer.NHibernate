@@ -8,29 +8,25 @@ using NHibernate.Criterion;
 namespace PersistentLayer.NHibernate.Impl
 {
     /// <summary>
-    /// 
+    /// Class BusinessDAO.
     /// </summary>
-    /// <typeparam name="TEntity"></typeparam>
-    /// <typeparam name="TKey"></typeparam>
+    /// <typeparam name="TEntity">The type of the t entity.</typeparam>
+    /// <typeparam name="TKey">The type of the t key.</typeparam>
     public class BusinessDAO<TEntity, TKey>
         : AbstractDAO, IEntityDAO<TEntity, TKey>
         where TEntity : class
     {
+
         /// <summary>
-        /// 
+        /// Initializes a new instance of the <see cref="AbstractDAO" /> class.
         /// </summary>
-        /// <param name="sessionProvider"></param>
+        /// <param name="sessionProvider">The session provider.</param>
         public BusinessDAO(ISessionProvider sessionProvider)
             :base(sessionProvider)
         {
-            
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="identifier"></param>
-        /// <returns></returns>
+
         public TEntity FindBy(TKey identifier)
         {
             return this.CurrentSession.FindBy<TEntity, TKey>(identifier);

@@ -93,7 +93,7 @@
   <Class Name="PersistentLayer.NHibernate.Impl.NhQueryImplementor">
     <Position X="44.75" Y="6" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAEAIAAAAgAAgCAAARQAAQQAAAAAAAAAEAAEEFAAA=</HashCode>
+      <HashCode>AAAAAAIAAAAgAAgCAAARQAAQQAAAAAAAAAEAAEEFAAA=</HashCode>
       <FileName>Impl\NhQueryImplementor.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -167,6 +167,13 @@
       <FileName>Impl\SessionContextProvider.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PersistentLayer.NHibernate.Impl.SessionExternalProvider">
+    <Position X="26" Y="17" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Impl\SessionExternalProvider.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Interface Name="PersistentLayer.NHibernate.IDomainDAO">
     <Position X="7.75" Y="7.25" Width="1.5" />
