@@ -606,7 +606,11 @@ namespace PersistentLayer.NHibernate.Impl
                 TResult ret = queryExpr.Compile()
                                 .Invoke(query);
 
+                if (ret == null)
+                    return ret;
+
                 Type resultType = ret.GetType();
+
                 if (resultType.Implements(typeof(IQueryable<>)))
                 {
                     if (resultType.IsGenericType)

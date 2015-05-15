@@ -102,5 +102,31 @@ namespace PersistentLayer.NHibernate.Test
             Assert.IsNotNull(first.Name);
             Assert.IsTrue(first.Counter > 0);
         }
+
+        [Test]
+        public void FunctionUsingSingleFirstOrDefault()
+        {
+            var customDAO = this.CurrentPagedDAO;
+
+            Func<IQueryable<Salesman>, Salesman> e =
+                entities => entities.SingleOrDefault(salesman => salesman.ID == -1);
+
+            Expression<Func<IQueryable<Salesman>, Salesman>> f = queryable => e(queryable);
+            var res5 = customDAO.ExecuteExpression(f);
+            Assert.IsNull(res5);
+        }
+
+        [Test]
+        public void FunctionUsingSingleFirstOrDefaultScalar()
+        {
+            var customDAO = this.CurrentPagedDAO;
+
+            Func<IQueryable<Salesman>, long> e =
+                entities => entities.Where(salesman => salesman.ID == -5).Sum(salesman => salesman.ID.Value);
+
+            Expression<Func<IQueryable<Salesman>, long>> f = queryable => e(queryable);
+            var res5 = customDAO.ExecuteExpression(f);
+            Assert.IsNotNull(res5);
+        }
     }
 }

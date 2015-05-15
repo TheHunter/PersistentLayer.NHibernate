@@ -26,7 +26,11 @@ namespace PersistentLayer.NHibernate.Impl
         {
         }
 
-
+        /// <summary>
+        /// Finds instance by the given identifier.
+        /// </summary>
+        /// <param name="identifier">The identifier.</param>
+        /// <returns></returns>
         public TEntity FindBy(TKey identifier)
         {
             return this.CurrentSession.FindBy<TEntity, TKey>(identifier);
