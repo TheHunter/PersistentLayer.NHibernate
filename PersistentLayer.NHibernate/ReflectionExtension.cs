@@ -70,7 +70,6 @@ namespace PersistentLayer.NHibernate
             AsQueryableDelegates = new Dictionary<Type, Delegate>();
         }
 
-
         /// <summary>
         /// 
         /// </summary>
@@ -204,8 +203,7 @@ namespace PersistentLayer.NHibernate
 
             return del;
         }
-
-
+        
         internal static Delegate MakeDelegate(Type inputType, Type returnType, MethodInfo method)
         {
             Type functionType = typeof(Func<,>).MakeGenericType(inputType, returnType);
@@ -213,6 +211,6 @@ namespace PersistentLayer.NHibernate
 
             return del;
         }
-    
+
     }
 }

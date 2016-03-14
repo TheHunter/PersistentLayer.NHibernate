@@ -615,25 +615,33 @@ namespace PersistentLayer.NHibernate.Impl
                 {
                     if (resultType.IsGenericType)
                     {
+                        ////#if (Dynamic)
+                        ////{
+                        ////    var list = Enumerable.ToList(ret as dynamic);
+                        ////    var queryable = Queryable.AsQueryable(list);
+                        ////    return (TResult)queryable;
+                        ////}
+                        ////#else
+                        ////{
+                        ////    Type genArg = resultType.GetGenericArguments()[0];
+                        ////    Delegate del = ReflectionExtension.ToListDelegate(genArg);
+                        ////    object list = del.DynamicInvoke(ret);
 
-                        #if (Dynamic)
-                        {
-                            var list = Enumerable.ToList(ret as dynamic);
-                            var queryable = Queryable.AsQueryable(list);
-                            return queryable;
-                        }
-                        #else
-                        {
-                            Type genArg = resultType.GetGenericArguments()[0];
-                            Delegate del = ReflectionExtension.ToListDelegate(genArg);
-                            object list = del.DynamicInvoke(ret);
+                        ////    Delegate delQ = ReflectionExtension.AsQueryableDelegate(genArg);
+                        ////    object res = delQ.DynamicInvoke(list);
 
-                            Delegate delQ = ReflectionExtension.AsQueryableDelegate(genArg);
-                            object res = delQ.DynamicInvoke(list);
+                        ////    return (TResult)res;
+                        ////}
+                        ////#endif
 
-                            return (TResult)res;
-                        }
-                        #endif
+                        Type genArg = resultType.GetGenericArguments()[0];
+                        Delegate del = ReflectionExtension.ToListDelegate(genArg);
+                        object list = del.DynamicInvoke(ret);
+
+                        Delegate delQ = ReflectionExtension.AsQueryableDelegate(genArg);
+                        object res = delQ.DynamicInvoke(list);
+
+                        return (TResult)res;
                     }
                 }
                 return ret;

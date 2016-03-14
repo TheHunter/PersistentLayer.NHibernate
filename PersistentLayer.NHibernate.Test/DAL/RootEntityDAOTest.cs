@@ -981,6 +981,9 @@ namespace PersistentLayer.NHibernate.Test.DAL
             Assert.IsNotNull(peopleName);
         }
 
+        /// <summary>
+        /// Tests the expression executors.
+        /// </summary>
         [Test]
         public void TestExpressionExecutors()
         {
@@ -1001,6 +1004,9 @@ namespace PersistentLayer.NHibernate.Test.DAL
             var result5 = customDAO.ExecuteExpression((IQueryable<Salesman> entities) => entities.Select(person => new SalesmanPrj { Name = person.Name, Surname = person.Surname }));
             Assert.IsNotNull(result5);
 
+            //IQueryable<string> aa = new EnumerableQuery<string>();
+            //aa.ToList();
+            
             // I don't understand how come this instruction works .... 
             // dynamic was introduced in framework 4.0 version !
 

@@ -121,12 +121,12 @@ namespace PersistentLayer.NHibernate.Test
         {
             var customDAO = this.CurrentPagedDAO;
 
-            Func<IQueryable<Salesman>, long> e =
-                entities => entities.Where(salesman => salesman.ID == -5).Sum(salesman => salesman.ID.Value);
+            Func<IQueryable<Salesman>, long?> e =
+                entities => entities.Where(salesman => salesman.ID == -5).Sum(salesman => salesman.ID);
 
-            Expression<Func<IQueryable<Salesman>, long>> f = queryable => e(queryable);
+            Expression<Func<IQueryable<Salesman>, long?>> f = queryable => e(queryable);
             var res5 = customDAO.ExecuteExpression(f);
-            Assert.IsNotNull(res5);
+            Assert.IsNull(res5);
         }
     }
 }
